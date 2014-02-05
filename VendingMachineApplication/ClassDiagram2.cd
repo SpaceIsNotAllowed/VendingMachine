@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="VendingMachineApplication.Banknote">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <AssociationLine Name="VendingMachine" Type="VendingMachineApplication.VendingMachine">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.497" Y="0.656" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAABAAAAAAAAAAQAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Additional\Banknote.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="rating" />
+      <Property Name="VendingMachine" />
+      <Property Name="Acceptor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.Product">
+    <Position X="9.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAIAQAAAAAABQAAAAAAAAAAAA=</HashCode>
+      <FileName>Additional\Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Cell" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.Acceptor">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAABAAMAAAAAAAgAAAAAAAIAAAAABEAQAQAAAA=</HashCode>
+      <FileName>Devices\Acceptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VendingMachineApplication.Checker">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAgAACAAAABABAAAAgAAAAAAAAAAAEAAAAAAAAg=</HashCode>
+      <FileName>Devices\Checker.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Acceptor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.CoinKeeper">
+    <Position X="12" Y="4.25" Width="1.5" />
+    <AssociationLine Name="VendingMachine" Type="VendingMachineApplication.VendingMachine">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.121" Y="0.241" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEASAEIAIAAAKAAAACAAAAAAAAAAECAgCAEEA=</HashCode>
+      <FileName>Devices\CoinKeeper.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="VendingMachine" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.Display">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAKAAAEAAAACAIAASAIAAEAAAAAAiAAAAAAA=</HashCode>
+      <FileName>Devices\Display.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="VendingMachine" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.InputButton" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQCCACAACAQAAACAgAAiAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Devices\InputButton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InputPanel" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VendingMachineApplication.InputPanel">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="VendingMachine" Type="VendingMachineApplication.VendingMachine">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.667" Y="-0.003" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACIhAAABAAGAAAACEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Devices\InputPanel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="VendingMachine" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.FormMain" Collapsed="true">
+    <Position X="2.25" Y="8.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>CCQAIAAAACAQAAABBBCAAIACAM07oAggkEAAQAAQAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="inputPanel1" />
+      <Field Name="coinKeeper" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.VendingMachine">
+    <Position X="6.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAACAIAgAAAACAQAACAAEAABIEAAgCQgAQAAA=</HashCode>
+      <FileName>VendingMachine.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="state" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.Devices.Cell">
+    <Position X="9.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEACAAAAAJAACAwAACgAAAAAAAAAAACAAAAAE=</HashCode>
+      <FileName>Devices\Cell.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="VendingMachine" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="VendingMachineApplication.Devices.Sensor">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <AssociationLine Name="VendingMachine" Type="VendingMachineApplication.VendingMachine">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.121" Y="-0.287" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAkEACAAAAAAAACAABACAAAAAAAAAABAAAAAAgA=</HashCode>
+      <FileName>Devices\Sensor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="VendingMachine" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="VendingMachineApplication.BanknoteRating">
+    <Position X="12" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAgAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Additional\Banknote.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VendingMachineApplication.State">
+    <Position X="4.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAEBAAAAAAgEQAAEAAAAAgAAAQAAAAAAA=</HashCode>
+      <FileName>VendingMachine.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
