@@ -67,6 +67,9 @@
     <Compile Include="Devices\Display.Designer.cs">
       <DependentUpon>Display.cs</DependentUpon>
     </Compile>
+    <Compile Include="Additional\GraphicalObject.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Devices\Sensor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -134,6 +137,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\coin_keeper.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\10rub.bmp" />
+    <None Include="Resources\button21.png" />
+    <None Include="Resources\button.png" />
+    <None Include="Resources\button1.png" />
+    <None Include="Resources\button2.png" />
+    <None Include="Resources\button3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -29,28 +29,30 @@ namespace VendingMachineApplication
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox1.Text += inputPanel1.Input;
+            textBox1.Text += inputPanel.Input;
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            inputPanel1.Buttons[1].Manager = button1;
-            inputPanel1.Buttons[2].Manager = button2;
-            inputPanel1.Buttons[3].Manager = button3;
-            inputPanel1.Buttons[4].Manager = button4;
-            inputPanel1.Buttons[5].Manager = button5;
-            inputPanel1.Buttons[6].Manager = button6;
-            inputPanel1.Buttons[7].Manager = button7;
-            inputPanel1.Buttons[8].Manager = button8;
-            inputPanel1.Buttons[9].Manager = button9;
-            inputPanel1.Buttons[0].Manager = button11;
-            inputPanel1.Buttons[10].Manager = button10;
-            inputPanel1.Buttons[11].Manager = button12;
+            //throw new VendingMachineApplication.Devices.Sensor.MyException();
+            /*
+            inputPanel.Buttons[0] = inputButton1;
+            for (int i = 0; i < 12; i++ )
+                if (inputPanel.Buttons[i] != null)
+                {
+                    inputPanel.Buttons[i].OwnerPanel = inputPanel;
+                    if (i < 10)
+                        inputPanel.Buttons[i].Key = (char)('0' + i);
+                    if (i == 11)
+                        inputPanel.Buttons[i].Key = '*';
+                    if (i == 12)
+                        inputPanel.Buttons[i].Key = '#';
+                }*/
         }
 
         private void coinKeeper2_Click(object sender, EventArgs e)
         {
-           // textBox2.Text += "\n\r" + coinKeeper2.ReturnMoney().ToString();
+            //textBox2.Text += "\n\r" + coinKeeper.ReturnMoney().ToString();
             textBox2.Text = "Получена сдача: " + coinKeeper.ReturnMoney().ToString() + Environment.NewLine + textBox2.Text;
         }
 
@@ -61,19 +63,41 @@ namespace VendingMachineApplication
 
         private void button14_Click(object sender, EventArgs e)
         {
+            
             coinKeeper.GetMoney(1);
             coinKeeper.Width  += 20;
             coinKeeper.Height += 20;
+            
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
             coinKeeper.Scale *= 1.1f;
+            //banknote1.Scale *= 1.1f;
+            for (int i = 0; i < inputPanel.Buttons.Length; i++)
+                if (inputPanel.Buttons[i] != null)
+                    inputPanel.Buttons[i].Scale *= 1.1f;
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
             coinKeeper.Scale /= 1.1f;
+            //banknote1.Scale /= 1.1f;
+            for (int i = 0; i < inputPanel.Buttons.Length; i++)
+                if (inputPanel.Buttons[i] != null)
+                    inputPanel.Buttons[i].Scale /= 1.1f;
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            //banknote1.imageIndex--;
+            //Text = banknote1.imageIndex.ToString();
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            //banknote1.imageIndex++;
+            //Text = banknote1.imageIndex.ToString();
         }
     }
 }

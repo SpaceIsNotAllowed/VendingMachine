@@ -7,30 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
 {
-    public partial class CoinKeeper : PictureBox
+    public partial class CoinKeeper : GraphicalObject//: PictureBox
     {
-        public CoinKeeper()
+        public CoinKeeper() : base()
         {
-            InitializeComponent();
+           // InitializeComponent();
+           
             Init();
         }
-
+        /*
         public CoinKeeper(IContainer container)
         {
             container.Add(this);
-            InitializeComponent();
+           // InitializeComponent();
             Init();
         }
-
+        */
 
         private bool Closed;
         private uint Account;
+
+        /*
         private float scale = 1.9f;
         private Bitmap _img;
-
 
         public float Scale
         {
@@ -62,6 +65,16 @@ namespace VendingMachineApplication
             }
         }
 
+        protected Bitmap CopyBitmap(Bitmap source, RectangleF dest, RectangleF src)
+        {
+            Bitmap bmp = new Bitmap((int)Math.Truncate(dest.Width), (int)Math.Truncate(dest.Height));
+            Graphics g = Graphics.FromImage(bmp);
+            g.DrawImage(source, dest, src, GraphicsUnit.Pixel);
+            g.Dispose();
+            return bmp;
+        }
+        */
+/*
         public VendingMachine VendingMachine
         {
             get
@@ -72,7 +85,7 @@ namespace VendingMachineApplication
             {
             }
         }
-
+        */
         private void Init()
         {
             Account = 0;
@@ -85,16 +98,7 @@ namespace VendingMachineApplication
             MouseUp += Close;
         }
 
-        protected Bitmap CopyBitmap(Bitmap source, RectangleF dest, RectangleF src)
-        {
-            Bitmap bmp = new Bitmap((int)Math.Truncate(dest.Width), (int)Math.Truncate(dest.Height));
-            Graphics g = Graphics.FromImage(bmp);
-            g.DrawImage(source, dest, src, GraphicsUnit.Pixel);
-            g.Dispose();
-            return bmp;
-        }
-        
-        public void Repaint()
+        override public void Repaint()
         {
             if (this._img != null)
             {
