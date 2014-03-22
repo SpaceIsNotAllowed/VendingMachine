@@ -47,7 +47,9 @@
     <Compile Include="Devices\Acceptor.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Additional\Banknote.cs" />
+    <Compile Include="Additional\Banknote.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Devices\Cell.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -61,14 +63,14 @@
     <Compile Include="Devices\CoinKeeper.Designer.cs">
       <DependentUpon>CoinKeeper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devices\Device.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Devices\Display.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Devices\Display.Designer.cs">
       <DependentUpon>Display.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Additional\GraphicalObject.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Devices\Sensor.cs">
       <SubType>Component</SubType>
@@ -139,12 +141,25 @@
     <None Include="Resources\coin_keeper.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\10rub.bmp" />
-    <None Include="Resources\button21.png" />
-    <None Include="Resources\button.png" />
-    <None Include="Resources\button1.png" />
     <None Include="Resources\button2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button21.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\button3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10rub.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptor.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

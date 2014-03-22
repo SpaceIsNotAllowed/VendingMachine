@@ -15,11 +15,11 @@ namespace VendingMachineApplication
 
        public Checker()
        {
-           result = -1;
+           result = 0;
            started = false;
            time = 0;
        }
-
+        /*
        internal Acceptor Acceptor
        {
            get
@@ -30,7 +30,7 @@ namespace VendingMachineApplication
            {
            }
        }
-
+        */
        private int Check() // выполняет проверку подлинности купюры и сохраняет результат проверки
        {
            if (time > 20)
@@ -44,15 +44,16 @@ namespace VendingMachineApplication
            else return -1;
        }
        
-       public int Check(Banknote banknote) // запускает проверку
+       public bool Check(Banknote banknote) // запускает проверку
        {
            if (!started)
            {
                this.banknote = banknote;
                Start();
+               return true; // купюра принята на проверку
            }
-           return -1;
-
+           else
+               return false; // устройство занято
        }
 
        public void Start() // инициализирует проверку
@@ -77,10 +78,10 @@ namespace VendingMachineApplication
 
        public int GetResult() // возвращает результат проверки
        {
-           if (started || result == -1) return -1;
+           if (started) return -1;
 
            int tmp = result;
-           result = -1;
+           result = 0;
            return tmp;
        }
    }

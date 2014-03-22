@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace VendingMachineApplication.Devices
 {
@@ -24,7 +25,13 @@ namespace VendingMachineApplication.Devices
         }
 
         #endregion
+        /*
+        public class MyException : Exception
+        {
+            public MyException() : base() { }
 
+        }*/
+/*
         public VendingMachineApplication.VendingMachine VendingMachine
         {
             get
@@ -35,22 +42,33 @@ namespace VendingMachineApplication.Devices
             {
             }
         }
-
+        */
         private bool HasObject; // ссылка на переменную!!
         private bool Warning;
         
         private void Alarm()
         {
-            Warning = true; 
+            Warning = true;
+            MessageBox.Show("Обнаружено проникновение!");
         }
 
         private void Check()
         {
+           /*
+            try
+            {
+            }
+            catch (MyException)
+            {
+                if (!Warning) Alarm();
+            }
+            * */
+            /*
             if (HasObject)
             {
                 if (!Warning) Alarm();
             }
-            else Warning = false;
+            else Warning = false;*/
         }
 
         public bool Warns()

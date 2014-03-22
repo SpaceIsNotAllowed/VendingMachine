@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
 {
@@ -30,6 +31,14 @@ namespace VendingMachineApplication
         private void timer1_Tick(object sender, EventArgs e)
         {
             textBox1.Text += inputPanel.Input;
+
+            acceptor1.Update();
+            /*
+            foreach (Control control in this.Controls)
+            {
+                if (control is GraphicalObject)
+                    (control as GraphicalObject).Update();
+            }*/
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -72,20 +81,45 @@ namespace VendingMachineApplication
 
         private void button15_Click(object sender, EventArgs e)
         {
+            /*
             coinKeeper.Scale *= 1.1f;
             //banknote1.Scale *= 1.1f;
             for (int i = 0; i < inputPanel.Buttons.Length; i++)
                 if (inputPanel.Buttons[i] != null)
                     inputPanel.Buttons[i].Scale *= 1.1f;
+            */
+            foreach (Control control in this.Controls)
+            {
+                if (control is GraphicalObject)
+                {
+                    (control as GraphicalObject).Scale *= 1.1f;
+                    (control as GraphicalObject).Repaint();
+                }
+            }
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
+            /*
             coinKeeper.Scale /= 1.1f;
             //banknote1.Scale /= 1.1f;
+
+
+
+
             for (int i = 0; i < inputPanel.Buttons.Length; i++)
                 if (inputPanel.Buttons[i] != null)
                     inputPanel.Buttons[i].Scale /= 1.1f;
+             */
+
+            foreach (Control control in this.Controls)
+            {
+                if (control is GraphicalObject)
+                {
+                    (control as GraphicalObject).Scale /= 1.1f;
+                    (control as GraphicalObject).Repaint();
+                }
+            }
         }
 
         private void button17_Click(object sender, EventArgs e)
@@ -98,6 +132,26 @@ namespace VendingMachineApplication
         {
             //banknote1.imageIndex++;
             //Text = banknote1.imageIndex.ToString();
+        }
+
+        private void button17_Click_1(object sender, EventArgs e)
+        {
+            Banknote b = new Banknote(100);
+            b.ImagePack = Properties.Resources._10rub as Bitmap;
+            b.Repaint();
+
+            this.Controls.Add(b);
+
+            acceptor1.GetMoney(b);
+        }
+
+        private void button18_Click_1(object sender, EventArgs e)
+        {
+            Banknote b = new Banknote(500);
+
+            this.Controls.Add(b);
+
+            acceptor1.GetMoney(b);
         }
     }
 }

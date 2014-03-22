@@ -49,11 +49,13 @@
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
-            this.inputButton2 = new VendingMachineApplication.InputButton(this.components);
+            this.button17 = new System.Windows.Forms.Button();
+            this.acceptor1 = new VendingMachineApplication.Acceptor();
             this.inputButton12 = new VendingMachineApplication.InputButton(this.components);
             this.inputPanel = new VendingMachineApplication.InputPanel(this.components);
             this.inputButton11 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton1 = new VendingMachineApplication.InputButton(this.components);
+            this.inputButton2 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton3 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton4 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton5 = new VendingMachineApplication.InputButton(this.components);
@@ -63,10 +65,12 @@
             this.inputButton9 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton10 = new VendingMachineApplication.InputButton(this.components);
             this.coinKeeper = new VendingMachineApplication.CoinKeeper();
-            ((System.ComponentModel.ISupportInitialize)(this.inputButton2)).BeginInit();
+            this.button18 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton5)).BeginInit();
@@ -215,7 +219,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(149, 230);
+            this.textBox2.Size = new System.Drawing.Size(149, 124);
             this.textBox2.TabIndex = 15;
             // 
             // button14
@@ -248,18 +252,26 @@
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
-            // inputButton2
+            // button17
             // 
-            this.inputButton2.Image = ((System.Drawing.Image)(resources.GetObject("inputButton2.Image")));
-            this.inputButton2.ImagePack = global::VendingMachineApplication.Properties.Resources.button21;
-            this.inputButton2.Key = '2';
-            this.inputButton2.Location = new System.Drawing.Point(662, 55);
-            this.inputButton2.Name = "inputButton2";
-            this.inputButton2.OwnerPanel = this.inputPanel;
-            this.inputButton2.Scale = 1.9F;
-            this.inputButton2.Size = new System.Drawing.Size(67, 68);
-            this.inputButton2.TabIndex = 32;
-            this.inputButton2.TabStop = false;
+            this.button17.Location = new System.Drawing.Point(32, 263);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(126, 23);
+            this.button17.TabIndex = 33;
+            this.button17.Text = "button17";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click_1);
+            // 
+            // acceptor1
+            // 
+            this.acceptor1.Image = ((System.Drawing.Image)(resources.GetObject("acceptor1.Image")));
+            this.acceptor1.ImagePack = global::VendingMachineApplication.Properties.Resources.acceptor;
+            this.acceptor1.Location = new System.Drawing.Point(271, 192);
+            this.acceptor1.Name = "acceptor1";
+            this.acceptor1.Scale = 1.9F;
+            this.acceptor1.Size = new System.Drawing.Size(117, 123);
+            this.acceptor1.TabIndex = 32;
+            this.acceptor1.TabStop = false;
             // 
             // inputButton12
             // 
@@ -316,6 +328,19 @@
             this.inputButton1.TabIndex = 20;
             this.inputButton1.TabStop = false;
             // 
+            // inputButton2
+            // 
+            this.inputButton2.Image = ((System.Drawing.Image)(resources.GetObject("inputButton2.Image")));
+            this.inputButton2.ImagePack = global::VendingMachineApplication.Properties.Resources.button21;
+            this.inputButton2.Key = '2';
+            this.inputButton2.Location = new System.Drawing.Point(661, 55);
+            this.inputButton2.Name = "inputButton2";
+            this.inputButton2.OwnerPanel = this.inputPanel;
+            this.inputButton2.Scale = 1.9F;
+            this.inputButton2.Size = new System.Drawing.Size(68, 68);
+            this.inputButton2.TabIndex = 21;
+            this.inputButton2.TabStop = false;
+            // 
             // inputButton3
             // 
             this.inputButton3.Image = ((System.Drawing.Image)(resources.GetObject("inputButton3.Image")));
@@ -345,7 +370,7 @@
             // inputButton5
             // 
             this.inputButton5.Image = ((System.Drawing.Image)(resources.GetObject("inputButton5.Image")));
-            this.inputButton5.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
+            this.inputButton5.ImagePack = global::VendingMachineApplication.Properties.Resources.button4;
             this.inputButton5.Key = '5';
             this.inputButton5.Location = new System.Drawing.Point(661, 129);
             this.inputButton5.Name = "inputButton5";
@@ -432,12 +457,24 @@
             this.coinKeeper.TabStop = false;
             this.coinKeeper.Click += new System.EventHandler(this.coinKeeper2_Click);
             // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(32, 292);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(126, 23);
+            this.button18.TabIndex = 34;
+            this.button18.Text = "button18";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click_1);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 396);
-            this.Controls.Add(this.inputButton2);
+            this.Controls.Add(this.button18);
+            this.Controls.Add(this.button17);
+            this.Controls.Add(this.acceptor1);
             this.Controls.Add(this.inputButton12);
             this.Controls.Add(this.inputButton11);
             this.Controls.Add(this.inputButton10);
@@ -448,6 +485,7 @@
             this.Controls.Add(this.inputButton5);
             this.Controls.Add(this.inputButton4);
             this.Controls.Add(this.inputButton3);
+            this.Controls.Add(this.inputButton2);
             this.Controls.Add(this.inputButton1);
             this.Controls.Add(this.coinKeeper);
             this.Controls.Add(this.button16);
@@ -470,10 +508,11 @@
             this.Controls.Add(this.button1);
             this.Name = "FormMain";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.inputButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton5)).EndInit();
@@ -512,6 +551,7 @@
         private CoinKeeper coinKeeper;
         private InputButton inputButton1;
         private InputPanel inputPanel;
+        private InputButton inputButton2;
         private InputButton inputButton3;
         private InputButton inputButton4;
         private InputButton inputButton5;
@@ -522,7 +562,9 @@
         private InputButton inputButton10;
         private InputButton inputButton11;
         private InputButton inputButton12;
-        private InputButton inputButton2;
+        private Acceptor acceptor1;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button18;
     }
 }
 

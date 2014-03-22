@@ -71,12 +71,12 @@ namespace VendingMachineApplication
             }
         }
         */
-        public InputButton() : base()
+        public InputButton()
         {
             InitializeComponent();
         }
 
-        public InputButton(IContainer container) : base()
+        public InputButton(IContainer container)
         {
             container.Add(this);
 
