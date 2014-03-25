@@ -153,5 +153,11 @@ namespace VendingMachineApplication
 
             acceptor1.GetMoney(b);
         }
+
+        private void ShowVenging_Click(object sender, EventArgs e)
+        {
+            FormVendingTest f = new FormVendingTest();
+            f.Show();
+        }
     }
 }
