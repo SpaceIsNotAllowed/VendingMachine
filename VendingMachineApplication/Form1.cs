@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VendingMachineApplication.Devices;
+using VendingMachineApplication.UnitTesting;
 
 namespace VendingMachineApplication
 {
@@ -157,6 +158,12 @@ namespace VendingMachineApplication
         private void ShowVenging_Click(object sender, EventArgs e)
         {
             FormVendingTest f = new FormVendingTest();
+            f.Show();
+        }
+
+        private void ButtonTestDisplay_Click(object sender, EventArgs e)
+        {
+            FormDisplayTest f = new FormDisplayTest();
             f.Show();
         }
     }

@@ -67,6 +67,7 @@
             this.inputButton10 = new VendingMachineApplication.InputButton(this.components);
             this.coinKeeper = new VendingMachineApplication.CoinKeeper();
             this.ShowVenging = new System.Windows.Forms.Button();
+            this.ButtonTestDisplay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).BeginInit();
@@ -275,6 +276,7 @@
             // 
             // acceptor1
             // 
+            this.acceptor1.BackColor = System.Drawing.Color.Transparent;
             this.acceptor1.Image = ((System.Drawing.Image)(resources.GetObject("acceptor1.Image")));
             this.acceptor1.ImagePack = global::VendingMachineApplication.Properties.Resources.acceptor;
             this.acceptor1.Location = new System.Drawing.Point(164, 234);
@@ -286,6 +288,7 @@
             // 
             // inputButton12
             // 
+            this.inputButton12.BackColor = System.Drawing.Color.Transparent;
             this.inputButton12.Image = ((System.Drawing.Image)(resources.GetObject("inputButton12.Image")));
             this.inputButton12.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton12.Key = '#';
@@ -315,6 +318,7 @@
             // 
             // inputButton11
             // 
+            this.inputButton11.BackColor = System.Drawing.Color.Transparent;
             this.inputButton11.Image = ((System.Drawing.Image)(resources.GetObject("inputButton11.Image")));
             this.inputButton11.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton11.Key = '0';
@@ -328,6 +332,7 @@
             // 
             // inputButton1
             // 
+            this.inputButton1.BackColor = System.Drawing.Color.Transparent;
             this.inputButton1.Image = ((System.Drawing.Image)(resources.GetObject("inputButton1.Image")));
             this.inputButton1.ImagePack = global::VendingMachineApplication.Properties.Resources.button1;
             this.inputButton1.Key = '1';
@@ -341,6 +346,7 @@
             // 
             // inputButton2
             // 
+            this.inputButton2.BackColor = System.Drawing.Color.Transparent;
             this.inputButton2.Image = ((System.Drawing.Image)(resources.GetObject("inputButton2.Image")));
             this.inputButton2.ImagePack = global::VendingMachineApplication.Properties.Resources.button21;
             this.inputButton2.Key = '2';
@@ -354,6 +360,7 @@
             // 
             // inputButton3
             // 
+            this.inputButton3.BackColor = System.Drawing.Color.Transparent;
             this.inputButton3.Image = ((System.Drawing.Image)(resources.GetObject("inputButton3.Image")));
             this.inputButton3.ImagePack = global::VendingMachineApplication.Properties.Resources.button3;
             this.inputButton3.Key = '3';
@@ -367,6 +374,7 @@
             // 
             // inputButton4
             // 
+            this.inputButton4.BackColor = System.Drawing.Color.Transparent;
             this.inputButton4.Image = ((System.Drawing.Image)(resources.GetObject("inputButton4.Image")));
             this.inputButton4.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton4.Key = '4';
@@ -380,6 +388,7 @@
             // 
             // inputButton5
             // 
+            this.inputButton5.BackColor = System.Drawing.Color.Transparent;
             this.inputButton5.Image = ((System.Drawing.Image)(resources.GetObject("inputButton5.Image")));
             this.inputButton5.ImagePack = global::VendingMachineApplication.Properties.Resources.button4;
             this.inputButton5.Key = '5';
@@ -393,6 +402,7 @@
             // 
             // inputButton6
             // 
+            this.inputButton6.BackColor = System.Drawing.Color.Transparent;
             this.inputButton6.Image = ((System.Drawing.Image)(resources.GetObject("inputButton6.Image")));
             this.inputButton6.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton6.Key = '6';
@@ -406,6 +416,7 @@
             // 
             // inputButton7
             // 
+            this.inputButton7.BackColor = System.Drawing.Color.Transparent;
             this.inputButton7.Image = ((System.Drawing.Image)(resources.GetObject("inputButton7.Image")));
             this.inputButton7.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton7.Key = '7';
@@ -419,6 +430,7 @@
             // 
             // inputButton8
             // 
+            this.inputButton8.BackColor = System.Drawing.Color.Transparent;
             this.inputButton8.Image = ((System.Drawing.Image)(resources.GetObject("inputButton8.Image")));
             this.inputButton8.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton8.Key = '8';
@@ -432,6 +444,7 @@
             // 
             // inputButton9
             // 
+            this.inputButton9.BackColor = System.Drawing.Color.Transparent;
             this.inputButton9.Image = ((System.Drawing.Image)(resources.GetObject("inputButton9.Image")));
             this.inputButton9.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton9.Key = '9';
@@ -445,6 +458,7 @@
             // 
             // inputButton10
             // 
+            this.inputButton10.BackColor = System.Drawing.Color.Transparent;
             this.inputButton10.Image = ((System.Drawing.Image)(resources.GetObject("inputButton10.Image")));
             this.inputButton10.ImagePack = global::VendingMachineApplication.Properties.Resources.button;
             this.inputButton10.Key = '*';
@@ -458,6 +472,7 @@
             // 
             // coinKeeper
             // 
+            this.coinKeeper.BackColor = System.Drawing.Color.Transparent;
             this.coinKeeper.Image = ((System.Drawing.Image)(resources.GetObject("coinKeeper.Image")));
             this.coinKeeper.ImagePack = global::VendingMachineApplication.Properties.Resources.coin_keeper;
             this.coinKeeper.Location = new System.Drawing.Point(477, 55);
@@ -474,15 +489,26 @@
             this.ShowVenging.Name = "ShowVenging";
             this.ShowVenging.Size = new System.Drawing.Size(87, 23);
             this.ShowVenging.TabIndex = 35;
-            this.ShowVenging.Text = "ShowVending";
+            this.ShowVenging.Text = "Show Vending";
             this.ShowVenging.UseVisualStyleBackColor = true;
             this.ShowVenging.Click += new System.EventHandler(this.ShowVenging_Click);
+            // 
+            // ButtonTestDisplay
+            // 
+            this.ButtonTestDisplay.Location = new System.Drawing.Point(370, 233);
+            this.ButtonTestDisplay.Name = "ButtonTestDisplay";
+            this.ButtonTestDisplay.Size = new System.Drawing.Size(87, 23);
+            this.ButtonTestDisplay.TabIndex = 36;
+            this.ButtonTestDisplay.Text = "Show Display";
+            this.ButtonTestDisplay.UseVisualStyleBackColor = true;
+            this.ButtonTestDisplay.Click += new System.EventHandler(this.ButtonTestDisplay_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 396);
+            this.Controls.Add(this.ButtonTestDisplay);
             this.Controls.Add(this.ShowVenging);
             this.Controls.Add(this.button18);
             this.Controls.Add(this.button17);
@@ -578,6 +604,7 @@
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button ShowVenging;
+        private System.Windows.Forms.Button ButtonTestDisplay;
     }
 }
 

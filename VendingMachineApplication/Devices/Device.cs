@@ -17,6 +17,7 @@ namespace VendingMachineApplication.Devices
         public double dTop { get; private set; }  // будет меняться некорректно из-за округлений
 
         [Browsable(true)]
+        [Category("Свойства устройства")]
         public Bitmap ImagePack
         {
             get
@@ -39,8 +40,9 @@ namespace VendingMachineApplication.Devices
         */
 
         public delegate void ScaleChangedEventHandler(object sender, double scale);
+        [Category("События устройства")]
         public event ScaleChangedEventHandler ScaleChanged;
-
+        [Category("Свойства устройства")]
         public new float Scale
         {
             get

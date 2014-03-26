@@ -52,3 +52,18 @@ C:\Users\Dima\Desktop\UNIT TESTING\VendingMachineApplication\obj\Debug\VendingMa
 C:\Users\Dima\Desktop\UNIT TESTING\VendingMachineApplication\bin\Debug\VendingMachineApplication.exe
 C:\Users\Dima\Desktop\UNIT TESTING\VendingMachineApplication\bin\Debug\VendingMachineApplication.pdb
 C:\Users\Dima\Desktop\UNIT TESTING\VendingMachineApplication\obj\Debug\VendingMachineApplication.FormVendingTest.resources
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\bin\Debug\VendingMachineApplication.exe.config
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.exe
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.pdb
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\bin\Debug\VendingMachineApplication.exe.config
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.exe
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.pdb
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.FormMain.resources
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.InputButton.resources
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.FormVendingTest.resources
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.Properties.Resources.resources
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.csproj.GenerateResource.Cache
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\bin\Debug\VendingMachineApplication.exe
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\bin\Debug\VendingMachineApplication.pdb
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.UnitTesting.FormDisplayTest.resources
+C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.csprojResolveAssemblyReference.cache

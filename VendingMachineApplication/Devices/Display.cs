@@ -6,24 +6,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
 {
-    public partial class Display : Component
+    public partial class Display : GraphicalObject
     {
         #region Конструкторы
 
         public Display()
         {
-            InitializeComponent();
-            Init();
-        }
-
-        public Display(IContainer container)
-        {
-            container.Add(this);
-
-            InitializeComponent();
             Init();
         }
 
@@ -31,13 +23,12 @@ namespace VendingMachineApplication
 
         private void Init()
         {
-            Background = Bitmap.FromFile(".\\images\\Display.bmp");
             //...
         }
 
-        private void Update()
+        private void Update() // убрать?
         {
-            //...
+            Repaint();
         }
 
         private Image Background;
@@ -56,9 +47,15 @@ namespace VendingMachineApplication
 
         public String InputInfo
         {
+            get
+            {
+                return _InputInfo; //??
+            }
             set
             {
                 _InputInfo = value;
+                if (_InputInfo.Length > 2)
+                    _InputInfo = _InputInfo.Remove(2);
                 Update();
             }
         }
@@ -74,14 +71,39 @@ namespace VendingMachineApplication
 
         #endregion
 
-        public VendingMachine VendingMachine
+        override public void Repaint()
         {
-            get
+            if (this._img != null)
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                if (Image != null)
+                    Image.Dispose();
+
+                Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width, scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
+                this.Width = Image.Width;
+                this.Height = Image.Height;
+
+                Graphics g = Graphics.FromImage(Image);
+
+                SolidBrush drawBrush = new SolidBrush(Color.White);
+
+                int mainFontSize = 10;
+                int inputFontSize = 7;
+                int moneyFontSize = 25;
+
+                PointF mainDrawPoint = new PointF(5.0F * scale * 1, 5.0F * scale);
+                PointF inputDrawPoint = new PointF(5.0F * scale * mainFontSize / inputFontSize, 25.0F * scale);
+                PointF moneyDrawPoint = new PointF(5.0F * scale * mainFontSize / moneyFontSize, 45.0F * scale);
+
+                Font mainDrawFont = new Font("Times New Roman", mainFontSize * scale);
+                Font inputDrawFont = new Font("Times New Roman", inputFontSize * scale);
+                Font moneyDrawFont = new Font("Times New Roman", moneyFontSize * scale);
+
+                g.DrawString(_MainInfo, mainDrawFont, drawBrush, mainDrawPoint);
+                g.DrawString(_InputInfo, inputDrawFont, drawBrush, inputDrawPoint);
+                g.DrawString(_MoneyInfo, moneyDrawFont, drawBrush, moneyDrawPoint);
+
+                //g.DrawString("Hello!", new Font(FontFamily , new SolidBrush(Color.White), new PointF(0, 0));
+                g.Dispose();
             }
         }
 

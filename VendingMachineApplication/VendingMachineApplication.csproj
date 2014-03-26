@@ -69,9 +69,6 @@
     <Compile Include="Devices\Display.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Devices\Display.Designer.cs">
-      <DependentUpon>Display.cs</DependentUpon>
-    </Compile>
     <Compile Include="Devices\Sensor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -97,10 +94,16 @@
       <DependentUpon>InputPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Additional\Product.cs" />
-    <Compile Include="FormVendingTest.cs">
+    <Compile Include="UnitTesting\FormDisplayTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormVendingTest.Designer.cs">
+    <Compile Include="UnitTesting\FormDisplayTest.Designer.cs">
+      <DependentUpon>FormDisplayTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UnitTesting\FormVendingTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnitTesting\FormVendingTest.Designer.cs">
       <DependentUpon>FormVendingTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -114,7 +117,10 @@
     <EmbeddedResource Include="Devices\InputButton.resx">
       <DependentUpon>InputButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormVendingTest.resx">
+    <EmbeddedResource Include="UnitTesting\FormDisplayTest.resx">
+      <DependentUpon>FormDisplayTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnitTesting\FormVendingTest.resx">
       <DependentUpon>FormVendingTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -172,6 +178,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\box1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DisplayBackground.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\display1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\display2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DisplayBackground1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
