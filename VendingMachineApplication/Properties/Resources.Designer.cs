@@ -163,6 +163,16 @@ namespace VendingMachineApplication.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap can1 {
+            get {
+                object obj = ResourceManager.GetObject("can1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap coin_keeper {
             get {
                 object obj = ResourceManager.GetObject("coin_keeper", resourceCulture);
@@ -186,6 +196,16 @@ namespace VendingMachineApplication.Properties {
         internal static System.Drawing.Bitmap DisplayBackground {
             get {
                 object obj = ResourceManager.GetObject("DisplayBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap small_wall {
+            get {
+                object obj = ResourceManager.GetObject("small_wall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -51,6 +51,10 @@
             this.button16 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
+            this.ShowVenging = new System.Windows.Forms.Button();
+            this.ButtonTestDisplay = new System.Windows.Forms.Button();
+            this.product1 = new VendingMachineApplication.Product();
+            this.product2 = new VendingMachineApplication.Product();
             this.acceptor1 = new VendingMachineApplication.Acceptor();
             this.inputButton12 = new VendingMachineApplication.InputButton(this.components);
             this.inputPanel = new VendingMachineApplication.InputPanel(this.components);
@@ -66,8 +70,11 @@
             this.inputButton9 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton10 = new VendingMachineApplication.InputButton(this.components);
             this.coinKeeper = new VendingMachineApplication.CoinKeeper();
-            this.ShowVenging = new System.Windows.Forms.Button();
-            this.ButtonTestDisplay = new System.Windows.Forms.Button();
+            this.product3 = new VendingMachineApplication.Product();
+            this.cell1 = new VendingMachineApplication.Devices.Cell(this.components);
+            this.button19 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.product1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.product2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).BeginInit();
@@ -82,6 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputButton9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinKeeper)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.product3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cell1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -273,6 +282,50 @@
             this.button18.Text = "button18";
             this.button18.UseVisualStyleBackColor = true;
             this.button18.Click += new System.EventHandler(this.button18_Click_1);
+            // 
+            // ShowVenging
+            // 
+            this.ShowVenging.Location = new System.Drawing.Point(416, 205);
+            this.ShowVenging.Name = "ShowVenging";
+            this.ShowVenging.Size = new System.Drawing.Size(87, 23);
+            this.ShowVenging.TabIndex = 35;
+            this.ShowVenging.Text = "Show Vending";
+            this.ShowVenging.UseVisualStyleBackColor = true;
+            this.ShowVenging.Click += new System.EventHandler(this.ShowVenging_Click);
+            // 
+            // ButtonTestDisplay
+            // 
+            this.ButtonTestDisplay.Location = new System.Drawing.Point(416, 234);
+            this.ButtonTestDisplay.Name = "ButtonTestDisplay";
+            this.ButtonTestDisplay.Size = new System.Drawing.Size(87, 23);
+            this.ButtonTestDisplay.TabIndex = 36;
+            this.ButtonTestDisplay.Text = "Show Display";
+            this.ButtonTestDisplay.UseVisualStyleBackColor = true;
+            this.ButtonTestDisplay.Click += new System.EventHandler(this.ButtonTestDisplay_Click);
+            // 
+            // product1
+            // 
+            this.product1.BackColor = System.Drawing.Color.Transparent;
+            this.product1.Image = ((System.Drawing.Image)(resources.GetObject("product1.Image")));
+            this.product1.ImagePack = global::VendingMachineApplication.Properties.Resources.can1;
+            this.product1.Location = new System.Drawing.Point(343, 275);
+            this.product1.Name = "product1";
+            this.product1.Scale = 1F;
+            this.product1.Size = new System.Drawing.Size(31, 57);
+            this.product1.TabIndex = 37;
+            this.product1.TabStop = false;
+            // 
+            // product2
+            // 
+            this.product2.BackColor = System.Drawing.Color.Transparent;
+            this.product2.Image = ((System.Drawing.Image)(resources.GetObject("product2.Image")));
+            this.product2.ImagePack = global::VendingMachineApplication.Properties.Resources.can1;
+            this.product2.Location = new System.Drawing.Point(345, 267);
+            this.product2.Name = "product2";
+            this.product2.Scale = 0.9F;
+            this.product2.Size = new System.Drawing.Size(27, 51);
+            this.product2.TabIndex = 38;
+            this.product2.TabStop = false;
             // 
             // acceptor1
             // 
@@ -483,31 +536,48 @@
             this.coinKeeper.TabStop = false;
             this.coinKeeper.Click += new System.EventHandler(this.coinKeeper2_Click);
             // 
-            // ShowVenging
+            // product3
             // 
-            this.ShowVenging.Location = new System.Drawing.Point(370, 204);
-            this.ShowVenging.Name = "ShowVenging";
-            this.ShowVenging.Size = new System.Drawing.Size(87, 23);
-            this.ShowVenging.TabIndex = 35;
-            this.ShowVenging.Text = "Show Vending";
-            this.ShowVenging.UseVisualStyleBackColor = true;
-            this.ShowVenging.Click += new System.EventHandler(this.ShowVenging_Click);
+            this.product3.BackColor = System.Drawing.Color.Transparent;
+            this.product3.Image = ((System.Drawing.Image)(resources.GetObject("product3.Image")));
+            this.product3.ImagePack = global::VendingMachineApplication.Properties.Resources.can1;
+            this.product3.Location = new System.Drawing.Point(347, 263);
+            this.product3.Name = "product3";
+            this.product3.Scale = 0.8F;
+            this.product3.Size = new System.Drawing.Size(24, 45);
+            this.product3.TabIndex = 39;
+            this.product3.TabStop = false;
             // 
-            // ButtonTestDisplay
+            // cell1
             // 
-            this.ButtonTestDisplay.Location = new System.Drawing.Point(370, 233);
-            this.ButtonTestDisplay.Name = "ButtonTestDisplay";
-            this.ButtonTestDisplay.Size = new System.Drawing.Size(87, 23);
-            this.ButtonTestDisplay.TabIndex = 36;
-            this.ButtonTestDisplay.Text = "Show Display";
-            this.ButtonTestDisplay.UseVisualStyleBackColor = true;
-            this.ButtonTestDisplay.Click += new System.EventHandler(this.ButtonTestDisplay_Click);
+            this.cell1.BackColor = System.Drawing.Color.Transparent;
+            this.cell1.Image = ((System.Drawing.Image)(resources.GetObject("cell1.Image")));
+            this.cell1.ImagePack = global::VendingMachineApplication.Properties.Resources.small_wall;
+            this.cell1.Location = new System.Drawing.Point(401, 282);
+            this.cell1.Name = "cell1";
+            this.cell1.Scale = 1F;
+            this.cell1.Size = new System.Drawing.Size(39, 61);
+            this.cell1.TabIndex = 40;
+            this.cell1.TabStop = false;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(316, 162);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 41;
+            this.button19.Text = "button19";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 396);
+            this.Controls.Add(this.button19);
+            this.Controls.Add(this.product1);
+            this.Controls.Add(this.product2);
             this.Controls.Add(this.ButtonTestDisplay);
             this.Controls.Add(this.ShowVenging);
             this.Controls.Add(this.button18);
@@ -544,8 +614,12 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.product3);
+            this.Controls.Add(this.cell1);
             this.Name = "FormMain";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.product1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.product2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).EndInit();
@@ -560,6 +634,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputButton9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinKeeper)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.product3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cell1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,6 +681,11 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button ShowVenging;
         private System.Windows.Forms.Button ButtonTestDisplay;
+        private Product product1;
+        private Product product2;
+        private Product product3;
+        private Devices.Cell cell1;
+        private System.Windows.Forms.Button button19;
     }
 }
 

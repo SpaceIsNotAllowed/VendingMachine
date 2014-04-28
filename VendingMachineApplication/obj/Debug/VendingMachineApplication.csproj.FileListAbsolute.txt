@@ -67,3 +67,12 @@ C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\bin\Debug\V
 C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\bin\Debug\VendingMachineApplication.pdb
 C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.UnitTesting.FormDisplayTest.resources
 C:\Users\Dima\Desktop\MyRepos - копия\VendingMachineApplication\obj\Debug\VendingMachineApplication.csprojResolveAssemblyReference.cache
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\bin\Debug\VendingMachineApplication.exe
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\bin\Debug\VendingMachineApplication.pdb
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.FormMain.resources
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.InputButton.resources
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.UnitTesting.FormDisplayTest.resources
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.FormVendingTest.resources
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.Properties.Resources.resources
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.csproj.GenerateResource.Cache
+C:\Users\Dima\Desktop\MyRepos\VendingMachineApplication\obj\Debug\VendingMachineApplication.csprojResolveAssemblyReference.cache

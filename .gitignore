@@ -1,0 +1,8 @@
+Release/
+
+Debug/
+
+obj/
+
+bin/
+*.exe

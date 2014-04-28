@@ -166,5 +166,10 @@ namespace VendingMachineApplication
             FormDisplayTest f = new FormDisplayTest();
             f.Show();
         }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            cell1.Product = product1;
+        }
     }
 }

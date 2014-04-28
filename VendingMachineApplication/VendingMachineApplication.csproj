@@ -63,7 +63,7 @@
     <Compile Include="Devices\CoinKeeper.Designer.cs">
       <DependentUpon>CoinKeeper.cs</DependentUpon>
     </Compile>
-    <Compile Include="Devices\Device.cs">
+    <Compile Include="Devices\GraphicalObject.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Devices\Display.cs">
@@ -93,7 +93,9 @@
     <Compile Include="Devices\InputPanel.Designer.cs">
       <DependentUpon>InputPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Additional\Product.cs" />
+    <Compile Include="Additional\Product.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UnitTesting\FormDisplayTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +192,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DisplayBackground1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\small_wall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

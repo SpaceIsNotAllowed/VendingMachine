@@ -31,7 +31,20 @@ namespace VendingMachineApplication
         private List<Cell> cellList;
         private State state;
         private Sensor sensor;
-        private Display display;
+        private Display _display;
+        [Browsable(true)]
+        [Category("Устройства")]
+        public Display Display
+        {
+            get
+            {
+                return _display;
+            }
+            set
+            {
+                _display = value;
+            }
+        }
 
 
         //private double CCLeft;
@@ -39,7 +52,8 @@ namespace VendingMachineApplication
 
         CoinKeeper _coinKeeper;
         [Browsable(true)]
-        public CoinKeeper coinKeeper
+        [Category("Устройства")]
+        public CoinKeeper CoinKeeper
         {
             get
             {
@@ -58,6 +72,10 @@ namespace VendingMachineApplication
                 */
             }
         }
+
+        [Category("Устройства")]
+        public Cell Cell { get; set; }
+
         private InputPanel inputPanel;
         private Acceptor acceptor;
 
@@ -85,9 +103,24 @@ namespace VendingMachineApplication
             //...
         }
 
+        public List<Cell> CreateCells(Image img)
+        {
+            cellList = new List<Cell>();
+            for (int i = 0; i < 20; i++)
+            {
+                Cell c = new Cell();
+                c.ImagePack = new Bitmap(img);
+                c.Left = (int)(i * c.ImagePack.Width * c.Scale);
+                c.Top = (int)((i / 10) * c.ImagePack.Height * c.Scale);
+                c.Repaint();
+                cellList.Add(c);
+            }
+            return cellList;
+        }
+
         private void Init()
         {
-            //...
+
         }
 
         public override void Repaint()
@@ -106,7 +139,7 @@ namespace VendingMachineApplication
 
         private void vendingMachineScaleChanged(object sender, double scale)
         {
-            if (coinKeeper != null)
+            if (CoinKeeper != null)
             {
                 /*
                 int left = coinKeeper.Left - this.Left;
@@ -124,7 +157,9 @@ namespace VendingMachineApplication
                 coinKeeper.Top  = (int)(this.Top  + CCTop * scale);
                 coinKeeper.Scale = (float)scale;
                  */
-                coinKeeper.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                CoinKeeper.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                Display.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                Cell.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
             }
         }
         /*

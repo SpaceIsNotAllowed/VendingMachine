@@ -54,6 +54,8 @@ namespace VendingMachineApplication
             set
             {
                 _InputInfo = value;
+                if (_InputInfo == null)
+                    _InputInfo = "";
                 if (_InputInfo.Length > 2)
                     _InputInfo = _InputInfo.Remove(2);
                 Update();
