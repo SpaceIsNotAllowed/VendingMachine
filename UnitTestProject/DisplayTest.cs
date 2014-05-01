@@ -13,9 +13,8 @@ namespace UnitTestProject
     public class DisplayTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestCellStringChange()
         {
-            // arrange
             Display display = new Display();
 
             String InputText = "Hello!";

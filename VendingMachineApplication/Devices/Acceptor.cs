@@ -9,8 +9,12 @@ using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
 {
-    class Acceptor : GraphicalObject
+    public class Acceptor : GraphicalObject
     {
+        public delegate void BanknoteApprovedEventHandler(object sender, int rating);
+        public event BanknoteApprovedEventHandler BanknoteApproved;
+        public event EventHandler BanknoteDenied;
+
           private bool isUsing;
           private Checker Checker;
           private bool fail;
@@ -51,10 +55,12 @@ namespace VendingMachineApplication
                           fail = false;
                       }
                   }
+
                   return;
               }
               else
               {
+
                   if (banknote != null && banknote.imageIndex < Banknote.IMGCount)
                       banknote.imageIndex++;
 
@@ -64,14 +70,18 @@ namespace VendingMachineApplication
                   if (rating == 0)
                   {
                       fail = true;
-                      MessageBox.Show("Купюра не соответствует требованиям!");
+                      if (BanknoteDenied != null)
+                          BanknoteDenied(this, null);
+                      //MessageBox.Show("Купюра не соответствует требованиям!");
                       return;
                   }
 
                   account += (uint)rating;
                   isUsing = false;
                   banknote.Visible = false;
-                  MessageBox.Show("На счёт купюроприёмника зачислено " + rating.ToString() + " рублей.");
+                  if (BanknoteApproved != null)
+                      BanknoteApproved(this, rating);
+                  //MessageBox.Show("На счёт купюроприёмника зачислено " + rating.ToString() + " рублей.");
               }
           }
 

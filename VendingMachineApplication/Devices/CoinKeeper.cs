@@ -11,85 +11,20 @@ using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
 {
-    public partial class CoinKeeper : GraphicalObject//: PictureBox
+    public partial class CoinKeeper : GraphicalObject
     {
         public CoinKeeper() : base()
         {
-           // InitializeComponent();
-           
             Init();
         }
-        /*
-        public CoinKeeper(IContainer container)
-        {
-            container.Add(this);
-           // InitializeComponent();
-            Init();
-        }
-        */
 
-        private bool Closed;
-        private uint Account;
+        private bool _closed;
+        private uint _account;
 
-        /*
-        private float scale = 1.9f;
-        private Bitmap _img;
-
-        public float Scale
-        {
-            get
-            {
-                return scale;
-            }
-            set
-            {
-                if (value > 0.0)
-                    scale = value;
-                Repaint();
-            }
-        }
-        
-        [Browsable(true)]
-        [Bindable(true)]
-        [Localizable(true)]
-        public Bitmap ImagePack
-        {
-            get
-            {
-                return _img;
-            }
-            set
-            {
-                _img = value;
-                _img.MakeTransparent(Color.FromArgb(34 * 0x10000 + 177 * 0x100 + 76));
-            }
-        }
-
-        protected Bitmap CopyBitmap(Bitmap source, RectangleF dest, RectangleF src)
-        {
-            Bitmap bmp = new Bitmap((int)Math.Truncate(dest.Width), (int)Math.Truncate(dest.Height));
-            Graphics g = Graphics.FromImage(bmp);
-            g.DrawImage(source, dest, src, GraphicsUnit.Pixel);
-            g.Dispose();
-            return bmp;
-        }
-        */
-/*
-        public VendingMachine VendingMachine
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-        */
         private void Init()
         {
-            Account = 0;
-            Closed = true;
+            _account = 0;
+            _closed = true;
 
             if (this._img != null)
                 Repaint();
@@ -105,7 +40,7 @@ namespace VendingMachineApplication
                 if (Image != null)
                     Image.Dispose();
 
-                if (!Closed)
+                if (!_closed)
                     Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width / 2, scale * _img.Height), new RectangleF(_img.Width / 2, 0, _img.Width / 2 - 1, _img.Height));
                 else
                     Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width / 2, scale * _img.Height), new RectangleF(0, 0, _img.Width / 2 - 1, _img.Height));
@@ -116,26 +51,26 @@ namespace VendingMachineApplication
 
         private void Open(object sender, MouseEventArgs e)
         {
-            Closed = false;
+            _closed = false;
             Repaint();
         }
 
         private void Close(object sender, MouseEventArgs e)
         {
-            Closed = true;
+            _closed = true;
             Repaint();
         }
 
         public uint ReturnMoney()
         {
-            uint result = Account;
-            Account = 0;
+            uint result = _account;
+            _account = 0;
             return result;
         }
 
         public void GetMoney(uint count)
         {
-            Account += count;
+            _account += count;
         }
     }
 }

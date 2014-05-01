@@ -11,6 +11,10 @@ namespace VendingMachineApplication.Devices
 {
     public partial class Cell : GraphicalObject
     {
+        private const int MaxProducts = 10;
+        private uint _productPrice;
+        private Product _product = null;
+
         public Cell()
         {
             InitializeComponent();
@@ -23,14 +27,14 @@ namespace VendingMachineApplication.Devices
             InitializeComponent();
         }
 
-        private const int MaxProducts = 10;
-
-        private Product _product = null;
         public Product Product
         {
             get
             {
-                Product p = new Product(_product); //??
+
+                Product p = null;
+                if (_product != null) 
+                    p = new Product(_product);
                 return p;
             }
             set
@@ -39,22 +43,44 @@ namespace VendingMachineApplication.Devices
                 Repaint();
             }
         }
-        private int ProductCount;
-        private uint ProductPrice;
 
-        public void AddProduct()
+        public int ProductCount { get; private set; }
+
+        public uint ProductPrice
         {
-            if (ProductCount < MaxProducts) ProductCount++;
+            get
+            {
+                 return _productPrice;
+            }
+            set
+            {
+                _productPrice = value % 100;
+            }
+        }
+
+        public void AddProduct(int count = 1)
+        {
+            if (_product == null)
+                return;
+
+            ProductCount += count;
+
+            if (ProductCount > MaxProducts)
+                ProductCount = MaxProducts;
+        }
+
+        public Product RemoveProduct()
+        {
+            if (ProductCount == 0)
+                return null;
+
+            ProductCount--;
+            return Product;
         }
 
         public void ChangeProduct(Product value)
         {
             Product = value;
-        }
-
-        public void SetPrice(uint price)
-        {
-            ProductPrice = price % 100;
         }
 
         override public void Repaint()

@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="DisplayTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AcceptorTest.cs" />
+    <Compile Include="CoinKeeperTest.cs" />
+    <Compile Include="CellTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VendingMachineApplication\VendingMachineApplication.csproj">
