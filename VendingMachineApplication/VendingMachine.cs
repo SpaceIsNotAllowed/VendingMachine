@@ -46,6 +46,7 @@ namespace VendingMachineApplication
             }
         }
 
+        public MyPanel Panel { get; set; }
 
         //private double CCLeft;
         //private double CCTop;
@@ -98,7 +99,7 @@ namespace VendingMachineApplication
             //...
         }
 
-        public void Update()
+        public new void Update()
         {
             //...
         }
@@ -106,14 +107,16 @@ namespace VendingMachineApplication
         public List<Cell> CreateCells(Image img)
         {
             cellList = new List<Cell>();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 60; i++)
             {
                 Cell c = new Cell();
                 c.ImagePack = new Bitmap(img);
-                c.Left = (int)(i * c.ImagePack.Width * c.Scale);
+                c.Scale = this.Scale;
+                c.Left = (int)((i % 10) * c.ImagePack.Width * c.Scale);
                 c.Top = (int)((i / 10) * c.ImagePack.Height * c.Scale);
                 c.Repaint();
-                cellList.Add(c);
+                c.BringToFront();
+                cellList.Add(c); 
             }
             return cellList;
         }
@@ -130,7 +133,7 @@ namespace VendingMachineApplication
                 if (Image != null)
                     Image.Dispose();
 
-                Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width, scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
+                Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width, _scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
 
                 this.Width = Image.Width;
                 this.Height = Image.Height;
@@ -160,6 +163,15 @@ namespace VendingMachineApplication
                 CoinKeeper.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
                 Display.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
                 Cell.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                if (Panel != null)
+                {
+                    //dLeft = x0 + (dLeft - x0) * newScale / _scale;
+                    //dTop = y0 + (dTop - y0) * newScale / _scale;
+                    Panel.PanelScale = Scale;
+                    Panel.Location = new Point((int)((510f - dLeft) * Scale + dLeft), (int)((308f - dTop) * Scale + dTop));
+                    
+                    //Panel.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                }
             }
         }
         /*

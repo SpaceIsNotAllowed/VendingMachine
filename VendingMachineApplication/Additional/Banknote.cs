@@ -105,7 +105,7 @@ namespace VendingMachineApplication
                     Image.Dispose();
 
                 Image = CopyBitmap(_img,
-                                        new RectangleF(0, 0, scale * _img.Width / IMGCount, scale * _img.Height),
+                                        new RectangleF(0, 0, _scale * _img.Width / IMGCount, _scale * _img.Height),
                                         new RectangleF((_imageIndex * _img.Width) / IMGCount, 0, _img.Width / IMGCount - 5, _img.Height)
                                   );
                 //CopyBitmap(_img, new RectangleF(0, 0, _img.Width / 12, IMGCount

@@ -62,7 +62,7 @@ namespace VendingMachineApplication
             List<Cell> lc = vendingMachine1.CreateCells(image); 
             foreach (Cell c in lc)
             {
-                this.components.Add(c);
+                this.Controls.Add(c);
                 c.Show();
                 c.Repaint();
                 

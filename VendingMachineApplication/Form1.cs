@@ -63,7 +63,7 @@ namespace VendingMachineApplication
         private void coinKeeper2_Click(object sender, EventArgs e)
         {
             //textBox2.Text += "\n\r" + coinKeeper.ReturnMoney().ToString();
-            textBox2.Text = "Получена сдача: " + coinKeeper.ReturnMoney().ToString() + Environment.NewLine + textBox2.Text;
+            //textBox2.Text = "Получена сдача: " + coinKeeper.ReturnMoney().ToString() + Environment.NewLine + textBox2.Text;
         }
 
         private void coinKeeper2_MouseDown(object sender, MouseEventArgs e)
@@ -74,9 +74,9 @@ namespace VendingMachineApplication
         private void button14_Click(object sender, EventArgs e)
         {
             
-            coinKeeper.GetMoney(1);
-            coinKeeper.Width  += 20;
-            coinKeeper.Height += 20;
+            //coinKeeper.GetMoney(1);
+            //coinKeeper.Width  += 20;
+            //coinKeeper.Height += 20;
             
         }
 
@@ -169,7 +169,17 @@ namespace VendingMachineApplication
 
         private void button19_Click(object sender, EventArgs e)
         {
-            cell1.Product = product1;
+            //cell1.Product = product1;
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void myPanel1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

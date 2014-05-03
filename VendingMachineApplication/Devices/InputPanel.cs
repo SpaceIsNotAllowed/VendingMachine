@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 namespace VendingMachineApplication
 {
 
-    public partial class InputPanel : Component
+    public partial class InputPanel : UserControl
     {
         private String _input = "";
 
@@ -69,6 +70,9 @@ namespace VendingMachineApplication
             InitializeComponent();
             InitButtons();
         }
+
+        [Browsable(true)]
+        public Image ButtonImages { get; set; }
 
         private char giveKey(int buttonNumber)
         {

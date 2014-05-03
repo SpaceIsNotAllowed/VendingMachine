@@ -12,7 +12,7 @@ namespace VendingMachineApplication.Devices
     public class GraphicalObject : PictureBox
     {
         protected Bitmap _img;
-        protected float scale = 1.9f;
+        protected float _scale = 1.9f;
         public double dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
         public double dTop { get; private set; }  // будет меняться некорректно из-за округлений
 
@@ -29,6 +29,7 @@ namespace VendingMachineApplication.Devices
                 _img = value;
                 if (value == null) return;
                 _img.MakeTransparent(Color.FromArgb(34 * 0x10000 + 177 * 0x100 + 76));
+                this.Size = new Size((int)((double)_img.Width * _scale), (int)((double)_img.Height * _scale));
             }
         }
         /*
@@ -47,15 +48,15 @@ namespace VendingMachineApplication.Devices
         {
             get
             {
-                return scale;
+                return _scale;
             }
             set
             {
                 if (value > 0.0)
                 {
-                    scale = value;
+                    _scale = value;
                     if (ScaleChanged != null)
-                        ScaleChanged(this, scale);
+                        ScaleChanged(this, _scale);
                     Repaint();
                 }
             }
@@ -92,7 +93,7 @@ namespace VendingMachineApplication.Devices
                 if (Image != null)
                     Image.Dispose();
 
-                Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width, scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
+                Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width, _scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
                 this.Width = Image.Width;
                 this.Height = Image.Height;
             }

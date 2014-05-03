@@ -30,16 +30,61 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVendingTest));
-            this.coinKeeper1 = new VendingMachineApplication.CoinKeeper();
-            this.vendingMachine1 = new VendingMachineApplication.VendingMachine();
+            this.button1 = new System.Windows.Forms.Button();
+            this.myPanel1 = new VendingMachineApplication.MyPanel();
             this.cell1 = new VendingMachineApplication.Devices.Cell(this.components);
             this.display = new VendingMachineApplication.Display();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.coinKeeper1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine1)).BeginInit();
+            this.coinKeeper1 = new VendingMachineApplication.CoinKeeper();
+            this.vendingMachine1 = new VendingMachineApplication.VendingMachine();
             ((System.ComponentModel.ISupportInitialize)(this.cell1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.display)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinKeeper1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(189, 156);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // myPanel1
+            // 
+            this.myPanel1.Location = new System.Drawing.Point(510, 308);
+            this.myPanel1.Name = "myPanel1";
+            this.myPanel1.PanelScale = 1D;
+            this.myPanel1.Size = new System.Drawing.Size(60, 118);
+            this.myPanel1.TabIndex = 6;
+            // 
+            // cell1
+            // 
+            this.cell1.BackColor = System.Drawing.Color.Transparent;
+            this.cell1.Image = ((System.Drawing.Image)(resources.GetObject("cell1.Image")));
+            this.cell1.ImagePack = global::VendingMachineApplication.Properties.Resources.small_wall;
+            this.cell1.Location = new System.Drawing.Point(67, 75);
+            this.cell1.Name = "cell1";
+            this.cell1.ProductPrice = ((uint)(0u));
+            this.cell1.Scale = 1F;
+            this.cell1.Size = new System.Drawing.Size(39, 61);
+            this.cell1.TabIndex = 4;
+            this.cell1.TabStop = false;
+            // 
+            // display
+            // 
+            this.display.BackColor = System.Drawing.Color.Transparent;
+            this.display.Image = ((System.Drawing.Image)(resources.GetObject("display.Image")));
+            this.display.ImagePack = global::VendingMachineApplication.Properties.Resources.display;
+            this.display.InputInfo = "";
+            this.display.Location = new System.Drawing.Point(414, 172);
+            this.display.Name = "display";
+            this.display.Scale = 1F;
+            this.display.Size = new System.Drawing.Size(156, 88);
+            this.display.TabIndex = 3;
+            this.display.TabStop = false;
             // 
             // coinKeeper1
             // 
@@ -63,46 +108,12 @@
             this.vendingMachine1.ImagePack = global::VendingMachineApplication.Properties.Resources.box;
             this.vendingMachine1.Location = new System.Drawing.Point(12, 12);
             this.vendingMachine1.Name = "vendingMachine1";
+            this.vendingMachine1.Panel = this.myPanel1;
             this.vendingMachine1.Scale = 1F;
             this.vendingMachine1.Size = new System.Drawing.Size(576, 709);
             this.vendingMachine1.TabIndex = 2;
             this.vendingMachine1.TabStop = false;
             this.vendingMachine1.SizeChanged += new System.EventHandler(this.vendingMachine1_SizeChanged);
-            // 
-            // cell1
-            // 
-            this.cell1.BackColor = System.Drawing.Color.Transparent;
-            this.cell1.Image = ((System.Drawing.Image)(resources.GetObject("cell1.Image")));
-            this.cell1.ImagePack = global::VendingMachineApplication.Properties.Resources.small_wall;
-            this.cell1.Location = new System.Drawing.Point(67, 75);
-            this.cell1.Name = "cell1";
-            this.cell1.Scale = 1F;
-            this.cell1.Size = new System.Drawing.Size(39, 61);
-            this.cell1.TabIndex = 4;
-            this.cell1.TabStop = false;
-            // 
-            // display
-            // 
-            this.display.BackColor = System.Drawing.Color.Transparent;
-            this.display.Image = ((System.Drawing.Image)(resources.GetObject("display.Image")));
-            this.display.ImagePack = global::VendingMachineApplication.Properties.Resources.display;
-            this.display.InputInfo = "";
-            this.display.Location = new System.Drawing.Point(414, 172);
-            this.display.Name = "display";
-            this.display.Scale = 1F;
-            this.display.Size = new System.Drawing.Size(156, 88);
-            this.display.TabIndex = 3;
-            this.display.TabStop = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(189, 156);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormVendingTest
             // 
@@ -110,6 +121,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(596, 730);
+            this.Controls.Add(this.myPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cell1);
             this.Controls.Add(this.display);
@@ -118,10 +130,10 @@
             this.Name = "FormVendingTest";
             this.Text = "FormVendingTest";
             this.Load += new System.EventHandler(this.FormVendingTest_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.coinKeeper1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cell1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.display)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinKeeper1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -133,5 +145,6 @@
         private Display display;
         private Devices.Cell cell1;
         private System.Windows.Forms.Button button1;
+        private MyPanel myPanel1;
     }
 }

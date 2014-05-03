@@ -53,8 +53,7 @@
             this.button18 = new System.Windows.Forms.Button();
             this.ShowVenging = new System.Windows.Forms.Button();
             this.ButtonTestDisplay = new System.Windows.Forms.Button();
-            this.product1 = new VendingMachineApplication.Product();
-            this.product2 = new VendingMachineApplication.Product();
+            this.button19 = new System.Windows.Forms.Button();
             this.acceptor1 = new VendingMachineApplication.Acceptor();
             this.inputButton12 = new VendingMachineApplication.InputButton(this.components);
             this.inputPanel = new VendingMachineApplication.InputPanel(this.components);
@@ -69,12 +68,7 @@
             this.inputButton8 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton9 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton10 = new VendingMachineApplication.InputButton(this.components);
-            this.coinKeeper = new VendingMachineApplication.CoinKeeper();
-            this.product3 = new VendingMachineApplication.Product();
-            this.cell1 = new VendingMachineApplication.Devices.Cell(this.components);
-            this.button19 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.product1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.product2)).BeginInit();
+            this.myPanel1 = new VendingMachineApplication.MyPanel();
             ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).BeginInit();
@@ -88,9 +82,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputButton8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coinKeeper)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.product3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cell1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -303,29 +294,15 @@
             this.ButtonTestDisplay.UseVisualStyleBackColor = true;
             this.ButtonTestDisplay.Click += new System.EventHandler(this.ButtonTestDisplay_Click);
             // 
-            // product1
+            // button19
             // 
-            this.product1.BackColor = System.Drawing.Color.Transparent;
-            this.product1.Image = ((System.Drawing.Image)(resources.GetObject("product1.Image")));
-            this.product1.ImagePack = global::VendingMachineApplication.Properties.Resources.can1;
-            this.product1.Location = new System.Drawing.Point(343, 275);
-            this.product1.Name = "product1";
-            this.product1.Scale = 1F;
-            this.product1.Size = new System.Drawing.Size(31, 57);
-            this.product1.TabIndex = 37;
-            this.product1.TabStop = false;
-            // 
-            // product2
-            // 
-            this.product2.BackColor = System.Drawing.Color.Transparent;
-            this.product2.Image = ((System.Drawing.Image)(resources.GetObject("product2.Image")));
-            this.product2.ImagePack = global::VendingMachineApplication.Properties.Resources.can1;
-            this.product2.Location = new System.Drawing.Point(345, 267);
-            this.product2.Name = "product2";
-            this.product2.Scale = 0.9F;
-            this.product2.Size = new System.Drawing.Size(27, 51);
-            this.product2.TabIndex = 38;
-            this.product2.TabStop = false;
+            this.button19.Location = new System.Drawing.Point(316, 162);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 41;
+            this.button19.Text = "button19";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // acceptor1
             // 
@@ -355,6 +332,7 @@
             // 
             // inputPanel
             // 
+            this.inputPanel.ButtonImages = null;
             this.inputPanel.Buttons = new VendingMachineApplication.InputButton[] {
         this.inputButton11,
         this.inputButton1,
@@ -368,6 +346,10 @@
         this.inputButton9,
         this.inputButton10,
         this.inputButton12};
+            this.inputPanel.Location = new System.Drawing.Point(0, 0);
+            this.inputPanel.Name = "inputPanel";
+            this.inputPanel.Size = new System.Drawing.Size(204, 261);
+            this.inputPanel.TabIndex = 0;
             // 
             // inputButton11
             // 
@@ -523,61 +505,21 @@
             this.inputButton10.TabIndex = 29;
             this.inputButton10.TabStop = false;
             // 
-            // coinKeeper
+            // myPanel1
             // 
-            this.coinKeeper.BackColor = System.Drawing.Color.Transparent;
-            this.coinKeeper.Image = ((System.Drawing.Image)(resources.GetObject("coinKeeper.Image")));
-            this.coinKeeper.ImagePack = global::VendingMachineApplication.Properties.Resources.coin_keeper;
-            this.coinKeeper.Location = new System.Drawing.Point(477, 55);
-            this.coinKeeper.Name = "coinKeeper";
-            this.coinKeeper.Scale = 1.9F;
-            this.coinKeeper.Size = new System.Drawing.Size(104, 89);
-            this.coinKeeper.TabIndex = 19;
-            this.coinKeeper.TabStop = false;
-            this.coinKeeper.Click += new System.EventHandler(this.coinKeeper2_Click);
-            // 
-            // product3
-            // 
-            this.product3.BackColor = System.Drawing.Color.Transparent;
-            this.product3.Image = ((System.Drawing.Image)(resources.GetObject("product3.Image")));
-            this.product3.ImagePack = global::VendingMachineApplication.Properties.Resources.can1;
-            this.product3.Location = new System.Drawing.Point(347, 263);
-            this.product3.Name = "product3";
-            this.product3.Scale = 0.8F;
-            this.product3.Size = new System.Drawing.Size(24, 45);
-            this.product3.TabIndex = 39;
-            this.product3.TabStop = false;
-            // 
-            // cell1
-            // 
-            this.cell1.BackColor = System.Drawing.Color.Transparent;
-            this.cell1.Image = ((System.Drawing.Image)(resources.GetObject("cell1.Image")));
-            this.cell1.ImagePack = global::VendingMachineApplication.Properties.Resources.small_wall;
-            this.cell1.Location = new System.Drawing.Point(401, 282);
-            this.cell1.Name = "cell1";
-            this.cell1.Scale = 1F;
-            this.cell1.Size = new System.Drawing.Size(39, 61);
-            this.cell1.TabIndex = 40;
-            this.cell1.TabStop = false;
-            // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(316, 162);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
-            this.button19.TabIndex = 41;
-            this.button19.Text = "button19";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
+            this.myPanel1.Location = new System.Drawing.Point(446, 34);
+            this.myPanel1.Name = "myPanel1";
+            this.myPanel1.PanelScale = 1.1166666666666667D;
+            this.myPanel1.Size = new System.Drawing.Size(67, 132);
+            this.myPanel1.TabIndex = 42;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(806, 396);
+            this.Controls.Add(this.myPanel1);
             this.Controls.Add(this.button19);
-            this.Controls.Add(this.product1);
-            this.Controls.Add(this.product2);
             this.Controls.Add(this.ButtonTestDisplay);
             this.Controls.Add(this.ShowVenging);
             this.Controls.Add(this.button18);
@@ -595,7 +537,6 @@
             this.Controls.Add(this.inputButton3);
             this.Controls.Add(this.inputButton2);
             this.Controls.Add(this.inputButton1);
-            this.Controls.Add(this.coinKeeper);
             this.Controls.Add(this.button16);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
@@ -614,12 +555,9 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.product3);
-            this.Controls.Add(this.cell1);
             this.Name = "FormMain";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.product1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.product2)).EndInit();
+            this.Load += new System.EventHandler(this.FormMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).EndInit();
@@ -633,9 +571,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputButton8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.coinKeeper)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.product3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cell1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -662,7 +597,6 @@
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
-        private CoinKeeper coinKeeper;
         private InputButton inputButton1;
         private InputPanel inputPanel;
         private InputButton inputButton2;
@@ -681,11 +615,8 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button ShowVenging;
         private System.Windows.Forms.Button ButtonTestDisplay;
-        private Product product1;
-        private Product product2;
-        private Product product3;
-        private Devices.Cell cell1;
         private System.Windows.Forms.Button button19;
+        private MyPanel myPanel1;
     }
 }
 

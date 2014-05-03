@@ -90,11 +90,11 @@ namespace VendingMachineApplication.Devices
                 if (Image != null)
                     Image.Dispose();
 
-                Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width, scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
+                Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width, _scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
                 this.Width = Image.Width;
                 this.Height = Image.Height;
 
-                if (_product != null)
+                if (_product != null && _product.ImagePack != null)
                 {
                     Graphics g = Graphics.FromImage(Image);
                     //g.DrawImage(_product.ImagePack, new RectangleF(scale * (_img.Width - _product.ImagePack.Width) / 2, 0, scale * _product.ImagePack.Width, scale * _product.ImagePack.Height), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
@@ -102,10 +102,10 @@ namespace VendingMachineApplication.Devices
                     wd /= 1.21f;
                     hg /= 1.21f;
 
-                    g.DrawImage(_product.ImagePack, new RectangleF(scale * (_img.Width - wd) / 2, -2 * scale, scale * wd, scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
+                    g.DrawImage(_product.ImagePack, new RectangleF(_scale * (_img.Width - wd) / 2, -2 * _scale, _scale * wd, _scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
                     wd *= 1.21f;
                     hg *= 1.21f;
-                    g.DrawImage(_product.ImagePack, new RectangleF(scale * (_img.Width - wd) / 2, 3 * scale, scale * wd, scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
+                    g.DrawImage(_product.ImagePack, new RectangleF(_scale * (_img.Width - wd) / 2, 3 * _scale, _scale * wd, _scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
                     g.Dispose();
                 }
             }

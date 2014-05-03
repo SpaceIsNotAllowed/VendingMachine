@@ -41,9 +41,9 @@ namespace VendingMachineApplication
                     Image.Dispose();
 
                 if (!_closed)
-                    Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width / 2, scale * _img.Height), new RectangleF(_img.Width / 2, 0, _img.Width / 2 - 1, _img.Height));
+                    Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(_img.Width / 2, 0, _img.Width / 2 - 1, _img.Height));
                 else
-                    Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width / 2, scale * _img.Height), new RectangleF(0, 0, _img.Width / 2 - 1, _img.Height));
+                    Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(0, 0, _img.Width / 2 - 1, _img.Height));
                 this.Width = Image.Width;
                 this.Height = Image.Height;
             }

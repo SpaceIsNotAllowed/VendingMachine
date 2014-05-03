@@ -43,7 +43,7 @@ namespace VendingMachineApplication.Devices
             }
         }
         */
-        private bool HasObject; // ссылка на переменную!!
+        //private bool HasObject; // ссылка на переменную!!
         private bool Warning;
         
         private void Alarm()

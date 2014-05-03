@@ -63,6 +63,12 @@
     <Compile Include="Devices\CoinKeeper.Designer.cs">
       <DependentUpon>CoinKeeper.cs</DependentUpon>
     </Compile>
+    <Compile Include="Devices\Component1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\Component1.Designer.cs">
+      <DependentUpon>Component1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Devices\GraphicalObject.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -88,7 +94,7 @@
       <DependentUpon>InputButton.cs</DependentUpon>
     </Compile>
     <Compile Include="Devices\InputPanel.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Devices\InputPanel.Designer.cs">
       <DependentUpon>InputPanel.cs</DependentUpon>
@@ -110,9 +116,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MyPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="VendingMachine.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="VendingMachine.Designer.cs">
+      <DependentUpon>VendingMachine.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Devices\InputPanel.resx">
+      <DependentUpon>InputPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +150,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="MyPanel.resx">
+      <DependentUpon>MyPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram3.cd" />
@@ -198,6 +216,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\can1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panel.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\71.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\61.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\81.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\91.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Т1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\С1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -26,12 +26,12 @@ namespace VendingMachineApplication
             //...
         }
 
-        private void Update() // убрать?
+        private new void Update() // убрать?
         {
             Repaint();
         }
 
-        private Image Background;
+        //private Image Background;
         private String _MainInfo, _InputInfo, _MoneyInfo;
 
         #region Свойства
@@ -80,7 +80,7 @@ namespace VendingMachineApplication
                 if (Image != null)
                     Image.Dispose();
 
-                Image = CopyBitmap(_img, new RectangleF(0, 0, scale * _img.Width, scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
+                Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width, _scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
                 this.Width = Image.Width;
                 this.Height = Image.Height;
 
@@ -92,13 +92,13 @@ namespace VendingMachineApplication
                 int inputFontSize = 7;
                 int moneyFontSize = 25;
 
-                PointF mainDrawPoint = new PointF(5.0F * scale * 1, 5.0F * scale);
-                PointF inputDrawPoint = new PointF(5.0F * scale * mainFontSize / inputFontSize, 25.0F * scale);
-                PointF moneyDrawPoint = new PointF(5.0F * scale * mainFontSize / moneyFontSize, 45.0F * scale);
+                PointF mainDrawPoint = new PointF(5.0F * _scale * 1, 5.0F * _scale);
+                PointF inputDrawPoint = new PointF(5.0F * _scale * mainFontSize / inputFontSize, 25.0F * _scale);
+                PointF moneyDrawPoint = new PointF(5.0F * _scale * mainFontSize / moneyFontSize, 45.0F * _scale);
 
-                Font mainDrawFont = new Font("Times New Roman", mainFontSize * scale);
-                Font inputDrawFont = new Font("Times New Roman", inputFontSize * scale);
-                Font moneyDrawFont = new Font("Times New Roman", moneyFontSize * scale);
+                Font mainDrawFont = new Font("Times New Roman", mainFontSize * _scale);
+                Font inputDrawFont = new Font("Times New Roman", inputFontSize * _scale);
+                Font moneyDrawFont = new Font("Times New Roman", moneyFontSize * _scale);
 
                 g.DrawString(_MainInfo, mainDrawFont, drawBrush, mainDrawPoint);
                 g.DrawString(_InputInfo, inputDrawFont, drawBrush, inputDrawPoint);

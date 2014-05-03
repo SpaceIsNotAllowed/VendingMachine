@@ -10,7 +10,7 @@ namespace VendingMachineApplication
 {
     public class Product : GraphicalObject
     {
-        public String Name { get; set; }
+        public new String Name { get; set; }
 
         /*
         public Image Image { }
