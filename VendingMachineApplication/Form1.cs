@@ -31,7 +31,7 @@ namespace VendingMachineApplication
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBox1.Text += inputPanel.Input;
+            //textBox1.Text += inputPanel.Input;
 
             acceptor1.Update();
             /*

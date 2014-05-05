@@ -93,14 +93,14 @@
     <Compile Include="Devices\InputButton.Designer.cs">
       <DependentUpon>InputButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="Devices\InputPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Devices\InputPanel.Designer.cs">
-      <DependentUpon>InputPanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Additional\Product.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormChooseAction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChooseAction.Designer.cs">
+      <DependentUpon>FormChooseAction.cs</DependentUpon>
     </Compile>
     <Compile Include="UnitTesting\FormDisplayTest.cs">
       <SubType>Form</SubType>
@@ -125,14 +125,14 @@
     <Compile Include="VendingMachine.Designer.cs">
       <DependentUpon>VendingMachine.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Devices\InputPanel.resx">
-      <DependentUpon>InputPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Devices\InputButton.resx">
       <DependentUpon>InputButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormChooseAction.resx">
+      <DependentUpon>FormChooseAction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UnitTesting\FormDisplayTest.resx">
       <DependentUpon>FormDisplayTest.cs</DependentUpon>
@@ -255,6 +255,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\С1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptor1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

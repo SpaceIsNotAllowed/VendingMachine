@@ -13,7 +13,7 @@ using VendingMachineApplication.Devices;
 namespace VendingMachineApplication
 {
     [Serializable]
-    public partial class InputButton : GraphicalObject //Component, ISerializable
+    public partial class InputButton : GraphicalObject
     {
         private bool _pressed;
         private char _Key = '0';
@@ -42,36 +42,6 @@ namespace VendingMachineApplication
             }
         }
         
-        private InputPanel _ownerPanel = null;
-        
-        public  InputPanel  OwnerPanel
-        {
-            get
-            {
-                return _ownerPanel;
-            }
-            set
-            {
-                _ownerPanel = value;
-            }
-        }
-
-        /*
-        private Control _Manager = null;
-        public  Control  Manager
-        {
-            get
-            {
-                return _Manager;
-            }
-            set
-            {
-                _Manager = value;
-                if (_Manager != null)
-                    _Manager.Click += ButtonClick;
-            }
-        }
-        */
         public InputButton()
         {
             InitializeComponent();
@@ -84,26 +54,10 @@ namespace VendingMachineApplication
             InitializeComponent();
         }
 
-
-
-        private void ButtonClick(object sender, EventArgs e)
-        {
-            /*
-            if (_Owner != null)
-                _Owner.ReceiveKey(_Key);
-            */
-        }
-/*
+        /*
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            throw new NotImplementedException();
-        }
-        */
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            // Use the AddValue method to specify serialized values.
             info.AddValue("v_key", _Key, typeof(char));
-            //info.AddValue("v_manager", _Manager, typeof(Control));
         }
 
         // The special constructor is used to deserialize values.
@@ -111,20 +65,8 @@ namespace VendingMachineApplication
         {
             // Reset the property value using the GetValue method.
             _Key = (char)info.GetValue("key_value", typeof(char));
-            //_Manager = (Control)info.GetValue("v_manager", typeof(Control));
         }
-/*
-        public InputPanel InputPanel
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-        */
+         */
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -142,10 +84,6 @@ namespace VendingMachineApplication
             {
                 this._pressed = false;
                 Repaint();
-                if (_ownerPanel != null)
-                    _ownerPanel.ReceiveKey(_Key);
-                //else
-                //    MessageBox.Show("Owner not found!");
             }
         }
 

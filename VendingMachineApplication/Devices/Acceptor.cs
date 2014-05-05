@@ -91,6 +91,7 @@ namespace VendingMachineApplication
 
               isUsing = true;
               BanknoteList.Add(banknote);
+              banknote.Scale = this.Scale;
               banknote.Left = this.Left + (this.Width - banknote.Width) / 2;
               banknote.Top = this.Top + (int) (17 * Scale);
               SetStyle(ControlStyles.SupportsTransparentBackColor, true);

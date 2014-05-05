@@ -101,6 +101,8 @@ namespace VendingMachineApplication.Devices
                     float wd = _product.ImagePack.Width, hg = _product.ImagePack.Height;
                     wd /= 1.21f;
                     hg /= 1.21f;
+                    wd /= 1.21f;
+                    hg /= 1.21f;
 
                     g.DrawImage(_product.ImagePack, new RectangleF(_scale * (_img.Width - wd) / 2, -2 * _scale, _scale * wd, _scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
                     wd *= 1.21f;

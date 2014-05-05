@@ -23,7 +23,10 @@ namespace VendingMachineApplication
             vendingMachine1.Display.MainInfo = "Введите номер ячейки:";
             vendingMachine1.Display.MoneyInfo = "23 р.";
             vendingMachine1.Display.InputInfo = "57";
+            cell1.Product = product1;
         }
+
+        FormChooseAction formChooseAction = null;
 
         private void FormVendingTest_Load(object sender, EventArgs e)
         {
@@ -35,6 +38,22 @@ namespace VendingMachineApplication
             
             Product p = new Product("pepsi", image);
             vendingMachine1.Cell.Product = p;
+
+            formChooseAction = new FormChooseAction();
+            formChooseAction.Show();
+            formChooseAction.BringToFront();
+            formChooseAction.OnInsertBanknoteClick += InsertBanknote;
+            //delegate void InsertBanknoteHandler(object sender, InsertBanknoteEventArgs e);
+        }
+
+        void InsertBanknote(object sender, InsertBanknoteEventArgs e)
+        {
+            e.Banknote.ImagePack = Properties.Resources._10rub as Bitmap;
+            e.Banknote.Repaint();
+
+            this.Controls.Add(e.Banknote);
+
+            acceptor1.GetMoney(e.Banknote);
         }
 
         void FormVendingTest_MouseWheel(object sender, MouseEventArgs e)
@@ -65,8 +84,14 @@ namespace VendingMachineApplication
                 this.Controls.Add(c);
                 c.Show();
                 c.Repaint();
+                c.BringToFront();
                 
             }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            vendingMachine1.Update();
         }
     }
 

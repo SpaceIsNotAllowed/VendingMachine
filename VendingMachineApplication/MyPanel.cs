@@ -14,6 +14,19 @@ namespace VendingMachineApplication
 {
     public partial class MyPanel : UserControl
     {
+        private String _input = "";
+
+        public String Input
+        {
+            get
+            {
+                String result = _input;
+                _input = "";
+                return result;
+            }
+
+        }
+
         private double _initialWidth;
         private double _initialHeight;
         public double dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
@@ -123,7 +136,6 @@ namespace VendingMachineApplication
 
                 button.Location = new System.Drawing.Point((int)((10f + (i % 3) * 14) * _scale), (int)((18f + (i / 3) * 19) * _scale));
                 button.Name = "inputButton1";
-                button.OwnerPanel = null;
                 button.Size = new System.Drawing.Size(15, 14);
                 button.Scale = (float)_scale;
                 button.TabIndex = 1;
@@ -217,7 +229,6 @@ namespace VendingMachineApplication
             this.inputButton11.Key = '#';
             this.inputButton11.Location = new System.Drawing.Point(37, 75);
             this.inputButton11.Name = "inputButton11";
-            this.inputButton11.OwnerPanel = null;
             this.inputButton11.Scale = 1F;
             this.inputButton11.Size = new System.Drawing.Size(13, 13);
             this.inputButton11.TabIndex = 12;
@@ -232,7 +243,6 @@ namespace VendingMachineApplication
             this.inputButton10.Key = '*';
             this.inputButton10.Location = new System.Drawing.Point(9, 75);
             this.inputButton10.Name = "inputButton10";
-            this.inputButton10.OwnerPanel = null;
             this.inputButton10.Scale = 1F;
             this.inputButton10.Size = new System.Drawing.Size(13, 13);
             this.inputButton10.TabIndex = 11;
@@ -247,7 +257,6 @@ namespace VendingMachineApplication
             this.inputButton9.Key = '9';
             this.inputButton9.Location = new System.Drawing.Point(37, 56);
             this.inputButton9.Name = "inputButton9";
-            this.inputButton9.OwnerPanel = null;
             this.inputButton9.Scale = 1F;
             this.inputButton9.Size = new System.Drawing.Size(13, 13);
             this.inputButton9.TabIndex = 10;
@@ -262,7 +271,6 @@ namespace VendingMachineApplication
             this.inputButton8.Key = '8';
             this.inputButton8.Location = new System.Drawing.Point(23, 56);
             this.inputButton8.Name = "inputButton8";
-            this.inputButton8.OwnerPanel = null;
             this.inputButton8.Scale = 1F;
             this.inputButton8.Size = new System.Drawing.Size(13, 13);
             this.inputButton8.TabIndex = 9;
@@ -277,7 +285,6 @@ namespace VendingMachineApplication
             this.inputButton6.Key = '6';
             this.inputButton6.Location = new System.Drawing.Point(37, 37);
             this.inputButton6.Name = "inputButton6";
-            this.inputButton6.OwnerPanel = null;
             this.inputButton6.Scale = 1F;
             this.inputButton6.Size = new System.Drawing.Size(13, 13);
             this.inputButton6.TabIndex = 8;
@@ -292,7 +299,6 @@ namespace VendingMachineApplication
             this.inputButton5.Key = '5';
             this.inputButton5.Location = new System.Drawing.Point(23, 37);
             this.inputButton5.Name = "inputButton5";
-            this.inputButton5.OwnerPanel = null;
             this.inputButton5.Scale = 1F;
             this.inputButton5.Size = new System.Drawing.Size(13, 13);
             this.inputButton5.TabIndex = 7;
@@ -307,7 +313,6 @@ namespace VendingMachineApplication
             this.inputButton7.Key = '7';
             this.inputButton7.Location = new System.Drawing.Point(9, 56);
             this.inputButton7.Name = "inputButton7";
-            this.inputButton7.OwnerPanel = null;
             this.inputButton7.Scale = 1F;
             this.inputButton7.Size = new System.Drawing.Size(13, 13);
             this.inputButton7.TabIndex = 6;
@@ -322,7 +327,6 @@ namespace VendingMachineApplication
             this.inputButton4.Key = '4';
             this.inputButton4.Location = new System.Drawing.Point(9, 37);
             this.inputButton4.Name = "inputButton4";
-            this.inputButton4.OwnerPanel = null;
             this.inputButton4.Scale = 1F;
             this.inputButton4.Size = new System.Drawing.Size(13, 13);
             this.inputButton4.TabIndex = 5;
@@ -337,7 +341,6 @@ namespace VendingMachineApplication
             this.inputButton3.Key = '3';
             this.inputButton3.Location = new System.Drawing.Point(37, 18);
             this.inputButton3.Name = "inputButton3";
-            this.inputButton3.OwnerPanel = null;
             this.inputButton3.Scale = 1F;
             this.inputButton3.Size = new System.Drawing.Size(13, 13);
             this.inputButton3.TabIndex = 4;
@@ -352,7 +355,6 @@ namespace VendingMachineApplication
             this.inputButton2.Key = '2';
             this.inputButton2.Location = new System.Drawing.Point(23, 18);
             this.inputButton2.Name = "inputButton2";
-            this.inputButton2.OwnerPanel = null;
             this.inputButton2.Scale = 1F;
             this.inputButton2.Size = new System.Drawing.Size(13, 13);
             this.inputButton2.TabIndex = 3;
@@ -367,7 +369,6 @@ namespace VendingMachineApplication
             this.inputButton1.Key = '1';
             this.inputButton1.Location = new System.Drawing.Point(9, 18);
             this.inputButton1.Name = "inputButton1";
-            this.inputButton1.OwnerPanel = null;
             this.inputButton1.Scale = 1F;
             this.inputButton1.Size = new System.Drawing.Size(13, 13);
             this.inputButton1.TabIndex = 2;
@@ -382,7 +383,6 @@ namespace VendingMachineApplication
             this.inputButton0.Key = '0';
             this.inputButton0.Location = new System.Drawing.Point(23, 75);
             this.inputButton0.Name = "inputButton0";
-            this.inputButton0.OwnerPanel = null;
             this.inputButton0.Scale = 1F;
             this.inputButton0.Size = new System.Drawing.Size(13, 13);
             this.inputButton0.TabIndex = 1;
@@ -439,7 +439,8 @@ namespace VendingMachineApplication
 
         public void ButtonClick(object sender, EventArgs e)
         {
-            MessageBox.Show((sender as InputButton).Key.ToString());
+            //MessageBox.Show((sender as InputButton).Key.ToString());
+            _input += (sender as InputButton).Key;
         }
 
         protected override void OnResize(EventArgs e)

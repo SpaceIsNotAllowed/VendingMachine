@@ -12,7 +12,7 @@ namespace VendingMachineApplication.Devices
     public class GraphicalObject : PictureBox
     {
         protected Bitmap _img;
-        protected float _scale = 1.9f;
+        protected float _scale = 1.0f;
         public double dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
         public double dTop { get; private set; }  // будет меняться некорректно из-за округлений
 
