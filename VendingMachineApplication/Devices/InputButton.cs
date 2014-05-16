@@ -32,6 +32,7 @@ namespace VendingMachineApplication
                     case '3':  case '4':  case '5':
                     case '6':  case '7':  case '8':
                     case '9':  case '*':  case '#':
+                    case 'Т':  case 'С':
                     {
                         _Key = value;
 
@@ -67,6 +68,21 @@ namespace VendingMachineApplication
             _Key = (char)info.GetValue("key_value", typeof(char));
         }
          */
+        override public Bitmap ImagePack
+        {
+            get
+            {
+                return _img;
+            }
+            set
+            {
+                _img = value;
+                if (value == null) return;
+                _img.MakeTransparent(Color.FromArgb(34 * 0x10000 + 177 * 0x100 + 76));
+                this.Size = new Size((int)((double)_img.Width * _scale / 2), (int)((double)_img.Height * _scale));
+            }
+        }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);

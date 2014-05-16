@@ -18,7 +18,7 @@ namespace VendingMachineApplication.Devices
 
         [Browsable(true)]
         [Category("Свойства устройства")]
-        public Bitmap ImagePack
+        virtual public Bitmap ImagePack
         {
             get
             {

@@ -16,13 +16,7 @@ namespace VendingMachineApplication
         public FormVendingTest()
         {
             InitializeComponent();
-            //vendingMachine1.coinKeeper = new CoinKeeper();
             vendingMachine1.CoinKeeper = coinKeeper1;
-            //vendingMachine1.coinKeeper.Left = 100;
-            //vendingMachine1.coinKeeper.Top = 100;
-            vendingMachine1.Display.MainInfo = "Введите номер ячейки:";
-            vendingMachine1.Display.MoneyInfo = "23 р.";
-            vendingMachine1.Display.InputInfo = "57";
             cell1.Product = product1;
         }
 
@@ -38,11 +32,13 @@ namespace VendingMachineApplication
             
             Product p = new Product("pepsi", image);
             vendingMachine1.Cell.Product = p;
-
+            vendingMachine1.Init();
+            
             formChooseAction = new FormChooseAction();
             formChooseAction.Show();
             formChooseAction.BringToFront();
             formChooseAction.OnInsertBanknoteClick += InsertBanknote;
+            
             //delegate void InsertBanknoteHandler(object sender, InsertBanknoteEventArgs e);
         }
 

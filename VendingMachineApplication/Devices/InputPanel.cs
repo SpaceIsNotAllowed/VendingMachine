@@ -12,7 +12,7 @@ using System.Reflection;
 
 namespace VendingMachineApplication
 {
-    public partial class MyPanel : UserControl
+    public partial class InputPanel : UserControl
     {
         private String _input = "";
 
@@ -28,6 +28,8 @@ namespace VendingMachineApplication
         }
 
         private double _initialWidth;
+        private InputButton inputButton12;
+        private InputButton inputButton13;
         private double _initialHeight;
         public double dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
         public double dTop { get; private set; }  // будет меняться некорректно из-за округлений
@@ -90,7 +92,7 @@ namespace VendingMachineApplication
             }
         }
 
-        public MyPanel()
+        public InputPanel()
         {
 
             InitializeComponent();
@@ -112,7 +114,7 @@ namespace VendingMachineApplication
         private void InitButtons()
         {
             //this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyPanel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputPanel));
             
             for (int i = 0; i < -12; i++)
             {
@@ -173,8 +175,10 @@ namespace VendingMachineApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyPanel));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputPanel));
             this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.inputButton13 = new VendingMachineApplication.InputButton(this.components);
+            this.inputButton12 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton11 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton10 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton9 = new VendingMachineApplication.InputButton(this.components);
@@ -188,6 +192,8 @@ namespace VendingMachineApplication
             this.inputButton1 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton0 = new VendingMachineApplication.InputButton(this.components);
             this.Background = new VendingMachineApplication.Devices.Component1(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.inputButton13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton9)).BeginInit();
@@ -221,12 +227,40 @@ namespace VendingMachineApplication
             this.imageList.Images.SetKeyName(11, "Т.png");
             this.imageList.Images.SetKeyName(12, "0.png");
             // 
+            // inputButton13
+            // 
+            this.inputButton13.BackColor = System.Drawing.Color.Transparent;
+            this.inputButton13.Image = ((System.Drawing.Image)(resources.GetObject("inputButton13.Image")));
+            this.inputButton13.ImagePack = global::VendingMachineApplication.Properties.Resources.sharp;
+            this.inputButton13.Key = '#';
+            this.inputButton13.Location = new System.Drawing.Point(37, 60);
+            this.inputButton13.Name = "inputButton13";
+            this.inputButton13.Scale = 1F;
+            this.inputButton13.Size = new System.Drawing.Size(13, 13);
+            this.inputButton13.TabIndex = 14;
+            this.inputButton13.TabStop = false;
+            this.inputButton13.Click += new System.EventHandler(this.ButtonClick);
+            // 
+            // inputButton12
+            // 
+            this.inputButton12.BackColor = System.Drawing.Color.Transparent;
+            this.inputButton12.Image = ((System.Drawing.Image)(resources.GetObject("inputButton12.Image")));
+            this.inputButton12.ImagePack = global::VendingMachineApplication.Properties.Resources.ж1;
+            this.inputButton12.Key = '*';
+            this.inputButton12.Location = new System.Drawing.Point(9, 60);
+            this.inputButton12.Name = "inputButton12";
+            this.inputButton12.Scale = 1F;
+            this.inputButton12.Size = new System.Drawing.Size(13, 13);
+            this.inputButton12.TabIndex = 13;
+            this.inputButton12.TabStop = false;
+            this.inputButton12.Click += new System.EventHandler(this.ButtonClick);
+            // 
             // inputButton11
             // 
             this.inputButton11.BackColor = System.Drawing.Color.Transparent;
             this.inputButton11.Image = ((System.Drawing.Image)(resources.GetObject("inputButton11.Image")));
-            this.inputButton11.ImagePack = global::VendingMachineApplication.Properties.Resources.С;
-            this.inputButton11.Key = '#';
+            this.inputButton11.ImagePack = global::VendingMachineApplication.Properties.Resources.С1;
+            this.inputButton11.Key = 'С';
             this.inputButton11.Location = new System.Drawing.Point(37, 75);
             this.inputButton11.Name = "inputButton11";
             this.inputButton11.Scale = 1F;
@@ -239,8 +273,8 @@ namespace VendingMachineApplication
             // 
             this.inputButton10.BackColor = System.Drawing.Color.Transparent;
             this.inputButton10.Image = ((System.Drawing.Image)(resources.GetObject("inputButton10.Image")));
-            this.inputButton10.ImagePack = global::VendingMachineApplication.Properties.Resources.Т;
-            this.inputButton10.Key = '*';
+            this.inputButton10.ImagePack = global::VendingMachineApplication.Properties.Resources.Т1;
+            this.inputButton10.Key = 'Т';
             this.inputButton10.Location = new System.Drawing.Point(9, 75);
             this.inputButton10.Name = "inputButton10";
             this.inputButton10.Scale = 1F;
@@ -253,9 +287,9 @@ namespace VendingMachineApplication
             // 
             this.inputButton9.BackColor = System.Drawing.Color.Transparent;
             this.inputButton9.Image = ((System.Drawing.Image)(resources.GetObject("inputButton9.Image")));
-            this.inputButton9.ImagePack = global::VendingMachineApplication.Properties.Resources._9;
+            this.inputButton9.ImagePack = global::VendingMachineApplication.Properties.Resources._91;
             this.inputButton9.Key = '9';
-            this.inputButton9.Location = new System.Drawing.Point(37, 56);
+            this.inputButton9.Location = new System.Drawing.Point(37, 46);
             this.inputButton9.Name = "inputButton9";
             this.inputButton9.Scale = 1F;
             this.inputButton9.Size = new System.Drawing.Size(13, 13);
@@ -267,9 +301,9 @@ namespace VendingMachineApplication
             // 
             this.inputButton8.BackColor = System.Drawing.Color.Transparent;
             this.inputButton8.Image = ((System.Drawing.Image)(resources.GetObject("inputButton8.Image")));
-            this.inputButton8.ImagePack = global::VendingMachineApplication.Properties.Resources._8;
+            this.inputButton8.ImagePack = global::VendingMachineApplication.Properties.Resources._81;
             this.inputButton8.Key = '8';
-            this.inputButton8.Location = new System.Drawing.Point(23, 56);
+            this.inputButton8.Location = new System.Drawing.Point(23, 46);
             this.inputButton8.Name = "inputButton8";
             this.inputButton8.Scale = 1F;
             this.inputButton8.Size = new System.Drawing.Size(13, 13);
@@ -281,9 +315,9 @@ namespace VendingMachineApplication
             // 
             this.inputButton6.BackColor = System.Drawing.Color.Transparent;
             this.inputButton6.Image = ((System.Drawing.Image)(resources.GetObject("inputButton6.Image")));
-            this.inputButton6.ImagePack = global::VendingMachineApplication.Properties.Resources._6;
+            this.inputButton6.ImagePack = global::VendingMachineApplication.Properties.Resources._61;
             this.inputButton6.Key = '6';
-            this.inputButton6.Location = new System.Drawing.Point(37, 37);
+            this.inputButton6.Location = new System.Drawing.Point(37, 32);
             this.inputButton6.Name = "inputButton6";
             this.inputButton6.Scale = 1F;
             this.inputButton6.Size = new System.Drawing.Size(13, 13);
@@ -295,9 +329,9 @@ namespace VendingMachineApplication
             // 
             this.inputButton5.BackColor = System.Drawing.Color.Transparent;
             this.inputButton5.Image = ((System.Drawing.Image)(resources.GetObject("inputButton5.Image")));
-            this.inputButton5.ImagePack = global::VendingMachineApplication.Properties.Resources._5;
+            this.inputButton5.ImagePack = global::VendingMachineApplication.Properties.Resources._51;
             this.inputButton5.Key = '5';
-            this.inputButton5.Location = new System.Drawing.Point(23, 37);
+            this.inputButton5.Location = new System.Drawing.Point(23, 32);
             this.inputButton5.Name = "inputButton5";
             this.inputButton5.Scale = 1F;
             this.inputButton5.Size = new System.Drawing.Size(13, 13);
@@ -309,9 +343,9 @@ namespace VendingMachineApplication
             // 
             this.inputButton7.BackColor = System.Drawing.Color.Transparent;
             this.inputButton7.Image = ((System.Drawing.Image)(resources.GetObject("inputButton7.Image")));
-            this.inputButton7.ImagePack = global::VendingMachineApplication.Properties.Resources._7;
+            this.inputButton7.ImagePack = global::VendingMachineApplication.Properties.Resources._71;
             this.inputButton7.Key = '7';
-            this.inputButton7.Location = new System.Drawing.Point(9, 56);
+            this.inputButton7.Location = new System.Drawing.Point(9, 46);
             this.inputButton7.Name = "inputButton7";
             this.inputButton7.Scale = 1F;
             this.inputButton7.Size = new System.Drawing.Size(13, 13);
@@ -323,9 +357,9 @@ namespace VendingMachineApplication
             // 
             this.inputButton4.BackColor = System.Drawing.Color.Transparent;
             this.inputButton4.Image = ((System.Drawing.Image)(resources.GetObject("inputButton4.Image")));
-            this.inputButton4.ImagePack = global::VendingMachineApplication.Properties.Resources._4;
+            this.inputButton4.ImagePack = global::VendingMachineApplication.Properties.Resources._41;
             this.inputButton4.Key = '4';
-            this.inputButton4.Location = new System.Drawing.Point(9, 37);
+            this.inputButton4.Location = new System.Drawing.Point(9, 32);
             this.inputButton4.Name = "inputButton4";
             this.inputButton4.Scale = 1F;
             this.inputButton4.Size = new System.Drawing.Size(13, 13);
@@ -337,7 +371,7 @@ namespace VendingMachineApplication
             // 
             this.inputButton3.BackColor = System.Drawing.Color.Transparent;
             this.inputButton3.Image = ((System.Drawing.Image)(resources.GetObject("inputButton3.Image")));
-            this.inputButton3.ImagePack = global::VendingMachineApplication.Properties.Resources._3;
+            this.inputButton3.ImagePack = global::VendingMachineApplication.Properties.Resources._31;
             this.inputButton3.Key = '3';
             this.inputButton3.Location = new System.Drawing.Point(37, 18);
             this.inputButton3.Name = "inputButton3";
@@ -351,7 +385,7 @@ namespace VendingMachineApplication
             // 
             this.inputButton2.BackColor = System.Drawing.Color.Transparent;
             this.inputButton2.Image = ((System.Drawing.Image)(resources.GetObject("inputButton2.Image")));
-            this.inputButton2.ImagePack = global::VendingMachineApplication.Properties.Resources._2;
+            this.inputButton2.ImagePack = global::VendingMachineApplication.Properties.Resources._22;
             this.inputButton2.Key = '2';
             this.inputButton2.Location = new System.Drawing.Point(23, 18);
             this.inputButton2.Name = "inputButton2";
@@ -365,7 +399,7 @@ namespace VendingMachineApplication
             // 
             this.inputButton1.BackColor = System.Drawing.Color.Transparent;
             this.inputButton1.Image = ((System.Drawing.Image)(resources.GetObject("inputButton1.Image")));
-            this.inputButton1.ImagePack = global::VendingMachineApplication.Properties.Resources._1;
+            this.inputButton1.ImagePack = global::VendingMachineApplication.Properties.Resources._11;
             this.inputButton1.Key = '1';
             this.inputButton1.Location = new System.Drawing.Point(9, 18);
             this.inputButton1.Name = "inputButton1";
@@ -379,9 +413,9 @@ namespace VendingMachineApplication
             // 
             this.inputButton0.BackColor = System.Drawing.Color.Transparent;
             this.inputButton0.Image = ((System.Drawing.Image)(resources.GetObject("inputButton0.Image")));
-            this.inputButton0.ImagePack = global::VendingMachineApplication.Properties.Resources._0;
+            this.inputButton0.ImagePack = global::VendingMachineApplication.Properties.Resources._01;
             this.inputButton0.Key = '0';
-            this.inputButton0.Location = new System.Drawing.Point(23, 75);
+            this.inputButton0.Location = new System.Drawing.Point(23, 60);
             this.inputButton0.Name = "inputButton0";
             this.inputButton0.Scale = 1F;
             this.inputButton0.Size = new System.Drawing.Size(13, 13);
@@ -403,8 +437,10 @@ namespace VendingMachineApplication
             this.Background.TabIndex = 0;
             this.Background.TabStop = false;
             // 
-            // MyPanel
+            // InputPanel
             // 
+            this.Controls.Add(this.inputButton13);
+            this.Controls.Add(this.inputButton12);
             this.Controls.Add(this.inputButton11);
             this.Controls.Add(this.inputButton10);
             this.Controls.Add(this.inputButton9);
@@ -418,8 +454,10 @@ namespace VendingMachineApplication
             this.Controls.Add(this.inputButton1);
             this.Controls.Add(this.inputButton0);
             this.Controls.Add(this.Background);
-            this.Name = "MyPanel";
+            this.Name = "InputPanel";
             this.Size = new System.Drawing.Size(60, 118);
+            ((System.ComponentModel.ISupportInitialize)(this.inputButton13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton9)).EndInit();
@@ -459,7 +497,9 @@ namespace VendingMachineApplication
             UpdateScale();
         }
 
-        
+        public void Lock() {} //TODO
+        public void Unlock() {}
+
         
     }
 }

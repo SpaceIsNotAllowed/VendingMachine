@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
@@ -26,10 +27,9 @@ namespace VendingMachineApplication
         }
 
         private String _input = "";
-        private String _password = "123";
+        private String _password = "*123#";
         
         public uint Account { get; private set; }
-
 
         private List<Cell> cellList;
         private State _state;
@@ -49,7 +49,8 @@ namespace VendingMachineApplication
             }
         }
 
-        public MyPanel Panel { get; set; }
+        public InputPanel Panel { get; set; }
+
 
         //private double CCLeft;
         //private double CCTop;
@@ -87,9 +88,8 @@ namespace VendingMachineApplication
         public VendingMachine()
             : base()
         {
-            Init();
+
             this.ScaleChanged += vendingMachineScaleChanged;
-            Repaint();
         }
 
         private void AnalyseInput()
@@ -99,7 +99,59 @@ namespace VendingMachineApplication
 
         private void InitState()
         {
-            //...
+            if (_state == State.SCellRequest || _state == State.SChangingCellRequest ||
+                _state == State.SRepeat || _state == State.SPriceRequest)
+            {
+                Display.InputInfo = "";
+                //msgtime = 0;
+                Panel.Unlock();
+            }
+            
+            switch (_state)
+            {
+                case State.SUnlock:
+                {
+                    Panel.Unlock();
+                    _state = State.SCellRequest;
+                    Display.MainInfo = "Введите номер ячейки: ";
+                } break;
+                case State.SCellRequest:
+                    Display.MainInfo = "Введите номер ячейки: ";
+                break;
+                case State.SChangingCellRequest:
+                    Display.MainInfo = "Ячейка: ";
+                break;
+                case State.SRepeat:
+                    Display.MainInfo = "Повторите ввод:";
+                break;
+                case State.SPriceRequest:
+                    Display.MainInfo = "Цена товара:";
+                break;
+
+                case State.SDone:
+                {
+                    Display.MainInfo = "Приятного аппетита!";
+                    //msgtime = MTIME;
+                    Panel.Lock();
+                } break;
+                case State.SMoneyRequest:
+                {
+                    Display.MainInfo = "Недостаточно средств.";
+                    //msgtime = MTIME;
+                    Panel.Lock();
+                } break;
+                case State.SEmptyCell:
+                {
+                    Display.MainInfo = "Ячейка пуста.";
+                    //msgtime = MTIME;
+                    Panel.Lock();
+                } break;
+                case State.SAlert:
+                {
+                    Display.MainInfo = "Тревога!";
+                    Panel.Lock();
+                } break;
+            }
         }
 
         public new void Update()
@@ -112,7 +164,13 @@ namespace VendingMachineApplication
             if (Acceptor != null)
             {
                 Acceptor.Update();
-                Account += Acceptor.ReturnMoney();
+                uint money = Acceptor.ReturnMoney();
+                if (money > 0)
+                {
+                    Account += money;
+                    // MessageBox.Show(money.ToString() + " рублей зачислено на счёт!");
+                    // и так видно
+                }
             }
 
             if (Display != null)
@@ -144,9 +202,15 @@ namespace VendingMachineApplication
             return cellList;
         }
 
-        private void Init()
+        public void Init()
         {
+            _input = "";
+            _password = "##1**";
+            _state = State.SCellRequest;
+            
+            Account = 0;
 
+            InitState();
         }
 
         public override void Repaint()
@@ -185,6 +249,7 @@ namespace VendingMachineApplication
                 }
             }
         }
+
         /*
         private void coinKeeperMove(object sender, EventArgs e)
         {

@@ -34,7 +34,7 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.product1 = new VendingMachineApplication.Product();
             this.acceptor1 = new VendingMachineApplication.Acceptor();
-            this.myPanel1 = new VendingMachineApplication.MyPanel();
+            this.myPanel1 = new VendingMachineApplication.InputPanel();
             this.cell1 = new VendingMachineApplication.Devices.Cell(this.components);
             this.display = new VendingMachineApplication.Display();
             this.coinKeeper1 = new VendingMachineApplication.CoinKeeper();
@@ -185,7 +185,7 @@
         private Display display;
         private Devices.Cell cell1;
         private System.Windows.Forms.Button button1;
-        private MyPanel myPanel1;
+        private InputPanel myPanel1;
         private Acceptor acceptor1;
         private System.Windows.Forms.Timer timer;
         private Product product1;

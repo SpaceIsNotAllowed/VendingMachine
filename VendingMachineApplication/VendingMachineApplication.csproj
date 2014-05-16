@@ -116,7 +116,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyPanel.cs">
+    <Compile Include="Devices\InputPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="VendingMachine.cs">
@@ -150,8 +150,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="MyPanel.resx">
-      <DependentUpon>MyPanel.cs</DependentUpon>
+    <EmbeddedResource Include="Devices\InputPanel.resx">
+      <DependentUpon>InputPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VendingMachine.resx">
+      <DependentUpon>VendingMachine.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
@@ -258,6 +261,63 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\acceptor1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\#.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ж1.dib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\52.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\62.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Т2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\С2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\82.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\92.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ж2.dib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\#1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\#2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sharp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
