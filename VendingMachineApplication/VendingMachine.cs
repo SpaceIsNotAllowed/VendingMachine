@@ -32,6 +32,22 @@ namespace VendingMachineApplication
         public uint Account { get; private set; }
 
         private List<Cell> cellList;
+
+        private Product FallingFood = null;
+        
+        public State VendingState //посмотреть имя в ПЗ
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
+                InitState();
+            }
+        }
+
         private State _state;
         private Sensor _sensor;
         private Display _display;
@@ -67,6 +83,7 @@ namespace VendingMachineApplication
             set
             {
                 _coinKeeper = value;
+                _coinKeeper.Click += this.coinKeeperClick;
                 /*
                 if (value != null)
                 {
@@ -94,38 +111,156 @@ namespace VendingMachineApplication
 
         private void AnalyseInput()
         {
-            //...
+            if (_input.Contains(_password))
+            {
+                _input = _input.Replace(_password, "");
+                // переход в режим администратора
+                VendingState = State.SChangingCellRequest;
+                return;
+            }
+
+            if (_input.Contains('С'))
+            {
+                CoinKeeper.GetMoney(Account);
+                Account = 0;
+                _input = _input.Replace("С", "");
+            }
+
+            if (_input.Contains('Т'))
+            {
+                _input = _input.Replace("Т", "");
+
+                int cellNumber = 0;
+                if (!int.TryParse(Display.InputInfo, out cellNumber) || cellNumber < 1 || cellNumber > 60)
+                    return;
+                cellNumber--;
+
+                if (cellList[cellNumber].ProductCount < 1)
+                {
+                    VendingState = State.SEmptyCell;
+                    return;
+                }
+
+                if (Account < cellList[cellNumber].ProductPrice)
+                {
+                    VendingState = State.SMoneyRequest;
+                    return;
+                }
+
+                if (FallingFood == null)
+                {
+                    FallingFood = cellList[cellNumber].RemoveProduct();//!!!
+                    Account -= cellList[cellNumber].ProductPrice;
+                    //VendingState = State. //?
+
+                    //int xpos = cell % 10;
+                    //int ypos = 5 - cell / 10;
+                    
+                    //count[cell]--;
+                    //VendingMachineMoney -= price[cell];
+                    //FallingFood = new TProduct(type[cell], 60 + xpos * 30, 470 - ypos * 80, 550);
+                    //state = 4;
+                    //InitState();
+                    //ShowAll();
+                    return;
+                }
+            }
+
+            //if (input.Length() == 0) return;
+
+            if (string.IsNullOrEmpty(_input)) return;
+
+            if (_input[_input.Length - 1] == '#' &&
+                    (VendingState == State.SChangingCellRequest || VendingState == State.SRepeat || VendingState == State.SPriceRequest)
+                )
+            {
+                _input = _input.Replace("#", "");
+
+                int num = 0;
+
+                if (_state == State.SChangingCellRequest || _state == State.SRepeat)
+                {
+                    if (!int.TryParse(Display.InputInfo, out num) || num < 1 || num > 60)
+                    {
+                        VendingState = State.SRepeat;
+                        return;
+                    }
+                    num--;
+
+                    VendingState = State.SPriceRequest;
+                    return;
+                }
+                else
+                {
+                    if (!int.TryParse(Display.InputInfo, out num)) return;
+
+                    if (cellList != null)
+                        cellList[/*...*/1].ProductPrice = (uint)num;
+
+                    VendingState = State.SChangingCellRequest;
+
+                    //MessageBox.Show("В ячейке " + AnsiString(cell + 1) + " установлена цена " + AnsiString(price[cell]) + " р.");
+
+                }
+                return;
+            }
+
+            if (_input[_input.Length - 1] == '*')
+            {
+                if (VendingState == State.SChangingCellRequest || VendingState == State.SRepeat)
+                {
+                    VendingState = State.SCellRequest;
+                    _input = _input.Replace("*", "");
+                    return;
+                }
+
+                if (VendingState == State.SPriceRequest)
+                {
+                    VendingState = State.SChangingCellRequest;
+                    _input = _input.Replace("*", "");
+                    return;
+                }
+            }
         }
 
         private void InitState()
         {
-            if (_state == State.SCellRequest || _state == State.SChangingCellRequest ||
-                _state == State.SRepeat || _state == State.SPriceRequest)
+            if (VendingState == State.SCellRequest || VendingState == State.SChangingCellRequest ||
+                VendingState == State.SRepeat || VendingState == State.SPriceRequest)
             {
                 Display.InputInfo = "";
                 //msgtime = 0;
                 Panel.Unlock();
             }
-            
-            switch (_state)
+
+            switch (VendingState)
             {
                 case State.SUnlock:
                 {
                     Panel.Unlock();
-                    _state = State.SCellRequest;
-                    Display.MainInfo = "Введите номер ячейки: ";
+                    VendingState = State.SCellRequest;
                 } break;
                 case State.SCellRequest:
+                    _input = "";
                     Display.MainInfo = "Введите номер ячейки: ";
+                    Display.InputInfo = "";
+                    Display.MoneyInfo = Account.ToString() + " р.";
                 break;
                 case State.SChangingCellRequest:
+                    _input = "";
                     Display.MainInfo = "Ячейка: ";
+                    Display.InputInfo = "";
+                    Display.MoneyInfo = "";
                 break;
                 case State.SRepeat:
+                    _input = "";
                     Display.MainInfo = "Повторите ввод:";
+                    Display.InputInfo = "";
                 break;
                 case State.SPriceRequest:
+                    _input = "";
                     Display.MainInfo = "Цена товара:";
+                    Display.InputInfo = "";
                 break;
 
                 case State.SDone:
@@ -161,28 +296,21 @@ namespace VendingMachineApplication
                 _input += Panel.Input;
             }
 
+            if (Display != null)
+            {
+                Display.InputInfo = _input;
+                Display.MoneyInfo = Account.ToString() + " p.";
+            }
+
             if (Acceptor != null)
             {
                 Acceptor.Update();
                 uint money = Acceptor.ReturnMoney();
                 if (money > 0)
-                {
                     Account += money;
-                    // MessageBox.Show(money.ToString() + " рублей зачислено на счёт!");
-                    // и так видно
-                }
             }
 
-            if (Display != null)
-            {
-                if (_input.Length > 2)
-                    Display.InputInfo = _input.Substring(_input.Length - 2, 2);
-                else
-                    Display.InputInfo = _input;
-                Display.MoneyInfo = Account.ToString() + " p.";
-            }
-
-            
+            AnalyseInput();
         }
 
         public List<Cell> CreateCells(Image img)
@@ -205,12 +333,10 @@ namespace VendingMachineApplication
         public void Init()
         {
             _input = "";
-            _password = "##1**";
-            _state = State.SCellRequest;
+            VendingState = State.SCellRequest;
             
             Account = 0;
 
-            InitState();
         }
 
         public override void Repaint()
@@ -248,6 +374,11 @@ namespace VendingMachineApplication
                     //Panel.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
                 }
             }
+        }
+
+        private void coinKeeperClick(object sender, EventArgs e)
+        {
+            MessageBox.Show("Получено от автомата " + _coinKeeper.ReturnMoney().ToString() + " р.");
         }
 
         /*

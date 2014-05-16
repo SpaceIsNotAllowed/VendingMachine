@@ -53,11 +53,20 @@ namespace VendingMachineApplication
             }
             set
             {
-                _InputInfo = value;
+                string tmp = "";
+                tmp = value;
+                if (tmp != null)
+                {
+                    tmp = tmp.Replace("С", "");
+                    tmp = tmp.Replace("Т", "");
+                    tmp = tmp.Replace("*", "");
+                    tmp = tmp.Replace("#", "");
+                }
+                _InputInfo = tmp;
                 if (_InputInfo == null)
                     _InputInfo = "";
                 if (_InputInfo.Length > 2)
-                    _InputInfo = _InputInfo.Remove(2);
+                    _InputInfo = _InputInfo.Substring(_InputInfo.Length - 2, 2);
                 Update();
             }
         }

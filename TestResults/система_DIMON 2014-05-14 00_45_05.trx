@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="feacf583-8a2b-45f7-9d92-28c20d519e22" name="система@DIMON 2014-05-14 00:45:05" runUser="NT AUTHORITY\система" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Параметры тестирования по умолчанию" id="feac6842-097b-46fa-a597-f7e96b832388">
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Deployment runDeploymentRoot="система_DIMON 2014-05-14 00_45_05" />
+  </TestSettings>
+  <Times creation="2014-05-14T00:45:05.7803473+07:00" queuing="2014-05-14T00:45:06.6633978+07:00" start="2014-05-14T00:45:06.9584146+07:00" finish="2014-05-14T00:45:08.3684953+07:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="5" executed="5" passed="5" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestCell" storage="buildartifacts\unittestproject.dll" id="10e2d24b-6921-ec02-0709-7ec833e67c9e">
+      <Execution id="d00d3564-d16c-4f1c-a562-7024fbf7e761" />
+      <TestMethod codeBase="C:/Users/Dima/Desktop/MyRepos/BuildArtifacts/UnitTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTestProject.CellTest, UnitTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestCell" />
+    </UnitTest>
+    <UnitTest name="TestBanknoteCheck" storage="buildartifacts\unittestproject.dll" id="e9fc3b5a-ff23-5bec-d540-995f2bd6bec5">
+      <Execution id="99e94417-83a2-46dc-b6f1-9df8e915e41b" />
+      <TestMethod codeBase="C:/Users/Dima/Desktop/MyRepos/BuildArtifacts/UnitTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTestProject.AcceptorTest, UnitTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestBanknoteCheck" />
+    </UnitTest>
+    <UnitTest name="TestCoinKeeperGetMoney" storage="buildartifacts\unittestproject.dll" id="f2912896-3e3c-8f6e-d1d4-9e0f5340d814">
+      <Execution id="9f9e8599-fed2-4a21-93b4-91339109ea4d" />
+      <TestMethod codeBase="C:/Users/Dima/Desktop/MyRepos/BuildArtifacts/UnitTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTestProject.CoinKeeperTest, UnitTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestCoinKeeperGetMoney" />
+    </UnitTest>
+    <UnitTest name="TestReturnMoney" storage="buildartifacts\unittestproject.dll" id="66ea6b57-3b4e-b2c0-eadd-4395538837f5">
+      <Execution id="ed312033-4882-498a-aef9-abeccf593cb1" />
+      <TestMethod codeBase="C:/Users/Dima/Desktop/MyRepos/BuildArtifacts/UnitTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTestProject.AcceptorTest, UnitTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestReturnMoney" />
+    </UnitTest>
+    <UnitTest name="TestCellStringChange" storage="buildartifacts\unittestproject.dll" id="69855a74-08dd-62e3-0c64-b329d0825435">
+      <Execution id="2ee432cc-ce34-49e7-89c9-49dab7052bdd" />
+      <TestMethod codeBase="C:/Users/Dima/Desktop/MyRepos/BuildArtifacts/UnitTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="UnitTestProject.DisplayTest, UnitTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestCellStringChange" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Отсутствующие в списке результаты" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Все загруженные результаты" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="e9fc3b5a-ff23-5bec-d540-995f2bd6bec5" executionId="99e94417-83a2-46dc-b6f1-9df8e915e41b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="66ea6b57-3b4e-b2c0-eadd-4395538837f5" executionId="ed312033-4882-498a-aef9-abeccf593cb1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="10e2d24b-6921-ec02-0709-7ec833e67c9e" executionId="d00d3564-d16c-4f1c-a562-7024fbf7e761" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f2912896-3e3c-8f6e-d1d4-9e0f5340d814" executionId="9f9e8599-fed2-4a21-93b4-91339109ea4d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="69855a74-08dd-62e3-0c64-b329d0825435" executionId="2ee432cc-ce34-49e7-89c9-49dab7052bdd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="99e94417-83a2-46dc-b6f1-9df8e915e41b" testId="e9fc3b5a-ff23-5bec-d540-995f2bd6bec5" testName="TestBanknoteCheck" computerName="DIMON" duration="00:00:00.1611393" startTime="2014-05-14T00:45:07.0744213+07:00" endTime="2014-05-14T00:45:08.0454768+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="99e94417-83a2-46dc-b6f1-9df8e915e41b">
+    </UnitTestResult>
+    <UnitTestResult executionId="ed312033-4882-498a-aef9-abeccf593cb1" testId="66ea6b57-3b4e-b2c0-eadd-4395538837f5" testName="TestReturnMoney" computerName="DIMON" duration="00:00:00.1289154" startTime="2014-05-14T00:45:08.0484770+07:00" endTime="2014-05-14T00:45:08.2134864+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ed312033-4882-498a-aef9-abeccf593cb1">
+    </UnitTestResult>
+    <UnitTestResult executionId="d00d3564-d16c-4f1c-a562-7024fbf7e761" testId="10e2d24b-6921-ec02-0709-7ec833e67c9e" testName="TestCell" computerName="DIMON" duration="00:00:00.0082095" startTime="2014-05-14T00:45:08.2144865+07:00" endTime="2014-05-14T00:45:08.2274872+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d00d3564-d16c-4f1c-a562-7024fbf7e761">
+    </UnitTestResult>
+    <UnitTestResult executionId="9f9e8599-fed2-4a21-93b4-91339109ea4d" testId="f2912896-3e3c-8f6e-d1d4-9e0f5340d814" testName="TestCoinKeeperGetMoney" computerName="DIMON" duration="00:00:00.0044584" startTime="2014-05-14T00:45:08.2414880+07:00" endTime="2014-05-14T00:45:08.2544888+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9f9e8599-fed2-4a21-93b4-91339109ea4d">
+    </UnitTestResult>
+    <UnitTestResult executionId="2ee432cc-ce34-49e7-89c9-49dab7052bdd" testId="69855a74-08dd-62e3-0c64-b329d0825435" testName="TestCellStringChange" computerName="DIMON" duration="00:00:00.0065717" startTime="2014-05-14T00:45:08.2564889+07:00" endTime="2014-05-14T00:45:08.2694896+07:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2ee432cc-ce34-49e7-89c9-49dab7052bdd">
+    </UnitTestResult>
+  </Results>
+</TestRun>

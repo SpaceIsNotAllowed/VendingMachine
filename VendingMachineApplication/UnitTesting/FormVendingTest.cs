@@ -16,7 +16,6 @@ namespace VendingMachineApplication
         public FormVendingTest()
         {
             InitializeComponent();
-            vendingMachine1.CoinKeeper = coinKeeper1;
             cell1.Product = product1;
         }
 
@@ -89,6 +88,8 @@ namespace VendingMachineApplication
         {
             vendingMachine1.Update();
         }
+
+
     }
 
 }

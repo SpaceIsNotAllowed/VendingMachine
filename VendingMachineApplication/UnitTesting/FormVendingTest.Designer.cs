@@ -101,7 +101,6 @@
             this.cell1.ImagePack = global::VendingMachineApplication.Properties.Resources.small_wall;
             this.cell1.Location = new System.Drawing.Point(604, 64);
             this.cell1.Name = "cell1";
-            this.cell1.Product = null;
             this.cell1.ProductPrice = ((uint)(0u));
             this.cell1.Scale = 1F;
             this.cell1.Size = new System.Drawing.Size(29, 82);
@@ -149,6 +148,7 @@
             this.vendingMachine1.Size = new System.Drawing.Size(576, 709);
             this.vendingMachine1.TabIndex = 2;
             this.vendingMachine1.TabStop = false;
+            this.vendingMachine1.VendingState = VendingMachineApplication.VendingMachine.State.SCellRequest;
             this.vendingMachine1.SizeChanged += new System.EventHandler(this.vendingMachine1_SizeChanged);
             // 
             // FormVendingTest
