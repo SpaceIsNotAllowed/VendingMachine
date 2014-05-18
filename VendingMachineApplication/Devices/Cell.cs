@@ -18,6 +18,8 @@ namespace VendingMachineApplication.Devices
         public Cell()
         {
             InitializeComponent();
+
+            InitProperties();
         }
 
         public Cell(IContainer container)
@@ -25,6 +27,14 @@ namespace VendingMachineApplication.Devices
             container.Add(this);
 
             InitializeComponent();
+
+            InitProperties();
+        }
+
+        private void InitProperties()
+        {
+            CellNumber = 0;
+            ProductCount = 0;
         }
 
         public Product Product
@@ -45,6 +55,8 @@ namespace VendingMachineApplication.Devices
         }
 
         public int ProductCount { get; private set; }
+         
+        public int CellNumber { get; set; }
 
         public uint ProductPrice
         {
@@ -55,6 +67,7 @@ namespace VendingMachineApplication.Devices
             set
             {
                 _productPrice = value % 100;
+                Repaint();
             }
         }
 
@@ -67,6 +80,7 @@ namespace VendingMachineApplication.Devices
 
             if (ProductCount > MaxProducts)
                 ProductCount = MaxProducts;
+            Repaint();
         }
 
         public Product RemoveProduct()
@@ -75,6 +89,7 @@ namespace VendingMachineApplication.Devices
                 return null;
 
             ProductCount--;
+            Repaint();
             return Product;
         }
 
@@ -94,22 +109,45 @@ namespace VendingMachineApplication.Devices
                 this.Width = Image.Width;
                 this.Height = Image.Height;
 
-                if (_product != null && _product.ImagePack != null)
+                Graphics g = null;
+
+                if (_product != null && _product.ImagePack != null && ProductCount > 0)
                 {
-                    Graphics g = Graphics.FromImage(Image);
+                    g = Graphics.FromImage(Image);
                     //g.DrawImage(_product.ImagePack, new RectangleF(scale * (_img.Width - _product.ImagePack.Width) / 2, 0, scale * _product.ImagePack.Width, scale * _product.ImagePack.Height), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
                     float wd = _product.ImagePack.Width, hg = _product.ImagePack.Height;
                     wd /= 1.21f;
                     hg /= 1.21f;
-                    wd /= 1.21f;
-                    hg /= 1.21f;
 
-                    g.DrawImage(_product.ImagePack, new RectangleF(_scale * (_img.Width - wd) / 2, -2 * _scale, _scale * wd, _scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
-                    wd *= 1.21f;
-                    hg *= 1.21f;
+                    if (ProductCount > 1)
+                    {
+                        wd /= 1.21f;
+                        hg /= 1.21f;
+
+                        g.DrawImage(_product.ImagePack, new RectangleF(_scale * (_img.Width - wd) / 2, -2 * _scale, _scale * wd, _scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
+
+                        wd *= 1.21f;
+                        hg *= 1.21f;
+                    }
+                    
                     g.DrawImage(_product.ImagePack, new RectangleF(_scale * (_img.Width - wd) / 2, 3 * _scale, _scale * wd, _scale * hg), new RectangleF(0, 0, _product.ImagePack.Width, _product.ImagePack.Height), GraphicsUnit.Pixel);
+                    
                     g.Dispose();
                 }
+
+                g = Graphics.FromImage(Image);
+                int textFontSize = 7;
+                SolidBrush textDrawBrush = new SolidBrush(Color.DarkRed); //Color.BlanchedAlmond
+                PointF textDrawPoint = new PointF(1F * _scale, 62.0F * _scale);
+                Font textDrawFont = new Font("Times New Roman", textFontSize * _scale, FontStyle.Bold);
+                g.DrawString(CellNumber.ToString("D2"), textDrawFont, textDrawBrush, textDrawPoint);
+
+                textDrawBrush = new SolidBrush(Color.DarkBlue); //Color.Salmon
+                textDrawPoint = new PointF(15F * _scale, 69.0F * _scale);
+                textDrawFont = new Font("Times New Roman", textFontSize * _scale, FontStyle.Bold);
+                g.DrawString(ProductPrice.ToString("D2"), textDrawFont, textDrawBrush, textDrawPoint);
+
+                g.Dispose();
             }
         }
     }

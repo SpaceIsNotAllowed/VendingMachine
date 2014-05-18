@@ -26,15 +26,26 @@ namespace VendingMachineApplication
             SAlert
         }
 
+        const int MSGTIME = 20;
+        private int repeattime = 0;
+        private bool timerun = false;
+
+        private int cellNum = -1; // номер изменяемой ячейки
+
         private String _input = "";
         private String _password = "*123#";
         
         public uint Account { get; private set; }
 
-        private List<Cell> cellList;
-
+        private List<Cell> _cellList;
         private Product FallingFood = null;
-        
+        private int foodSpeed = 0;
+
+        public delegate void ProductManagementEventHandler(object sender, Product product);
+        public event ProductManagementEventHandler ProductRemoveRequest;
+        public event ProductManagementEventHandler ProductFallRequest;
+
+
         public State VendingState //посмотреть имя в ПЗ
         {
             get
@@ -135,13 +146,13 @@ namespace VendingMachineApplication
                     return;
                 cellNumber--;
 
-                if (cellList[cellNumber].ProductCount < 1)
+                if (_cellList[cellNumber].ProductCount < 1)
                 {
                     VendingState = State.SEmptyCell;
                     return;
                 }
 
-                if (Account < cellList[cellNumber].ProductPrice)
+                if (Account < _cellList[cellNumber].ProductPrice)
                 {
                     VendingState = State.SMoneyRequest;
                     return;
@@ -149,9 +160,18 @@ namespace VendingMachineApplication
 
                 if (FallingFood == null)
                 {
-                    FallingFood = cellList[cellNumber].RemoveProduct();//!!!
-                    Account -= cellList[cellNumber].ProductPrice;
-                    //VendingState = State. //?
+                    FallingFood = _cellList[cellNumber].RemoveProduct();//!!!
+                    FallingFood.Left = _cellList[cellNumber].Left + (_cellList[cellNumber].Width - FallingFood.Image.Width) / 2;
+                    FallingFood.Top = _cellList[cellNumber].Top + (_cellList[cellNumber].Height - FallingFood.Image.Height) / 2;
+                    FallingFood.Scale = this.Scale;
+                    foodSpeed = 1;
+                    if (ProductFallRequest != null)
+                        ProductFallRequest(this, FallingFood);
+                    //components.Add(FallingFood);
+
+
+                    Account -= _cellList[cellNumber].ProductPrice;
+                    VendingState = State.SDone;
 
                     //int xpos = cell % 10;
                     //int ypos = 5 - cell / 10;
@@ -180,12 +200,13 @@ namespace VendingMachineApplication
 
                 if (_state == State.SChangingCellRequest || _state == State.SRepeat)
                 {
-                    if (!int.TryParse(Display.InputInfo, out num) || num < 1 || num > 60)
+                    if (!int.TryParse(Display.InputInfo, out num) || (_cellList != null && (num < 1 || num > _cellList.Count)))
                     {
                         VendingState = State.SRepeat;
                         return;
                     }
                     num--;
+                    cellNum = num;
 
                     VendingState = State.SPriceRequest;
                     return;
@@ -194,8 +215,8 @@ namespace VendingMachineApplication
                 {
                     if (!int.TryParse(Display.InputInfo, out num)) return;
 
-                    if (cellList != null)
-                        cellList[/*...*/1].ProductPrice = (uint)num;
+                    if (_cellList != null && cellNum >= 0 && cellNum < _cellList.Count)
+                        _cellList[cellNum].ProductPrice = (uint)num;
 
                     VendingState = State.SChangingCellRequest;
 
@@ -241,9 +262,17 @@ namespace VendingMachineApplication
                     VendingState = State.SCellRequest;
                 } break;
                 case State.SCellRequest:
-                    _input = "";
+                    if (FallingFood != null)
+                    {
+                        if (ProductRemoveRequest != null)
+                            ProductRemoveRequest(this, FallingFood);
+                        FallingFood.Dispose();
+                        FallingFood = null;
+                    }
+                    Panel.Unlock();
+                    //_input = "";
                     Display.MainInfo = "Введите номер ячейки: ";
-                    Display.InputInfo = "";
+                    //Display.InputInfo = "";
                     Display.MoneyInfo = Account.ToString() + " р.";
                 break;
                 case State.SChangingCellRequest:
@@ -251,11 +280,13 @@ namespace VendingMachineApplication
                     Display.MainInfo = "Ячейка: ";
                     Display.InputInfo = "";
                     Display.MoneyInfo = "";
+                    cellNum = -1;
                 break;
                 case State.SRepeat:
                     _input = "";
                     Display.MainInfo = "Повторите ввод:";
                     Display.InputInfo = "";
+                    cellNum = -1;
                 break;
                 case State.SPriceRequest:
                     _input = "";
@@ -266,19 +297,22 @@ namespace VendingMachineApplication
                 case State.SDone:
                 {
                     Display.MainInfo = "Приятного аппетита!";
-                    //msgtime = MTIME;
+                    repeattime = MSGTIME;
+                    timerun = true;
                     Panel.Lock();
                 } break;
                 case State.SMoneyRequest:
                 {
                     Display.MainInfo = "Недостаточно средств.";
-                    //msgtime = MTIME;
+                    repeattime = MSGTIME;
+                    timerun = true;
                     Panel.Lock();
                 } break;
                 case State.SEmptyCell:
                 {
                     Display.MainInfo = "Ячейка пуста.";
-                    //msgtime = MTIME;
+                    repeattime = MSGTIME;
+                    timerun = true;
                     Panel.Lock();
                 } break;
                 case State.SAlert:
@@ -291,6 +325,29 @@ namespace VendingMachineApplication
 
         public new void Update()
         {
+            if (repeattime >= 0 && timerun)
+            {
+                repeattime--;
+                if (FallingFood != null)
+                {
+                    if (FallingFood.Top < this.Top + _scale * 450)
+                        FallingFood.Top += foodSpeed;
+                    else
+                        if (FallingFood.Visible)
+                            FallingFood.Visible = false;
+                }
+                foodSpeed += 5;
+            }
+            if (repeattime < 0 && timerun)
+            {
+                timerun = false;
+                if (_state == State.SDone || _state == State.SEmptyCell || _state == State.SMoneyRequest)
+                {
+                    _state = State.SCellRequest;
+                    InitState();
+                }
+            }
+
             if (Panel != null)
             {
                 _input += Panel.Input;
@@ -315,19 +372,23 @@ namespace VendingMachineApplication
 
         public List<Cell> CreateCells(Image img)
         {
-            cellList = new List<Cell>();
+            if (_cellList != null)
+                return null;
+
+            _cellList = new List<Cell>();
             for (int i = 0; i < 60; i++)
             {
-                Cell c = new Cell();
+                Cell c = new Cell() { CellNumber = i + 1 };
                 c.ImagePack = new Bitmap(img);
+                
                 c.Scale = this.Scale;
-                c.Left = this.Left + (int)(26 * Scale + (i % 10) * c.ImagePack.Width * c.Scale);
-                c.Top = this.Top + (int)(42 * Scale + (i / 10) * c.ImagePack.Height * c.Scale);
+                c.Left = this.Left + (int)(26 * Scale + (i % 10) * (c.ImagePack.Width) * c.Scale);
+                c.Top = this.Top + (int)(42 * Scale + (i / 10) * (c.ImagePack.Height) * c.Scale);
                 c.Repaint();
                 c.BringToFront();
-                cellList.Add(c); 
+                _cellList.Add(c); 
             }
-            return cellList;
+            return _cellList;
         }
 
         public void Init()
@@ -357,9 +418,13 @@ namespace VendingMachineApplication
         {
             if (CoinKeeper != null)
             {
-                if (cellList != null)
-                    foreach (Cell cell in cellList)
+                if (_cellList != null)
+                    foreach (Cell cell in _cellList)
                         cell.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+
+
+                if (FallingFood != null)
+                    FallingFood.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
 
                 CoinKeeper.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
                 Display.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
@@ -373,6 +438,7 @@ namespace VendingMachineApplication
                     
                     //Panel.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
                 }
+
             }
         }
 
@@ -390,6 +456,33 @@ namespace VendingMachineApplication
             CCLeft = (int)((CC.Left - this.dLeft) * this.Scale / CC.Scale);
             CCTop = (int)((CC.Top - this.dLeft) * this.Scale / CC.Scale);
         }*/
-        
+
+        public void AddProductsToCell(int cellNumber, int count)
+        {
+            if (cellNumber < 1 || _cellList == null || _cellList.Count < cellNumber)
+                return;
+
+            cellNumber--;
+            _cellList[cellNumber].AddProduct(count);
+        }
+
+        public void SetCellPrice(int cellNumber, uint value)
+        {
+            if (cellNumber < 1 || _cellList == null || _cellList.Count < cellNumber)
+                return;
+
+            cellNumber--;
+            _cellList[cellNumber].ProductPrice = value;
+        }
+
+        public void SetCellProduct(int cellNumber, Product product)
+        {
+            if (cellNumber < 1 || _cellList == null || _cellList.Count < cellNumber)
+                return;
+
+            cellNumber--;
+            _cellList[cellNumber].Product = product;
+        }
+
     }
 }

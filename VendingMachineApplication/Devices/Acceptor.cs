@@ -85,9 +85,9 @@ namespace VendingMachineApplication
               }
           }
 
-          public void GetMoney(Banknote banknote)// (uint count)
+          public bool GetMoney(Banknote banknote)// (uint count)
           {
-              if (isUsing) return;
+              if (isUsing) return false;
 
               isUsing = true;
               BanknoteList.Add(banknote);
@@ -108,6 +108,7 @@ namespace VendingMachineApplication
 
 
               Checker.Check(banknote);
+              return true;
           }
 
           public uint ReturnMoney()

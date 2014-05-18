@@ -25,23 +25,36 @@ namespace VendingMachineApplication
         {
             Name = name;
             if (image != null)
+                //this.Image = image.Clone() as Image;
                 ImagePack = new Bitmap(image);
-            //Image = image;
+            Repaint();
         }
 
         public Product(Product p)
         {
             if (p == null) return;
             this.Name = p.Name;
-            if (p.ImagePack != null)
-                this.ImagePack = new Bitmap(p.ImagePack);
 
+            if (p.Image != null)
+                this.Image = p.Image.Clone() as Image;
+
+            //if (p.Image != null)
+            //    this.Image = p.Image.Clone() as Image;
+            //else
+                if (p.ImagePack != null)
+                    this.ImagePack = new Bitmap(p.ImagePack);
+                Repaint();
         }
 
         public Product()
         {
 
         }
+        /*
+        public override void Repaint()
+        {
+            //base.Repaint();
+        }*/
 
     }
 }

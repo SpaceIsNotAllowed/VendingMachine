@@ -319,6 +319,42 @@
   <ItemGroup>
     <None Include="Resources\sharp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptor2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin_keeper1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Product1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Product11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can41.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can7.bmp" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
