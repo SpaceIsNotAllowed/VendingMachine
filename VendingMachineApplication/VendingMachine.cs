@@ -484,5 +484,13 @@ namespace VendingMachineApplication
             _cellList[cellNumber].Product = product;
         }
 
+        public Product GetCellProduct(int cellNumber)
+        {
+            if (cellNumber < 1 || _cellList == null || _cellList.Count < cellNumber)
+                return null;
+
+            cellNumber--;
+            return _cellList[cellNumber].Product;
+        }
     }
 }

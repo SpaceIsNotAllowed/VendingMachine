@@ -23,7 +23,6 @@ namespace VendingMachineApplication
         public Banknote() : base()
         {
             rating = BanknoteRating.Unknown;
-            ImagePack = Properties.Resources._10rub as Bitmap;//
         }
 
         public Banknote(int value) : base()
@@ -32,19 +31,15 @@ namespace VendingMachineApplication
             {
                 case (int)BanknoteRating.Ten:
                     rating = BanknoteRating.Ten;
-                    ImagePack = Properties.Resources._10rub as Bitmap;
                 break;
                 case (int)BanknoteRating.Fifty:
                     rating = BanknoteRating.Fifty;
-                    ImagePack = Properties.Resources._10rub as Bitmap;//
                 break;
                 case (int)BanknoteRating.OneHundred:
                     rating = BanknoteRating.OneHundred;
-                    ImagePack = Properties.Resources._10rub as Bitmap;//
                 break;
                 default:
                     rating = BanknoteRating.Unknown;
-                    ImagePack = Properties.Resources._10rub as Bitmap;//
                 break;
             }
             Repaint();
@@ -54,8 +49,6 @@ namespace VendingMachineApplication
             : base()
         {
             this.rating = rating;
-            ImagePack = Properties.Resources._10rub as Bitmap;
-            // switch (rating)...
         }
 
         public int Value
@@ -104,39 +97,23 @@ namespace VendingMachineApplication
                 if (Image != null)
                     Image.Dispose();
 
+                int banknoteindex = 0;
+                switch (rating)
+                {
+                    case BanknoteRating.Ten: banknoteindex = 0; break;
+                    case BanknoteRating.Fifty: banknoteindex = 1; break;
+                    case BanknoteRating.OneHundred: banknoteindex = 2; break;
+                    case BanknoteRating.Unknown: banknoteindex = 3; break;
+                }
+
                 Image = CopyBitmap(_img,
-                                        new RectangleF(0, 0, _scale * _img.Width / IMGCount, _scale * _img.Height),
-                                        new RectangleF((_imageIndex * _img.Width) / IMGCount, 0, _img.Width / IMGCount - 5, _img.Height)
+                                        new RectangleF(0, 0, _scale * _img.Width / IMGCount, _scale * (_img.Height / 4)),
+                                        new RectangleF((_imageIndex * _img.Width) / IMGCount, _img.Height * banknoteindex / 4, _img.Width / IMGCount - 5, _img.Height / 4)
                                   );
-                //CopyBitmap(_img, new RectangleF(0, 0, _img.Width / 12, IMGCount
+
                 this.Width = Image.Width;
                 this.Height = Image.Height;
-                
             }
         }
-        /*
-        public VendingMachine VendingMachine
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-        
-        internal Acceptor Acceptor
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-        */
-
     }
 }

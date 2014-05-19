@@ -81,12 +81,6 @@
     <Compile Include="Devices\Sensor.Designer.cs">
       <DependentUpon>Sensor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Devices\InputButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,16 +96,10 @@
     <Compile Include="FormChooseAction.Designer.cs">
       <DependentUpon>FormChooseAction.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnitTesting\FormDisplayTest.cs">
+    <Compile Include="FormVendingTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UnitTesting\FormDisplayTest.Designer.cs">
-      <DependentUpon>FormDisplayTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UnitTesting\FormVendingTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnitTesting\FormVendingTest.Designer.cs">
+    <Compile Include="FormVendingTest.Designer.cs">
       <DependentUpon>FormVendingTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -125,19 +113,13 @@
     <Compile Include="VendingMachine.Designer.cs">
       <DependentUpon>VendingMachine.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Devices\InputButton.resx">
       <DependentUpon>InputButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormChooseAction.resx">
       <DependentUpon>FormChooseAction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UnitTesting\FormDisplayTest.resx">
-      <DependentUpon>FormDisplayTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnitTesting\FormVendingTest.resx">
+    <EmbeddedResource Include="FormVendingTest.resx">
       <DependentUpon>FormVendingTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -354,6 +336,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\can7.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
