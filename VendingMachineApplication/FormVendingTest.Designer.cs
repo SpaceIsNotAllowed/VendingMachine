@@ -33,6 +33,11 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.buttonRandomize = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonInsert10 = new System.Windows.Forms.Button();
+            this.buttonInsert50 = new System.Windows.Forms.Button();
+            this.buttonInsert100 = new System.Windows.Forms.Button();
+            this.buttonInsert500 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.product7 = new VendingMachineApplication.Product();
             this.product6 = new VendingMachineApplication.Product();
             this.product5 = new VendingMachineApplication.Product();
@@ -41,17 +46,14 @@
             this.product2 = new VendingMachineApplication.Product();
             this.product1 = new VendingMachineApplication.Product();
             this.cell1 = new VendingMachineApplication.Devices.Cell(this.components);
-            this.buttonInsert10 = new System.Windows.Forms.Button();
-            this.buttonInsert50 = new System.Windows.Forms.Button();
-            this.buttonInsert100 = new System.Windows.Forms.Button();
-            this.buttonInsert500 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.acceptor1 = new VendingMachineApplication.Acceptor();
             this.myPanel1 = new VendingMachineApplication.InputPanel();
             this.display = new VendingMachineApplication.Display();
             this.coinKeeper1 = new VendingMachineApplication.CoinKeeper();
-            this.vendingMachine1 = new VendingMachineApplication.VendingMachine();
+            this.vendingMachine = new VendingMachineApplication.VendingMachine();
+            this.sensor = new VendingMachineApplication.Devices.Sensor(this.components);
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.product7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.product6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.product5)).BeginInit();
@@ -60,11 +62,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.product2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.product1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cell1)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.display)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinKeeper1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine)).BeginInit();
             this.SuspendLayout();
             // 
             // timer
@@ -80,7 +81,7 @@
             this.buttonRandomize.TabIndex = 9;
             this.buttonRandomize.Text = "Загрузить автомат";
             this.buttonRandomize.UseVisualStyleBackColor = true;
-            this.buttonRandomize.Click += new System.EventHandler(this.button2_Click);
+            this.buttonRandomize.Click += new System.EventHandler(this.buttonRandomizeClick);
             // 
             // panel1
             // 
@@ -98,6 +99,61 @@
             this.panel1.Size = new System.Drawing.Size(691, 84);
             this.panel1.TabIndex = 10;
             this.panel1.Visible = false;
+            // 
+            // buttonInsert10
+            // 
+            this.buttonInsert10.Location = new System.Drawing.Point(6, 19);
+            this.buttonInsert10.Name = "buttonInsert10";
+            this.buttonInsert10.Size = new System.Drawing.Size(80, 47);
+            this.buttonInsert10.TabIndex = 11;
+            this.buttonInsert10.Text = "Пополнить баланс на 10 рублей";
+            this.buttonInsert10.UseVisualStyleBackColor = true;
+            this.buttonInsert10.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
+            // 
+            // buttonInsert50
+            // 
+            this.buttonInsert50.Location = new System.Drawing.Point(92, 19);
+            this.buttonInsert50.Name = "buttonInsert50";
+            this.buttonInsert50.Size = new System.Drawing.Size(78, 47);
+            this.buttonInsert50.TabIndex = 12;
+            this.buttonInsert50.Text = "Пополнить баланс на 50 рублей";
+            this.buttonInsert50.UseVisualStyleBackColor = true;
+            this.buttonInsert50.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
+            // 
+            // buttonInsert100
+            // 
+            this.buttonInsert100.Location = new System.Drawing.Point(6, 72);
+            this.buttonInsert100.Name = "buttonInsert100";
+            this.buttonInsert100.Size = new System.Drawing.Size(80, 47);
+            this.buttonInsert100.TabIndex = 13;
+            this.buttonInsert100.Text = "Пополнить баланс на 100 рублей";
+            this.buttonInsert100.UseVisualStyleBackColor = true;
+            this.buttonInsert100.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
+            // 
+            // buttonInsert500
+            // 
+            this.buttonInsert500.Location = new System.Drawing.Point(95, 72);
+            this.buttonInsert500.Name = "buttonInsert500";
+            this.buttonInsert500.Size = new System.Drawing.Size(75, 47);
+            this.buttonInsert500.TabIndex = 14;
+            this.buttonInsert500.Text = "Пополнить баланс на 500 рублей";
+            this.buttonInsert500.UseVisualStyleBackColor = true;
+            this.buttonInsert500.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.buttonInsert10);
+            this.groupBox1.Controls.Add(this.buttonInsert500);
+            this.groupBox1.Controls.Add(this.buttonRandomize);
+            this.groupBox1.Controls.Add(this.buttonInsert100);
+            this.groupBox1.Controls.Add(this.buttonInsert50);
+            this.groupBox1.Location = new System.Drawing.Point(493, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(186, 161);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Действия пользователя";
             // 
             // product7
             // 
@@ -201,61 +257,6 @@
             this.cell1.TabStop = false;
             this.cell1.Visible = false;
             // 
-            // buttonInsert10
-            // 
-            this.buttonInsert10.Location = new System.Drawing.Point(6, 19);
-            this.buttonInsert10.Name = "buttonInsert10";
-            this.buttonInsert10.Size = new System.Drawing.Size(80, 47);
-            this.buttonInsert10.TabIndex = 11;
-            this.buttonInsert10.Text = "Пополнить баланс на 10 рублей";
-            this.buttonInsert10.UseVisualStyleBackColor = true;
-            this.buttonInsert10.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
-            // 
-            // buttonInsert50
-            // 
-            this.buttonInsert50.Location = new System.Drawing.Point(92, 19);
-            this.buttonInsert50.Name = "buttonInsert50";
-            this.buttonInsert50.Size = new System.Drawing.Size(78, 47);
-            this.buttonInsert50.TabIndex = 12;
-            this.buttonInsert50.Text = "Пополнить баланс на 50 рублей";
-            this.buttonInsert50.UseVisualStyleBackColor = true;
-            this.buttonInsert50.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
-            // 
-            // buttonInsert100
-            // 
-            this.buttonInsert100.Location = new System.Drawing.Point(6, 72);
-            this.buttonInsert100.Name = "buttonInsert100";
-            this.buttonInsert100.Size = new System.Drawing.Size(80, 47);
-            this.buttonInsert100.TabIndex = 13;
-            this.buttonInsert100.Text = "Пополнить баланс на 100 рублей";
-            this.buttonInsert100.UseVisualStyleBackColor = true;
-            this.buttonInsert100.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
-            // 
-            // buttonInsert500
-            // 
-            this.buttonInsert500.Location = new System.Drawing.Point(95, 72);
-            this.buttonInsert500.Name = "buttonInsert500";
-            this.buttonInsert500.Size = new System.Drawing.Size(75, 47);
-            this.buttonInsert500.TabIndex = 14;
-            this.buttonInsert500.Text = "Пополнить баланс на 500 рублей";
-            this.buttonInsert500.UseVisualStyleBackColor = true;
-            this.buttonInsert500.Click += new System.EventHandler(this.buttonInsertBanknoteClick);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.buttonInsert10);
-            this.groupBox1.Controls.Add(this.buttonInsert500);
-            this.groupBox1.Controls.Add(this.buttonRandomize);
-            this.groupBox1.Controls.Add(this.buttonInsert100);
-            this.groupBox1.Controls.Add(this.buttonInsert50);
-            this.groupBox1.Location = new System.Drawing.Point(493, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(186, 161);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Действия пользователя";
-            // 
             // acceptor1
             // 
             this.acceptor1.BackColor = System.Drawing.Color.Transparent;
@@ -303,24 +304,29 @@
             // 
             // vendingMachine1
             // 
-            this.vendingMachine1.Acceptor = this.acceptor1;
-            this.vendingMachine1.BackColor = System.Drawing.Color.Transparent;
-            this.vendingMachine1.Cell = this.cell1;
-            this.vendingMachine1.CoinKeeper = this.coinKeeper1;
-            this.vendingMachine1.Display = this.display;
-            this.vendingMachine1.Image = ((System.Drawing.Image)(resources.GetObject("vendingMachine1.Image")));
-            this.vendingMachine1.ImagePack = global::VendingMachineApplication.Properties.Resources.box2;
-            this.vendingMachine1.Location = new System.Drawing.Point(12, 12);
-            this.vendingMachine1.Name = "vendingMachine1";
-            this.vendingMachine1.Panel = this.myPanel1;
-            this.vendingMachine1.Scale = 1F;
-            this.vendingMachine1.Size = new System.Drawing.Size(576, 709);
-            this.vendingMachine1.TabIndex = 2;
-            this.vendingMachine1.TabStop = false;
-            this.vendingMachine1.VendingState = VendingMachineApplication.VendingMachine.State.SCellRequest;
-            this.vendingMachine1.ProductRemoveRequest += new VendingMachineApplication.VendingMachine.ProductManagementEventHandler(this.vendingMachine1_ProductRemoveRequest);
-            this.vendingMachine1.ProductFallRequest += new VendingMachineApplication.VendingMachine.ProductManagementEventHandler(this.vendingMachine1_ProductFallRequest);
-            this.vendingMachine1.SizeChanged += new System.EventHandler(this.vendingMachine1_SizeChanged);
+            this.vendingMachine.Acceptor = this.acceptor1;
+            this.vendingMachine.BackColor = System.Drawing.Color.Transparent;
+            this.vendingMachine.Cell = this.cell1;
+            this.vendingMachine.CoinKeeper = this.coinKeeper1;
+            this.vendingMachine.Display = this.display;
+            this.vendingMachine.Image = ((System.Drawing.Image)(resources.GetObject("vendingMachine1.Image")));
+            this.vendingMachine.ImagePack = global::VendingMachineApplication.Properties.Resources.box2;
+            this.vendingMachine.Location = new System.Drawing.Point(12, 12);
+            this.vendingMachine.Name = "vendingMachine1";
+            this.vendingMachine.InputPanel = this.myPanel1;
+            this.vendingMachine.Scale = 1F;
+            this.vendingMachine.Sensor = this.sensor;
+            this.vendingMachine.Size = new System.Drawing.Size(576, 709);
+            this.vendingMachine.TabIndex = 2;
+            this.vendingMachine.TabStop = false;
+            this.vendingMachine.State = VendingMachineApplication.State.SCellRequest;
+            this.vendingMachine.ProductRemoveRequest += new VendingMachineApplication.VendingMachine.ProductManagementEventHandler(this.vendingMachineProductRemoveRequest);
+            this.vendingMachine.ProductFallRequest += new VendingMachineApplication.VendingMachine.ProductManagementEventHandler(this.vendingMachineProductFallRequest);
+            this.vendingMachine.SizeChanged += new System.EventHandler(this.vendingMachineSizeChanged);
+            // 
+            // sensor
+            // 
+            this.sensor.HasObject = false;
             // 
             // FormVendingTest
             // 
@@ -333,11 +339,12 @@
             this.Controls.Add(this.myPanel1);
             this.Controls.Add(this.display);
             this.Controls.Add(this.coinKeeper1);
-            this.Controls.Add(this.vendingMachine1);
+            this.Controls.Add(this.vendingMachine);
             this.Name = "FormVendingTest";
             this.Text = "FormVendingTest";
             this.Load += new System.EventHandler(this.FormVendingTest_Load);
             this.panel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.product7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.product6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.product5)).EndInit();
@@ -346,11 +353,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.product2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.product1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cell1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.acceptor1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.display)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinKeeper1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vendingMachine)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -358,7 +364,7 @@
         #endregion
 
         private CoinKeeper coinKeeper1;
-        private VendingMachine vendingMachine1;
+        private VendingMachine vendingMachine;
         private Display display;
         private Devices.Cell cell1;
         private InputPanel myPanel1;
@@ -378,5 +384,6 @@
         private System.Windows.Forms.Button buttonInsert100;
         private System.Windows.Forms.Button buttonInsert500;
         private System.Windows.Forms.GroupBox groupBox1;
+        private Devices.Sensor sensor;
     }
 }

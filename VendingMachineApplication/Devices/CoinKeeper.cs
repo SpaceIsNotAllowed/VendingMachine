@@ -13,49 +13,25 @@ namespace VendingMachineApplication
 {
     public partial class CoinKeeper : GraphicalObject
     {
-        public CoinKeeper() : base()
-        {
-            Init();
-        }
-
         private bool _closed;
         private uint _account;
 
-        private void Init()
+        public CoinKeeper() : base()
         {
             _account = 0;
             _closed = true;
 
             if (this._img != null)
                 Repaint();
-
-            MouseDown += Open;
-            MouseUp += Close;
         }
 
-        override public void Repaint()
-        {
-            if (this._img != null)
-            {
-                if (Image != null)
-                    Image.Dispose();
-
-                if (!_closed)
-                    Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(_img.Width / 2, 0, _img.Width / 2 - 1, _img.Height));
-                else
-                    Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(0, 0, _img.Width / 2 - 1, _img.Height));
-                this.Width = Image.Width;
-                this.Height = Image.Height;
-            }
-        }
-
-        private void Open(object sender, MouseEventArgs e)
+        private void Open()
         {
             _closed = false;
             Repaint();
         }
 
-        private void Close(object sender, MouseEventArgs e)
+        private void Close()
         {
             _closed = true;
             Repaint();
@@ -71,6 +47,39 @@ namespace VendingMachineApplication
         public void GetMoney(uint count)
         {
             _account += count;
+        }
+
+        public bool isClosed()
+        {
+            return _closed;
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            Open();
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            Close();
+        }
+
+        public override void Repaint()
+        {
+            if (this._img != null)
+            {
+                if (Image != null)
+                    Image.Dispose();
+
+                if (!_closed)
+                    Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(_img.Width / 2, 0, _img.Width / 2 - 1, _img.Height));
+                else
+                    Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(0, 0, _img.Width / 2 - 1, _img.Height));
+                this.Width = Image.Width;
+                this.Height = Image.Height;
+            }
         }
     }
 }

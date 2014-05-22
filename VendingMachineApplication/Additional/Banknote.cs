@@ -18,11 +18,14 @@ namespace VendingMachineApplication
 
     public class Banknote : GraphicalObject
     {
-        private BanknoteRating rating;
+        private BanknoteRating _rating;
+
+        public const int IMG_COUNT = 13;
+        private int _imageIndex = 0;
 
         public Banknote() : base()
         {
-            rating = BanknoteRating.Unknown;
+            _rating = BanknoteRating.Unknown;
         }
 
         public Banknote(int value) : base()
@@ -30,16 +33,16 @@ namespace VendingMachineApplication
             switch (value)
             {
                 case (int)BanknoteRating.Ten:
-                    rating = BanknoteRating.Ten;
+                    _rating = BanknoteRating.Ten;
                 break;
                 case (int)BanknoteRating.Fifty:
-                    rating = BanknoteRating.Fifty;
+                    _rating = BanknoteRating.Fifty;
                 break;
                 case (int)BanknoteRating.OneHundred:
-                    rating = BanknoteRating.OneHundred;
+                    _rating = BanknoteRating.OneHundred;
                 break;
                 default:
-                    rating = BanknoteRating.Unknown;
+                    _rating = BanknoteRating.Unknown;
                 break;
             }
             Repaint();
@@ -48,14 +51,14 @@ namespace VendingMachineApplication
         public Banknote(BanknoteRating rating)
             : base()
         {
-            this.rating = rating;
+            this._rating = rating;
         }
 
         public int Value
         {
             get
             {
-                switch (rating)
+                switch (_rating)
                 {
                     case BanknoteRating.Ten:        return 10;
                     case BanknoteRating.Fifty:      return 50;
@@ -65,9 +68,7 @@ namespace VendingMachineApplication
             }
         }
 
-        public const int IMGCount = 13;
-        private int _imageIndex = 0;
-        public int imageIndex
+        public int ImageIndex
         {
             get
             {
@@ -77,13 +78,12 @@ namespace VendingMachineApplication
             {
                 if (value < 0)
                 {
-                    //_imageIndex = (value % IMGCount) + IMGCount;
-                    _imageIndex = (value % IMGCount) + IMGCount + 1;
+                    _imageIndex = (value % IMG_COUNT) + IMG_COUNT + 1;
                 } else
-                //if (value >= IMGCount)
-                if (value > IMGCount)
+
+                if (value > IMG_COUNT)
                 {
-                    _imageIndex = value % IMGCount;
+                    _imageIndex = value % IMG_COUNT;
                 } else
                     _imageIndex = value;
                 Repaint();
@@ -98,7 +98,7 @@ namespace VendingMachineApplication
                     Image.Dispose();
 
                 int banknoteindex = 0;
-                switch (rating)
+                switch (_rating)
                 {
                     case BanknoteRating.Ten: banknoteindex = 0; break;
                     case BanknoteRating.Fifty: banknoteindex = 1; break;
@@ -107,8 +107,8 @@ namespace VendingMachineApplication
                 }
 
                 Image = CopyBitmap(_img,
-                                        new RectangleF(0, 0, _scale * _img.Width / IMGCount, _scale * (_img.Height / 4)),
-                                        new RectangleF((_imageIndex * _img.Width) / IMGCount, _img.Height * banknoteindex / 4, _img.Width / IMGCount - 5, _img.Height / 4)
+                                        new RectangleF(0, 0, _scale * _img.Width / IMG_COUNT, _scale * (_img.Height / 4)),
+                                        new RectangleF((_imageIndex * _img.Width) / IMG_COUNT, _img.Height * banknoteindex / 4, _img.Width / IMG_COUNT - 5, _img.Height / 4)
                                   );
 
                 this.Width = Image.Width;

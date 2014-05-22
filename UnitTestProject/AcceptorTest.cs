@@ -21,7 +21,7 @@ namespace UnitTestProject
             Banknote banknote = input;
             acceptor.GetMoney(banknote);
 
-            while (acceptor.Busy() && !acceptor.Failed())
+            while (acceptor.isBusy() && !acceptor.Failed())
                 acceptor.Update();
 
             return acceptor.Failed();
@@ -33,7 +33,7 @@ namespace UnitTestProject
 
             acceptor.GetMoney(banknote);
 
-            while (acceptor.Busy())
+            while (acceptor.isBusy())
                 acceptor.Update();
 
             return acceptor;
@@ -41,7 +41,7 @@ namespace UnitTestProject
         void InsertMoney(Acceptor acceptor, Banknote banknote, ref int expectedValue)
         {
             acceptor.GetMoney(banknote);
-            while (acceptor.Busy()) acceptor.Update();
+            while (acceptor.isBusy()) acceptor.Update();
             expectedValue += banknote.Value;
         }
 

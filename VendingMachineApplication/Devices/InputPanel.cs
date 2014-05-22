@@ -15,6 +15,13 @@ namespace VendingMachineApplication
     public partial class InputPanel : UserControl
     {
         private String _input = "";
+        private bool _locked = false;
+
+        private double _scale = 1;
+        private double _initialWidth;
+        private double _initialHeight;
+        public double _dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
+        public double _dTop { get; private set; }  // будет меняться некорректно из-за округлений
 
         public String Input
         {
@@ -24,37 +31,29 @@ namespace VendingMachineApplication
                 _input = "";
                 return result;
             }
-
         }
-
-        private double _initialWidth;
-        private InputButton inputButton12;
-        private InputButton inputButton13;
-        private double _initialHeight;
-        public double dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
-        public double dTop { get; private set; }  // будет меняться некорректно из-за округлений
 
         // x0, y0 - точка отсчёта
         public void ChangeGlobalScale(double x0, double y0, float newScale)
         {
-            dLeft = x0 + (dLeft - x0) * newScale / _scale;
-            dTop = y0 + (dTop - y0) * newScale / _scale;
-            this.Location = new Point((int)dLeft, (int)dTop);
+            _dLeft = x0 + (_dLeft - x0) * newScale / _scale;
+            _dTop = y0 + (_dTop - y0) * newScale / _scale;
+            this.Location = new Point((int)_dLeft, (int)_dTop);
             PanelScale = newScale;
         }
 
         protected override void OnMove(EventArgs e)
         {
             base.OnMove(e);
-            if ((int)dLeft != Left)
-                this.dLeft = Left;
-            if ((int)dTop != Top)
-                this.dTop = Top;
+            if ((int)_dLeft != Left)
+                this._dLeft = Left;
+            if ((int)_dTop != Top)
+                this._dTop = Top;
         }
 
         private List<InputButton> _inputButtons = new List<InputButton>();
 
-        private Devices.Component1 Background;
+        private Devices.PanelBackground Background;
         private InputButton inputButton0;
         private IContainer components;
         public ImageList imageList;
@@ -69,8 +68,8 @@ namespace VendingMachineApplication
         private InputButton inputButton9;
         private InputButton inputButton10;
         private InputButton inputButton11;
-
-        double _scale = 1;
+        private InputButton inputButton12;
+        private InputButton inputButton13;
 
         [Category("Масштаб")]
         [Browsable(true)]
@@ -107,13 +106,12 @@ namespace VendingMachineApplication
                     ((InputButton)obj).Scale = (float)_scale;
             }
 
-            this.dLeft = Left;
-            this.dTop = Top;
+            this._dLeft = Left;
+            this._dTop = Top;
         }
 
         private void InitButtons()
         {
-            //this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputPanel));
             
             for (int i = 0; i < -12; i++)
@@ -125,7 +123,6 @@ namespace VendingMachineApplication
                 if (i < 10)
                 {
                     char number = (char)((i + 1) % 10 + '0');
-                    //button.Image = imageList.Images[number + ".png"];
                     button.ImagePack = new Bitmap(imageList.Images[number + ".png"]);
                     button.Key = number;
                 }
@@ -146,16 +143,12 @@ namespace VendingMachineApplication
                 _inputButtons.Add(button);
                 this.Controls.Add(button);
                 button.BringToFront();
-                //this.components.Add(button);
                 button.Parent = this;
-                button.Click += ButtonClick;
+                button.Click += ReceiveKey;
             }
-            //this.SuspendLayout();
-            
-            //this.ResumeLayout(false);
         }
 
-        void UpdateScale()
+        private void UpdateScale()
         {
             if (Background.BackgroundImage != null)
                 _scale = (double)Background.Width / (double)Background.BackgroundImage.Width;
@@ -164,7 +157,7 @@ namespace VendingMachineApplication
                 if (obj.GetType().ToString().Contains("InputButton"))
                     ((InputButton)obj).ChangeGlobalScale(0, 0, (float)_scale);
             }
-            //inputButton1.ChangeGlobalScale(0, 0, (float)_scale);
+
             if (_inputButtons.Count > 0)
                 foreach (InputButton button in _inputButtons)
                 {
@@ -191,7 +184,7 @@ namespace VendingMachineApplication
             this.inputButton2 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton1 = new VendingMachineApplication.InputButton(this.components);
             this.inputButton0 = new VendingMachineApplication.InputButton(this.components);
-            this.Background = new VendingMachineApplication.Devices.Component1(this.components);
+            this.Background = new VendingMachineApplication.Devices.PanelBackground(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.inputButton13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inputButton11)).BeginInit();
@@ -239,7 +232,7 @@ namespace VendingMachineApplication
             this.inputButton13.Size = new System.Drawing.Size(13, 13);
             this.inputButton13.TabIndex = 14;
             this.inputButton13.TabStop = false;
-            this.inputButton13.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton13.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton12
             // 
@@ -253,7 +246,7 @@ namespace VendingMachineApplication
             this.inputButton12.Size = new System.Drawing.Size(13, 13);
             this.inputButton12.TabIndex = 13;
             this.inputButton12.TabStop = false;
-            this.inputButton12.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton12.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton11
             // 
@@ -267,7 +260,7 @@ namespace VendingMachineApplication
             this.inputButton11.Size = new System.Drawing.Size(13, 13);
             this.inputButton11.TabIndex = 12;
             this.inputButton11.TabStop = false;
-            this.inputButton11.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton11.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton10
             // 
@@ -281,7 +274,7 @@ namespace VendingMachineApplication
             this.inputButton10.Size = new System.Drawing.Size(13, 13);
             this.inputButton10.TabIndex = 11;
             this.inputButton10.TabStop = false;
-            this.inputButton10.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton10.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton9
             // 
@@ -295,7 +288,7 @@ namespace VendingMachineApplication
             this.inputButton9.Size = new System.Drawing.Size(13, 13);
             this.inputButton9.TabIndex = 10;
             this.inputButton9.TabStop = false;
-            this.inputButton9.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton9.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton8
             // 
@@ -309,7 +302,7 @@ namespace VendingMachineApplication
             this.inputButton8.Size = new System.Drawing.Size(13, 13);
             this.inputButton8.TabIndex = 9;
             this.inputButton8.TabStop = false;
-            this.inputButton8.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton8.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton6
             // 
@@ -323,7 +316,7 @@ namespace VendingMachineApplication
             this.inputButton6.Size = new System.Drawing.Size(13, 13);
             this.inputButton6.TabIndex = 8;
             this.inputButton6.TabStop = false;
-            this.inputButton6.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton6.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton5
             // 
@@ -337,7 +330,7 @@ namespace VendingMachineApplication
             this.inputButton5.Size = new System.Drawing.Size(13, 13);
             this.inputButton5.TabIndex = 7;
             this.inputButton5.TabStop = false;
-            this.inputButton5.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton5.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton7
             // 
@@ -351,7 +344,7 @@ namespace VendingMachineApplication
             this.inputButton7.Size = new System.Drawing.Size(13, 13);
             this.inputButton7.TabIndex = 6;
             this.inputButton7.TabStop = false;
-            this.inputButton7.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton7.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton4
             // 
@@ -365,7 +358,7 @@ namespace VendingMachineApplication
             this.inputButton4.Size = new System.Drawing.Size(13, 13);
             this.inputButton4.TabIndex = 5;
             this.inputButton4.TabStop = false;
-            this.inputButton4.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton4.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton3
             // 
@@ -379,7 +372,7 @@ namespace VendingMachineApplication
             this.inputButton3.Size = new System.Drawing.Size(13, 13);
             this.inputButton3.TabIndex = 4;
             this.inputButton3.TabStop = false;
-            this.inputButton3.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton3.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton2
             // 
@@ -393,7 +386,7 @@ namespace VendingMachineApplication
             this.inputButton2.Size = new System.Drawing.Size(13, 13);
             this.inputButton2.TabIndex = 3;
             this.inputButton2.TabStop = false;
-            this.inputButton2.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton2.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton1
             // 
@@ -407,7 +400,7 @@ namespace VendingMachineApplication
             this.inputButton1.Size = new System.Drawing.Size(13, 13);
             this.inputButton1.TabIndex = 2;
             this.inputButton1.TabStop = false;
-            this.inputButton1.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton1.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // inputButton0
             // 
@@ -421,7 +414,7 @@ namespace VendingMachineApplication
             this.inputButton0.Size = new System.Drawing.Size(13, 13);
             this.inputButton0.TabIndex = 1;
             this.inputButton0.TabStop = false;
-            this.inputButton0.Click += new System.EventHandler(this.ButtonClick);
+            this.inputButton0.Click += new System.EventHandler(this.ReceiveKey);
             // 
             // Background
             // 
@@ -475,10 +468,20 @@ namespace VendingMachineApplication
 
         }
 
-        public void ButtonClick(object sender, EventArgs e)
+        public void Lock()
         {
-            //MessageBox.Show((sender as InputButton).Key.ToString());
-            _input += (sender as InputButton).Key;
+            _locked = true;
+        }
+
+        public void UnLock()
+        {
+            _locked = false;
+        }
+
+        public void ReceiveKey(object sender, EventArgs e)
+        {
+            if (!_locked)
+                _input += (sender as InputButton).Key;
         }
 
         protected override void OnResize(EventArgs e)
@@ -496,10 +499,5 @@ namespace VendingMachineApplication
                 this.Height = (int)(_initialHeight * a);
             UpdateScale();
         }
-
-        public void Lock() {} //TODO
-        public void Unlock() {}
-
-        
     }
 }

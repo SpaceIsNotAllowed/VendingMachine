@@ -63,11 +63,11 @@
     <Compile Include="Devices\CoinKeeper.Designer.cs">
       <DependentUpon>CoinKeeper.cs</DependentUpon>
     </Compile>
-    <Compile Include="Devices\Component1.cs">
+    <Compile Include="Devices\PanelBackground.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Devices\Component1.Designer.cs">
-      <DependentUpon>Component1.cs</DependentUpon>
+    <Compile Include="Devices\PanelBackground.Designer.cs">
+      <DependentUpon>PanelBackground.cs</DependentUpon>
     </Compile>
     <Compile Include="Devices\GraphicalObject.cs">
       <SubType>Component</SubType>
@@ -90,12 +90,6 @@
     <Compile Include="Additional\Product.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="FormChooseAction.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormChooseAction.Designer.cs">
-      <DependentUpon>FormChooseAction.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormVendingTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +109,6 @@
     </Compile>
     <EmbeddedResource Include="Devices\InputButton.resx">
       <DependentUpon>InputButton.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormChooseAction.resx">
-      <DependentUpon>FormChooseAction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormVendingTest.resx">
       <DependentUpon>FormVendingTest.cs</DependentUpon>

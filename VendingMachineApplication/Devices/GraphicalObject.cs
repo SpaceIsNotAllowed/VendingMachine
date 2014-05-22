@@ -13,10 +13,21 @@ namespace VendingMachineApplication.Devices
     {
         protected Bitmap _img;
         protected float _scale = 1.0f;
-        public double dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
-        public double dTop { get; private set; }  // будет меняться некорректно из-за округлений
+        public double _dLeft { get; private set; } // Если не вводить эти переменные, глобальный масштаб 
+        public double _dTop { get; private set; }  // будет меняться некорректно из-за округлений
 
-        [Browsable(true)]
+        public GraphicalObject()
+            : base()
+        {
+            if (_img != null)
+                Repaint();
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.Transparent;
+            this._dLeft = Left;
+            this._dTop = Top;
+        }
+
         [Category("Свойства устройства")]
         virtual public Bitmap ImagePack
         {
@@ -32,13 +43,6 @@ namespace VendingMachineApplication.Devices
                 this.Size = new Size((int)((double)_img.Width * _scale), (int)((double)_img.Height * _scale));
             }
         }
-        /*
-        public class SampleEventArgs
-        {
-            public SampleEventArgs(string s) { Text = s; }
-            public String Text {get; private set;} // readonly
-        }
-        */
 
         public delegate void ScaleChangedEventHandler(object sender, double scale);
         [Category("События устройства")]
@@ -65,13 +69,12 @@ namespace VendingMachineApplication.Devices
         // x0, y0 - точка отсчёта
         public void ChangeGlobalScale(double x0, double y0, float newScale)
         {
-            dLeft = x0 + (dLeft - x0) * newScale / Scale;
-            Left = (int) dLeft;
-            dTop = y0 + (dTop - y0) * newScale / Scale;
-            Top = (int) dTop;
+            _dLeft = x0 + (_dLeft - x0) * newScale / Scale;
+            Left = (int) _dLeft;
+            _dTop = y0 + (_dTop - y0) * newScale / Scale;
+            Top = (int) _dTop;
             this.Scale = newScale;
         }
-
 
         protected Bitmap CopyBitmap(Bitmap source, RectangleF dest, RectangleF src)
         {
@@ -99,17 +102,6 @@ namespace VendingMachineApplication.Devices
             }
         }
 
-        public GraphicalObject() : base()
-        {
-            if (_img != null)
-                Repaint();
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            this.BackColor = Color.Transparent;
-            this.dLeft = Left;
-            this.dTop = Top;
-        }
-
         protected override void OnMouseDown(MouseEventArgs e)
         {
             base.OnMouseDown(e);
@@ -123,10 +115,10 @@ namespace VendingMachineApplication.Devices
         protected override void OnMove(EventArgs e)
         {
             base.OnMove(e);
-            if ((int) dLeft != Left)
-                this.dLeft = Left;
-            if ((int) dTop != Top)
-                this.dTop  = Top;
+            if ((int) _dLeft != Left)
+                this._dLeft = Left;
+            if ((int) _dTop != Top)
+                this._dTop  = Top;
         }
     }
 }

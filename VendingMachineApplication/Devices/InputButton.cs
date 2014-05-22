@@ -17,7 +17,19 @@ namespace VendingMachineApplication
     {
         private bool _pressed;
         private char _Key = '0';
-        
+
+        public InputButton()
+        {
+            InitializeComponent();
+        }
+
+        public InputButton(IContainer container)
+        {
+            container.Add(this);
+
+            InitializeComponent();
+        }
+
         public  char  Key
         {
             get
@@ -42,33 +54,8 @@ namespace VendingMachineApplication
                 }
             }
         }
-        
-        public InputButton()
-        {
-            InitializeComponent();
-        }
 
-        public InputButton(IContainer container)
-        {
-            container.Add(this);
-
-            InitializeComponent();
-        }
-
-        /*
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("v_key", _Key, typeof(char));
-        }
-
-        // The special constructor is used to deserialize values.
-        public InputButton(SerializationInfo info, StreamingContext context)
-        {
-            // Reset the property value using the GetValue method.
-            _Key = (char)info.GetValue("key_value", typeof(char));
-        }
-         */
-        override public Bitmap ImagePack
+        public override Bitmap ImagePack
         {
             get
             {
@@ -118,7 +105,5 @@ namespace VendingMachineApplication
                 this.Height = Image.Height;
             }
         }
-
-
     }
 }

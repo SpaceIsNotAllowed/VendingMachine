@@ -12,44 +12,31 @@ namespace VendingMachineApplication
 {
     public partial class Display : GraphicalObject
     {
-        #region Конструкторы
+        private String _mainInfo, _inputInfo, _moneyInfo;
 
         public Display()
         {
-            Init();
+            _mainInfo = "";
+            _inputInfo = "";
+            _moneyInfo = "";
         }
 
-        #endregion
-
-        private void Init()
-        {
-            //...
-        }
-
-        private new void Update() // убрать?
-        {
-            Repaint();
-        }
-
-        //private Image Background;
-        private String _MainInfo, _InputInfo, _MoneyInfo;
-
-        #region Свойства
-
+        [Category("Отображаемая информация")]
         public String MainInfo
         {
             set
             {
-                _MainInfo = value;
-                Update();
+                _mainInfo = value;
+                Repaint();
             }
         }
 
+        [Category("Отображаемая информация")]
         public String InputInfo
         {
             get
             {
-                return _InputInfo; //??
+                return _inputInfo;
             }
             set
             {
@@ -62,25 +49,24 @@ namespace VendingMachineApplication
                     tmp = tmp.Replace("*", "");
                     tmp = tmp.Replace("#", "");
                 }
-                _InputInfo = tmp;
-                if (_InputInfo == null)
-                    _InputInfo = "";
-                if (_InputInfo.Length > 2)
-                    _InputInfo = _InputInfo.Substring(_InputInfo.Length - 2, 2);
-                Update();
+                _inputInfo = tmp;
+                if (_inputInfo == null)
+                    _inputInfo = "";
+                if (_inputInfo.Length > 2)
+                    _inputInfo = _inputInfo.Substring(_inputInfo.Length - 2, 2);
+                Repaint();
             }
         }
 
+        [Category("Отображаемая информация")]
         public String MoneyInfo
         {
             set
             {
-                _MoneyInfo = value;
-                Update();
+                _moneyInfo = value;
+                Repaint();
             }
         }
-
-        #endregion
 
         override public void Repaint()
         {
@@ -109,14 +95,12 @@ namespace VendingMachineApplication
                 Font inputDrawFont = new Font("Times New Roman", inputFontSize * _scale);
                 Font moneyDrawFont = new Font("Times New Roman", moneyFontSize * _scale);
 
-                g.DrawString(_MainInfo, mainDrawFont, drawBrush, mainDrawPoint);
-                g.DrawString(_InputInfo, inputDrawFont, drawBrush, inputDrawPoint);
-                g.DrawString(_MoneyInfo, moneyDrawFont, drawBrush, moneyDrawPoint);
+                g.DrawString(_mainInfo, mainDrawFont, drawBrush, mainDrawPoint);
+                g.DrawString(_inputInfo, inputDrawFont, drawBrush, inputDrawPoint);
+                g.DrawString(_moneyInfo, moneyDrawFont, drawBrush, moneyDrawPoint);
 
-                //g.DrawString("Hello!", new Font(FontFamily , new SolidBrush(Color.White), new PointF(0, 0));
                 g.Dispose();
             }
         }
-
     }
 }

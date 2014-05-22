@@ -13,15 +13,14 @@ namespace VendingMachineApplication
 {
     public partial class FormVendingTest : Form
     {
+        private List<Product> _productList = new List<Product>();
+        private List<int> _priceList = new List<int>();
+
         public FormVendingTest()
         {
             InitializeComponent();
             cell1.Product = product1;
         }
-
-        FormChooseAction formChooseAction = null;
-        List<Product> productList = new List<Product>();
-        List<int> priceList = new List<int>();
 
         private void FormVendingTest_Load(object sender, EventArgs e)
         {
@@ -32,25 +31,19 @@ namespace VendingMachineApplication
             Image image = ((System.Drawing.Image)(resources.GetObject("can1")));
             
             Product p = new Product("pepsi", image);
-            vendingMachine1.Cell.Product = p;
-            vendingMachine1.Init();
-            /*
-            formChooseAction = new FormChooseAction();
-            formChooseAction.Show();
-            formChooseAction.BringToFront();
-            formChooseAction.OnInsertBanknoteClick += InsertBanknote;
-            */
+            vendingMachine.Cell.Product = p;
+            vendingMachine.Init();
+
             CreateCells();
 
             foreach (object obj in panel1.Controls)
             {
                 if (obj is Product)
                 {
-                    productList.Add(obj as Product);
-                    priceList.Add(0);
+                    _productList.Add(obj as Product);
+                    _priceList.Add(0);
                 }
             }
-            //delegate void InsertBanknoteHandler(object sender, InsertBanknoteEventArgs e);
         }
 
         void InsertBanknote(object sender, InsertBanknoteEventArgs e)
@@ -65,28 +58,22 @@ namespace VendingMachineApplication
 
         void FormVendingTest_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (e.Delta < 0) vendingMachine1.Scale *= 1.1f;
-            if (e.Delta > 0) vendingMachine1.Scale /= 1.1f;
-            this.Text = vendingMachine1.Scale.ToString();
+            if (e.Delta < 0) vendingMachine.Scale *= 1.1f;
+            if (e.Delta > 0) vendingMachine.Scale /= 1.1f;
+            this.Text = vendingMachine.Scale.ToString();
         }
 
-        private void vendingMachine1_ScaleChanged(object sender, double scale)
+        private void vendingMachineSizeChanged(object sender, EventArgs e)
         {
-            
+            this.Width = vendingMachine.Left + vendingMachine.Width + 25;
+            this.Height = vendingMachine.Top + vendingMachine.Height + 25;
         }
-
-        private void vendingMachine1_SizeChanged(object sender, EventArgs e)
-        {
-            this.Width = vendingMachine1.Left + vendingMachine1.Width + 25;
-            this.Height = vendingMachine1.Top + vendingMachine1.Height + 25;
-        }
-
 
         private void CreateCells()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVendingTest));
             Image image = new Bitmap(global::VendingMachineApplication.Properties.Resources.small_wall);//((System.Drawing.Image)(resources.GetObject("cell1.Image")));
-            List<Cell> lc = vendingMachine1.CreateCells(image);
+            List<Cell> lc = vendingMachine.CreateCells(image);
             if (lc == null)
                 return;
             foreach (Cell c in lc)
@@ -100,51 +87,46 @@ namespace VendingMachineApplication
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            vendingMachine1.Update();
+            vendingMachine.Update();
         }
 
-
-
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonRandomizeClick(object sender, EventArgs e)
         {
-
-
             Random r = new Random();
 
-            for (int i = 0; i < priceList.Count; i++)
-                priceList[i] = r.Next() % 100;
+            for (int i = 0; i < _priceList.Count; i++)
+                _priceList[i] = r.Next() % 100;
 
             for (int i = 1; i < 61; i++)
             {
-                Product cellProduct = vendingMachine1.GetCellProduct(i);
+                Product cellProduct = vendingMachine.GetCellProduct(i);
 
-                if (productList != null && productList.Count > 0)
+                if (_productList != null && _productList.Count > 0)
                 {
                     int index = -1;
 
                     if (cellProduct == null)
                     {
-                        index = r.Next() % productList.Count;
-                        cellProduct = productList[index];
-                        vendingMachine1.SetCellProduct(i, cellProduct);
+                        index = r.Next() % _productList.Count;
+                        cellProduct = _productList[index];
+                        vendingMachine.SetCellProduct(i, cellProduct);
                     }
                     else
                     {
-                        for ( int j = 0; j < productList.Count; j++ )
-                            if (productList[j].Name == cellProduct.Name)
+                        for ( int j = 0; j < _productList.Count; j++ )
+                            if (_productList[j].Name == cellProduct.Name)
                             {
                                 index = j;
                                 break;
                             }
                     }
-                    vendingMachine1.SetCellPrice(i, (uint)priceList[index]);
+                    vendingMachine.SetCellPrice(i, (uint)_priceList[index]);
                 }
-                vendingMachine1.AddProductsToCell(i, r.Next() % 11);
-                
+                vendingMachine.AddProductsToCell(i, r.Next() % 11);
             }
         }
 
-        private void vendingMachine1_ProductFallRequest(object sender, Product product)
+        private void vendingMachineProductFallRequest(object sender, Product product)
         {
             if (product == null)
                 return;
@@ -153,9 +135,8 @@ namespace VendingMachineApplication
             product.BringToFront();
         }
 
-        private void vendingMachine1_ProductRemoveRequest(object sender, Product product)
+        private void vendingMachineProductRemoveRequest(object sender, Product product)
         {
-
             if (product == null)
                 return;
 
@@ -189,8 +170,20 @@ namespace VendingMachineApplication
             }
             
         }
-
-
     }
 
+    public class InsertBanknoteEventArgs : EventArgs
+    {
+        public Banknote Banknote { get; private set; }
+
+        public InsertBanknoteEventArgs(Banknote banknote)
+        {
+            Banknote = banknote;
+        }
+
+        public InsertBanknoteEventArgs(int value)
+        {
+            Banknote = new Banknote(value);
+        }
+    }
 }

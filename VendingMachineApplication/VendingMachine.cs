@@ -13,40 +13,27 @@ namespace VendingMachineApplication
 {
     public partial class VendingMachine : GraphicalObject
     {
-        public enum State
-        {
-            SCellRequest,
-            SChangingCellRequest,
-            SRepeat,
-            SPriceRequest,
-            SDone,
-            SMoneyRequest,
-            SEmptyCell,
-            SUnlock,
-            SAlert
-        }
-
         const int MSGTIME = 20;
-        private int repeattime = 0;
-        private bool timerun = false;
+        private int _repeattime = 0;
+        private bool _timerun = false;
 
-        private int cellNum = -1; // номер изменяемой ячейки
+        private List<Cell> _cellList;
+        private int _cellNum = -1; // номер изменяемой ячейки
 
         private String _input = "";
         private String _password = "*123#";
-        
-        public uint Account { get; private set; }
 
-        private List<Cell> _cellList;
-        private Product FallingFood = null;
-        private int foodSpeed = 0;
+        private Product _fallingFood = null;
+        private int _foodSpeed = 0;
+
+        private State _state;
+        public uint Account { get; private set; }
 
         public delegate void ProductManagementEventHandler(object sender, Product product);
         public event ProductManagementEventHandler ProductRemoveRequest;
         public event ProductManagementEventHandler ProductFallRequest;
 
-
-        public State VendingState //посмотреть имя в ПЗ
+        public State State
         {
             get
             {
@@ -59,31 +46,22 @@ namespace VendingMachineApplication
             }
         }
 
-        private State _state;
-        private Sensor _sensor;
-        private Display _display;
-        [Browsable(true)]
         [Category("Устройства")]
-        public Display Display
-        {
-            get
-            {
-                return _display;
-            }
-            set
-            {
-                _display = value;
-            }
-        }
+        public Sensor Sensor { get; set; }
 
-        public InputPanel Panel { get; set; }
+        [Category("Устройства")]
+        public Display Display { get; set; }
 
+        [Category("Устройства")]
+        public Cell Cell { get; set; }
 
-        //private double CCLeft;
-        //private double CCTop;
+        [Category("Устройства")]
+        public InputPanel InputPanel { get; set; }
+
+        [Category("Устройства")]
+        public Acceptor Acceptor { get; set; }
 
         CoinKeeper _coinKeeper;
-        [Browsable(true)]
         [Category("Устройства")]
         public CoinKeeper CoinKeeper
         {
@@ -95,28 +73,12 @@ namespace VendingMachineApplication
             {
                 _coinKeeper = value;
                 _coinKeeper.Click += this.coinKeeperClick;
-                /*
-                if (value != null)
-                {
-                    _coinKeeper.Move += this.coinKeeperMove;
-                    CCLeft = (int)((value.Left - this.Left) / this.Scale);
-                    CCTop = (int)((value.Top - this.Top) / this.Scale);
-                }
-                */
             }
         }
-
-        [Category("Устройства")]
-        public Cell Cell { get; set; }
-
-        [Category("Устройства")]
-        public Acceptor Acceptor { get; set; }
-
 
         public VendingMachine()
             : base()
         {
-
             this.ScaleChanged += vendingMachineScaleChanged;
         }
 
@@ -126,7 +88,7 @@ namespace VendingMachineApplication
             {
                 _input = _input.Replace(_password, "");
                 // переход в режим администратора
-                VendingState = State.SChangingCellRequest;
+                State = State.SChangingCellRequest;
                 return;
             }
 
@@ -148,50 +110,37 @@ namespace VendingMachineApplication
 
                 if (_cellList[cellNumber].ProductCount < 1)
                 {
-                    VendingState = State.SEmptyCell;
+                    State = State.SEmptyCell;
                     return;
                 }
 
                 if (Account < _cellList[cellNumber].ProductPrice)
                 {
-                    VendingState = State.SMoneyRequest;
+                    State = State.SMoneyRequest;
                     return;
                 }
 
-                if (FallingFood == null)
+                if (_fallingFood == null)
                 {
-                    FallingFood = _cellList[cellNumber].RemoveProduct();//!!!
-                    FallingFood.Left = _cellList[cellNumber].Left + (_cellList[cellNumber].Width - FallingFood.Image.Width) / 2;
-                    FallingFood.Top = _cellList[cellNumber].Top + (_cellList[cellNumber].Height - FallingFood.Image.Height) / 2;
-                    FallingFood.Scale = this.Scale;
-                    foodSpeed = 1;
+                    _fallingFood = _cellList[cellNumber].RemoveProduct();//!!!
+                    _fallingFood.Left = _cellList[cellNumber].Left + (_cellList[cellNumber].Width - _fallingFood.Image.Width) / 2;
+                    _fallingFood.Top = _cellList[cellNumber].Top + (_cellList[cellNumber].Height - _fallingFood.Image.Height) / 2;
+                    _fallingFood.Scale = this.Scale;
+                    _foodSpeed = 1;
                     if (ProductFallRequest != null)
-                        ProductFallRequest(this, FallingFood);
-                    //components.Add(FallingFood);
-
+                        ProductFallRequest(this, _fallingFood);
 
                     Account -= _cellList[cellNumber].ProductPrice;
-                    VendingState = State.SDone;
+                    State = State.SDone;
 
-                    //int xpos = cell % 10;
-                    //int ypos = 5 - cell / 10;
-                    
-                    //count[cell]--;
-                    //VendingMachineMoney -= price[cell];
-                    //FallingFood = new TProduct(type[cell], 60 + xpos * 30, 470 - ypos * 80, 550);
-                    //state = 4;
-                    //InitState();
-                    //ShowAll();
                     return;
                 }
             }
 
-            //if (input.Length() == 0) return;
-
             if (string.IsNullOrEmpty(_input)) return;
 
             if (_input[_input.Length - 1] == '#' &&
-                    (VendingState == State.SChangingCellRequest || VendingState == State.SRepeat || VendingState == State.SPriceRequest)
+                    (State == State.SChangingCellRequest || State == State.SRepeat || State == State.SPriceRequest)
                 )
             {
                 _input = _input.Replace("#", "");
@@ -202,42 +151,39 @@ namespace VendingMachineApplication
                 {
                     if (!int.TryParse(Display.InputInfo, out num) || (_cellList != null && (num < 1 || num > _cellList.Count)))
                     {
-                        VendingState = State.SRepeat;
+                        State = State.SRepeat;
                         return;
                     }
                     num--;
-                    cellNum = num;
+                    _cellNum = num;
 
-                    VendingState = State.SPriceRequest;
+                    State = State.SPriceRequest;
                     return;
                 }
                 else
                 {
                     if (!int.TryParse(Display.InputInfo, out num)) return;
 
-                    if (_cellList != null && cellNum >= 0 && cellNum < _cellList.Count)
-                        _cellList[cellNum].ProductPrice = (uint)num;
+                    if (_cellList != null && _cellNum >= 0 && _cellNum < _cellList.Count)
+                        _cellList[_cellNum].ProductPrice = (uint)num;
 
-                    VendingState = State.SChangingCellRequest;
-
-                    //MessageBox.Show("В ячейке " + AnsiString(cell + 1) + " установлена цена " + AnsiString(price[cell]) + " р.");
-
+                    State = State.SChangingCellRequest;
                 }
                 return;
             }
 
             if (_input[_input.Length - 1] == '*')
             {
-                if (VendingState == State.SChangingCellRequest || VendingState == State.SRepeat)
+                if (State == State.SChangingCellRequest || State == State.SRepeat)
                 {
-                    VendingState = State.SCellRequest;
+                    State = State.SCellRequest;
                     _input = _input.Replace("*", "");
                     return;
                 }
 
-                if (VendingState == State.SPriceRequest)
+                if (State == State.SPriceRequest)
                 {
-                    VendingState = State.SChangingCellRequest;
+                    State = State.SChangingCellRequest;
                     _input = _input.Replace("*", "");
                     return;
                 }
@@ -246,30 +192,30 @@ namespace VendingMachineApplication
 
         private void InitState()
         {
-            if (VendingState == State.SCellRequest || VendingState == State.SChangingCellRequest ||
-                VendingState == State.SRepeat || VendingState == State.SPriceRequest)
+            if (State == State.SCellRequest || State == State.SChangingCellRequest ||
+                State == State.SRepeat || State == State.SPriceRequest)
             {
                 Display.InputInfo = "";
                 //msgtime = 0;
-                Panel.Unlock();
+                InputPanel.UnLock();
             }
 
-            switch (VendingState)
+            switch (State)
             {
                 case State.SUnlock:
                 {
-                    Panel.Unlock();
-                    VendingState = State.SCellRequest;
+                    InputPanel.UnLock();
+                    State = State.SCellRequest;
                 } break;
                 case State.SCellRequest:
-                    if (FallingFood != null)
+                    if (_fallingFood != null)
                     {
                         if (ProductRemoveRequest != null)
-                            ProductRemoveRequest(this, FallingFood);
-                        FallingFood.Dispose();
-                        FallingFood = null;
+                            ProductRemoveRequest(this, _fallingFood);
+                        _fallingFood.Dispose();
+                        _fallingFood = null;
                     }
-                    Panel.Unlock();
+                    InputPanel.UnLock();
                     //_input = "";
                     Display.MainInfo = "Введите номер ячейки: ";
                     //Display.InputInfo = "";
@@ -280,13 +226,13 @@ namespace VendingMachineApplication
                     Display.MainInfo = "Ячейка: ";
                     Display.InputInfo = "";
                     Display.MoneyInfo = "";
-                    cellNum = -1;
+                    _cellNum = -1;
                 break;
                 case State.SRepeat:
                     _input = "";
                     Display.MainInfo = "Повторите ввод:";
                     Display.InputInfo = "";
-                    cellNum = -1;
+                    _cellNum = -1;
                 break;
                 case State.SPriceRequest:
                     _input = "";
@@ -297,50 +243,50 @@ namespace VendingMachineApplication
                 case State.SDone:
                 {
                     Display.MainInfo = "Приятного аппетита!";
-                    repeattime = MSGTIME;
-                    timerun = true;
-                    Panel.Lock();
+                    _repeattime = MSGTIME;
+                    _timerun = true;
+                    InputPanel.Lock();
                 } break;
                 case State.SMoneyRequest:
                 {
                     Display.MainInfo = "Недостаточно средств.";
-                    repeattime = MSGTIME;
-                    timerun = true;
-                    Panel.Lock();
+                    _repeattime = MSGTIME;
+                    _timerun = true;
+                    InputPanel.Lock();
                 } break;
                 case State.SEmptyCell:
                 {
                     Display.MainInfo = "Ячейка пуста.";
-                    repeattime = MSGTIME;
-                    timerun = true;
-                    Panel.Lock();
+                    _repeattime = MSGTIME;
+                    _timerun = true;
+                    InputPanel.Lock();
                 } break;
                 case State.SAlert:
                 {
                     Display.MainInfo = "Тревога!";
-                    Panel.Lock();
+                    InputPanel.Lock();
                 } break;
             }
         }
 
         public new void Update()
         {
-            if (repeattime >= 0 && timerun)
+            if (_repeattime >= 0 && _timerun)
             {
-                repeattime--;
-                if (FallingFood != null)
+                _repeattime--;
+                if (_fallingFood != null)
                 {
-                    if (FallingFood.Top < this.Top + _scale * 450)
-                        FallingFood.Top += foodSpeed;
+                    if (_fallingFood.Top < this.Top + _scale * 450)
+                        _fallingFood.Top += _foodSpeed;
                     else
-                        if (FallingFood.Visible)
-                            FallingFood.Visible = false;
+                        if (_fallingFood.Visible)
+                            _fallingFood.Visible = false;
                 }
-                foodSpeed += 5;
+                _foodSpeed += 5;
             }
-            if (repeattime < 0 && timerun)
+            if (_repeattime < 0 && _timerun)
             {
-                timerun = false;
+                _timerun = false;
                 if (_state == State.SDone || _state == State.SEmptyCell || _state == State.SMoneyRequest)
                 {
                     _state = State.SCellRequest;
@@ -348,9 +294,9 @@ namespace VendingMachineApplication
                 }
             }
 
-            if (Panel != null)
+            if (InputPanel != null)
             {
-                _input += Panel.Input;
+                _input += InputPanel.Input;
             }
 
             if (Display != null)
@@ -365,6 +311,17 @@ namespace VendingMachineApplication
                 uint money = Acceptor.ReturnMoney();
                 if (money > 0)
                     Account += money;
+            }
+
+            if (Sensor != null)
+            {
+                Sensor.Update();
+
+                if (Sensor.Warns() && State != State.SAlert)
+                    State = State.SAlert;
+
+                if (!Sensor.Warns() && State == State.SAlert)
+                    State = State.SUnlock;
             }
 
             AnalyseInput();
@@ -394,24 +351,9 @@ namespace VendingMachineApplication
         public void Init()
         {
             _input = "";
-            VendingState = State.SCellRequest;
+            State = State.SCellRequest;
             
             Account = 0;
-
-        }
-
-        public override void Repaint()
-        {
-            if (this._img != null)
-            {
-                if (Image != null)
-                    Image.Dispose();
-
-                Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width, _scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
-
-                this.Width = Image.Width;
-                this.Height = Image.Height;
-            }
         }
 
         private void vendingMachineScaleChanged(object sender, double scale)
@@ -420,25 +362,22 @@ namespace VendingMachineApplication
             {
                 if (_cellList != null)
                     foreach (Cell cell in _cellList)
-                        cell.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                        cell.ChangeGlobalScale(this._dLeft, this._dTop, Scale);
 
 
-                if (FallingFood != null)
-                    FallingFood.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                if (_fallingFood != null)
+                    _fallingFood.ChangeGlobalScale(this._dLeft, this._dTop, Scale);
 
-                CoinKeeper.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
-                Display.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
-                Cell.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                CoinKeeper.ChangeGlobalScale(this._dLeft, this._dTop, Scale);
+                Display.ChangeGlobalScale(this._dLeft, this._dTop, Scale);
+                Cell.ChangeGlobalScale(this._dLeft, this._dTop, Scale);
                 if (Acceptor != null)
-                    Acceptor.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
-                if (Panel != null)
+                    Acceptor.ChangeGlobalScale(this._dLeft, this._dTop, Scale);
+                if (InputPanel != null)
                 {
-                    Panel.PanelScale = Scale;
-                    Panel.Location = new Point((int)((510f - dLeft) * Scale + dLeft), (int)((266f - dTop) * Scale + dTop));
-                    
-                    //Panel.ChangeGlobalScale(this.dLeft, this.dTop, Scale);
+                    InputPanel.PanelScale = Scale;
+                    InputPanel.Location = new Point((int)((510f - _dLeft) * Scale + _dLeft), (int)((266f - _dTop) * Scale + _dTop));
                 }
-
             }
         }
 
@@ -446,16 +385,6 @@ namespace VendingMachineApplication
         {
             MessageBox.Show("Получено от автомата " + _coinKeeper.ReturnMoney().ToString() + " р.");
         }
-
-        /*
-        private void coinKeeperMove(object sender, EventArgs e)
-        {
-            
-            CoinKeeper CC = sender as CoinKeeper;
-            if (CC == null) return;
-            CCLeft = (int)((CC.Left - this.dLeft) * this.Scale / CC.Scale);
-            CCTop = (int)((CC.Top - this.dLeft) * this.Scale / CC.Scale);
-        }*/
 
         public void AddProductsToCell(int cellNumber, int count)
         {
@@ -492,5 +421,49 @@ namespace VendingMachineApplication
             cellNumber--;
             return _cellList[cellNumber].Product;
         }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            if (Sensor != null)
+                if (e.X > 0 && e.X < this.Width / 1.73 && e.Y > this.Height * 0.8)
+                    Sensor.HasObject = true;
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+
+            if (Sensor != null)
+                Sensor.HasObject = false;
+        }
+
+        public override void Repaint()
+        {
+            if (this._img != null)
+            {
+                if (Image != null)
+                    Image.Dispose();
+
+                Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width, _scale * _img.Height), new RectangleF(0, 0, _img.Width, _img.Height));
+
+                this.Width = Image.Width;
+                this.Height = Image.Height;
+            }
+        }
+    }
+
+    public enum State
+    {
+        SCellRequest,
+        SChangingCellRequest,
+        SRepeat,
+        SPriceRequest,
+        SDone,
+        SMoneyRequest,
+        SEmptyCell,
+        SUnlock,
+        SAlert
     }
 }

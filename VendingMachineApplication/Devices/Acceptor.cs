@@ -11,48 +11,47 @@ namespace VendingMachineApplication
 {
     public class Acceptor : GraphicalObject
     {
-        public delegate void BanknoteApprovedEventHandler(object sender, int rating);
-        public event BanknoteApprovedEventHandler BanknoteApproved;
-        public event EventHandler BanknoteDenied;
+          public delegate void BanknoteApprovedEventHandler(object sender, int rating);
+          public event BanknoteApprovedEventHandler BanknoteApproved;
+          public event EventHandler BanknoteDenied;
 
-          private bool isUsing;
-          private Checker Checker;
-          private bool fail;
-          List<Banknote> BanknoteList;
-
-          private uint account;
+          private bool _isUsed;
+          private bool _fail;
+          private uint _account;
+          private List<Banknote> _banknoteList;
+          private Checker _checker;
 
           public Acceptor() : base()
           {
-              isUsing = false;
-              fail = false;
-              account = 0;
-              Checker = new Checker();
-              BanknoteList = new List<Banknote>();
+              _isUsed = false;
+              _fail = false;
+              _account = 0;
+              _checker = new Checker();
+              _banknoteList = new List<Banknote>();
           }
 
           public new void Update()
           {
               Repaint();
 
-              if (!isUsing) return;
+              if (!_isUsed) return;
 
               Banknote banknote = null;
-              if (BanknoteList.Count > 0)
-                  banknote = BanknoteList[BanknoteList.Count - 1];
+              if (_banknoteList.Count > 0)
+                  banknote = _banknoteList[_banknoteList.Count - 1];
 
-              if (fail)
+              if (_fail)
               {
                   if (banknote != null)
                   {
-                      if (banknote.imageIndex > 0)
-                          banknote.imageIndex--;
+                      if (banknote.ImageIndex > 0)
+                          banknote.ImageIndex--;
                       else
                       {
-                          BanknoteList.Remove(banknote);
+                          _banknoteList.Remove(banknote);
                           banknote.Dispose();
-                          isUsing = false;
-                          fail = false;
+                          _isUsed = false;
+                          _fail = false;
                       }
                   }
 
@@ -61,73 +60,63 @@ namespace VendingMachineApplication
               else
               {
 
-                  if (banknote != null && banknote.imageIndex < Banknote.IMGCount)
-                      banknote.imageIndex++;
+                  if (banknote != null && banknote.ImageIndex < Banknote.IMG_COUNT)
+                      banknote.ImageIndex++;
 
-                  Checker.Update();
-                  int rating = Checker.GetResult();
+                  _checker.Update();
+                  int rating = _checker.GetResult();
                   if (rating == -1) return; // идёт проверка
                   if (rating == 0)
                   {
-                      fail = true;
+                      _fail = true;
                       if (BanknoteDenied != null)
                           BanknoteDenied(this, null);
-                      //MessageBox.Show("Купюра не соответствует требованиям!");
+
                       return;
                   }
 
-                  account += (uint)rating;
-                  isUsing = false;
+                  _account += (uint)rating;
+                  _isUsed = false;
                   banknote.Visible = false;
                   if (BanknoteApproved != null)
                       BanknoteApproved(this, rating);
-                  //MessageBox.Show("На счёт купюроприёмника зачислено " + rating.ToString() + " рублей.");
               }
           }
 
-          public bool GetMoney(Banknote banknote)// (uint count)
+          public bool GetMoney(Banknote banknote)
           {
-              if (isUsing) return false;
+              if (_isUsed) return false;
 
-              isUsing = true;
-              BanknoteList.Add(banknote);
+              _isUsed = true;
+              _banknoteList.Add(banknote);
               banknote.Scale = this.Scale;
               banknote.Left = this.Left + (this.Width - banknote.Width) / 2;
               banknote.Top = this.Top + (int) (17 * Scale);
               SetStyle(ControlStyles.SupportsTransparentBackColor, true);
               banknote.BackColor = Color.Transparent;
-              /*
-              Graphics g = Graphics.FromImage(banknote.Image);
-              //g.DrawImage(source, dest, src, GraphicsUnit.Pixel);
-              Brush b = new SolidBrush(Color.Transparent);
-              g.FillRectangle(b, 0, 0, banknote.Width - 5, banknote.Height - 5);
-              g.Dispose();
-              */
+
               banknote.BringToFront();
-              //(banknote as  PictureBox).Transp
-
-
-              Checker.Check(banknote);
+              _checker.Check(banknote);
               return true;
           }
 
           public uint ReturnMoney()
           {
-              if (isUsing) return 0;
+              if (_isUsed) return 0;
 
-              fail = false;
-              uint result = account;
-              account = 0;
+              _fail = false;
+              uint result = _account;
+              _account = 0;
               return result;
           }
 
           public bool Failed()
           {
-              return fail;
+              return _fail;
           }
-          public bool Busy()
+          public bool isBusy()
           {
-              return isUsing;
+              return _isUsed;
           }
 
           override public void Repaint()
@@ -137,7 +126,7 @@ namespace VendingMachineApplication
                   if (Image != null)
                       Image.Dispose();
 
-                  if (!isUsing)
+                  if (!_isUsed)
                       Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(_img.Width / 2, 0, _img.Width / 2 - 1, _img.Height));
                   else
                       Image = CopyBitmap(_img, new RectangleF(0, 0, _scale * _img.Width / 2, _scale * _img.Height), new RectangleF(0, 0, _img.Width / 2 - 1, _img.Height));

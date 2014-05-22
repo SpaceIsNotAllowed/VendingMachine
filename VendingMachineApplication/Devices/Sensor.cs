@@ -25,55 +25,30 @@ namespace VendingMachineApplication.Devices
         }
 
         #endregion
-        /*
-        public class MyException : Exception
-        {
-            public MyException() : base() { }
 
-        }*/
-/*
-        public VendingMachineApplication.VendingMachine VendingMachine
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-        */
-        //private bool HasObject; // ссылка на переменную!!
-        private bool Warning;
+        public bool HasObject { get; set; }
+
+        private bool _warning;
         
         private void Alarm()
         {
-            Warning = true;
-            MessageBox.Show("Обнаружено проникновение!");
+            _warning = true;
         }
 
         private void Check()
         {
-           /*
-            try
-            {
-            }
-            catch (MyException)
-            {
-                if (!Warning) Alarm();
-            }
-            * */
-            /*
+            if (!_warning) Alarm();
+
             if (HasObject)
             {
-                if (!Warning) Alarm();
+                if (!_warning) Alarm();
             }
-            else Warning = false;*/
+            else _warning = false;
         }
 
         public bool Warns()
         {
-            return Warning;
+            return _warning;
         }
 
         public void Update()

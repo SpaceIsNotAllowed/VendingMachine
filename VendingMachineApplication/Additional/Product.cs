@@ -12,20 +12,12 @@ namespace VendingMachineApplication
     {
         public new String Name { get; set; }
 
-        /*
-        public Image Image { }
-        {
-            get
-            {
-                return _Image;
-            }
-        }*/
+        public Product() { }
 
         public Product(String name, Image image)
         {
             Name = name;
             if (image != null)
-                //this.Image = image.Clone() as Image;
                 ImagePack = new Bitmap(image);
             Repaint();
         }
@@ -38,23 +30,9 @@ namespace VendingMachineApplication
             if (p.Image != null)
                 this.Image = p.Image.Clone() as Image;
 
-            //if (p.Image != null)
-            //    this.Image = p.Image.Clone() as Image;
-            //else
-                if (p.ImagePack != null)
-                    this.ImagePack = new Bitmap(p.ImagePack);
-                Repaint();
+            if (p.ImagePack != null)
+                this.ImagePack = new Bitmap(p.ImagePack);
+            Repaint();
         }
-
-        public Product()
-        {
-
-        }
-        /*
-        public override void Repaint()
-        {
-            //base.Repaint();
-        }*/
-
     }
 }

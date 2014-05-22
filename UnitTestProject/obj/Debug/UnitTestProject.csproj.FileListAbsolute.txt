@@ -12,3 +12,12 @@ C:\Users\Dima\Desktop\MyRepos\UnitTestProject\bin\Debug\VendingMachineApplicatio
 C:\Users\Dima\Desktop\MyRepos\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
 C:\Users\Dima\Desktop\MyRepos\UnitTestProject\obj\Debug\UnitTestProject.dll
 C:\Users\Dima\Desktop\MyRepos\UnitTestProject\obj\Debug\UnitTestProject.pdb
+C:\Users\Dima\Desktop\Vending\UnitTestProject\bin\Debug\UnitTestProject.dll
+C:\Users\Dima\Desktop\Vending\UnitTestProject\bin\Debug\UnitTestProject.pdb
+C:\Users\Dima\Desktop\Vending\UnitTestProject\bin\Debug\VendingMachineApplication.exe
+C:\Users\Dima\Desktop\Vending\UnitTestProject\bin\Debug\VendingMachineApplication.pdb
+C:\Users\Dima\Desktop\Vending\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+C:\Users\Dima\Desktop\Vending\UnitTestProject\obj\Debug\UnitTestProject.dll
+C:\Users\Dima\Desktop\Vending\UnitTestProject\obj\Debug\UnitTestProject.pdb
+C:\Users\Dima\Desktop\Vending\BuildArtifacts\UnitTestProject.dll
+C:\Users\Dima\Desktop\Vending\BuildArtifacts\UnitTestProject.pdb
