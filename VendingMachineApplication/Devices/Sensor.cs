@@ -37,11 +37,10 @@ namespace VendingMachineApplication.Devices
 
         private void Check()
         {
-            if (!_warning) Alarm();
-
             if (HasObject)
             {
-                if (!_warning) Alarm();
+                if (!_warning)
+                    Alarm();
             }
             else _warning = false;
         }

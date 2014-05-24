@@ -499,5 +499,33 @@ namespace VendingMachineApplication
                 this.Height = (int)(_initialHeight * a);
             UpdateScale();
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.D0:  ReceiveKey(inputButton0, new EventArgs()); break;
+                case Keys.D1:  ReceiveKey(inputButton1, new EventArgs()); break;
+                case Keys.D2:  ReceiveKey(inputButton2, new EventArgs()); break;
+                case Keys.D3:  ReceiveKey(inputButton3, new EventArgs()); break;
+                case Keys.D4:  ReceiveKey(inputButton4, new EventArgs()); break;
+                case Keys.D5:  ReceiveKey(inputButton5, new EventArgs()); break;
+                case Keys.D6:  ReceiveKey(inputButton6, new EventArgs()); break;
+                case Keys.D7:  ReceiveKey(inputButton7, new EventArgs()); break;
+                case Keys.D8:  ReceiveKey(inputButton8, new EventArgs()); break;
+                case Keys.D9:  ReceiveKey(inputButton9, new EventArgs()); break;
+                case Keys.Left:
+                case Keys.Escape: ReceiveKey(inputButton12, new EventArgs()); break;
+                case Keys.Right:
+                case Keys.Enter: ReceiveKey(inputButton13, new EventArgs()); break;
+                case Keys.T: ReceiveKey(inputButton10, new EventArgs()); break;
+                case Keys.C: ReceiveKey(inputButton11, new EventArgs()); break;
+                default: break;
+            }
+
+            base.ProcessCmdKey(ref msg, keyData);
+
+            return false;
+        }
     }
 }

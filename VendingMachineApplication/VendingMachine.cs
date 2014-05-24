@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
@@ -27,6 +29,9 @@ namespace VendingMachineApplication
         private int _foodSpeed = 0;
 
         private State _state;
+
+        public VendingMessages Messages { get; set; }
+
         public uint Account { get; private set; }
 
         public delegate void ProductManagementEventHandler(object sender, Product product);
@@ -217,53 +222,53 @@ namespace VendingMachineApplication
                     }
                     InputPanel.UnLock();
                     //_input = "";
-                    Display.MainInfo = "Введите номер ячейки: ";
+                    Display.MainInfo = Messages.MCellRequest;
                     //Display.InputInfo = "";
-                    Display.MoneyInfo = Account.ToString() + " р.";
+                    Display.MoneyInfo = Account.ToString() + Messages.MCurrency;
                 break;
                 case State.SChangingCellRequest:
                     _input = "";
-                    Display.MainInfo = "Ячейка: ";
+                    Display.MainInfo = Messages.MChangingCellRequest;
                     Display.InputInfo = "";
                     Display.MoneyInfo = "";
                     _cellNum = -1;
                 break;
                 case State.SRepeat:
                     _input = "";
-                    Display.MainInfo = "Повторите ввод:";
+                    Display.MainInfo = Messages.MRepeat;
                     Display.InputInfo = "";
                     _cellNum = -1;
                 break;
                 case State.SPriceRequest:
                     _input = "";
-                    Display.MainInfo = "Цена товара:";
+                    Display.MainInfo = Messages.MPriceRequest;
                     Display.InputInfo = "";
                 break;
 
                 case State.SDone:
                 {
-                    Display.MainInfo = "Приятного аппетита!";
+                    Display.MainInfo = Messages.MDone;
                     _repeattime = MSGTIME;
                     _timerun = true;
                     InputPanel.Lock();
                 } break;
                 case State.SMoneyRequest:
                 {
-                    Display.MainInfo = "Недостаточно средств.";
+                    Display.MainInfo = Messages.MMoneyRequest;
                     _repeattime = MSGTIME;
                     _timerun = true;
                     InputPanel.Lock();
                 } break;
                 case State.SEmptyCell:
                 {
-                    Display.MainInfo = "Ячейка пуста.";
+                    Display.MainInfo = Messages.MEmptyCell;
                     _repeattime = MSGTIME;
                     _timerun = true;
                     InputPanel.Lock();
                 } break;
                 case State.SAlert:
                 {
-                    Display.MainInfo = "Тревога!";
+                    Display.MainInfo = Messages.MAlert;
                     InputPanel.Lock();
                 } break;
             }
@@ -302,7 +307,7 @@ namespace VendingMachineApplication
             if (Display != null)
             {
                 Display.InputInfo = _input;
-                Display.MoneyInfo = Account.ToString() + " p.";
+                Display.MoneyInfo = Account.ToString() + Messages.MCurrency;
             }
 
             if (Acceptor != null)
@@ -383,7 +388,14 @@ namespace VendingMachineApplication
 
         private void coinKeeperClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Получено от автомата " + _coinKeeper.ReturnMoney().ToString() + " р.");
+            try
+            {
+                MessageBox.Show(string.Format(Messages.MReceivedFormatString, _coinKeeper.ReturnMoney().ToString()));
+            }
+            catch
+            {
+                MessageBox.Show((new VendingMessages()).MReceivedFormatString);
+            }
         }
 
         public void AddProductsToCell(int cellNumber, int count)
@@ -452,6 +464,70 @@ namespace VendingMachineApplication
                 this.Height = Image.Height;
             }
         }
+
+        private void ApplyField(XmlNode node, ref string dest)
+        {
+            if (node != null && !string.IsNullOrEmpty(node.InnerText))
+                dest = node.InnerText;
+        }
+
+        public void ApplyLanguage(string xml)
+        {
+            if (string.IsNullOrEmpty(xml))
+                return;
+
+            var doc = new XmlDocument();
+            doc.Load(new StringReader(xml));
+
+            if (doc == null || doc.FirstChild == null)
+                return;
+
+            var messages = doc.FirstChild;
+
+            VendingMessages data = new VendingMessages();
+            ApplyField(messages["CellRequest"], ref data.MCellRequest);
+            ApplyField(messages["Currency"],    ref data.MCurrency);
+            ApplyField(messages["ChangingCellRequest"], ref data.MChangingCellRequest);
+            ApplyField(messages["Repeat"], ref data.MRepeat);
+            ApplyField(messages["PriceRequest"], ref data.MPriceRequest);
+            ApplyField(messages["Done"], ref data.MDone);
+            ApplyField(messages["MoneyRequest"], ref data.MMoneyRequest);
+            ApplyField(messages["EmptyCell"], ref data.MEmptyCell);
+            ApplyField(messages["Alert"], ref data.MAlert);
+            ApplyField(messages["ReceivedFormatString"], ref data.MReceivedFormatString);
+
+            this.Messages = data;
+            State = State;
+        }
+
+        public string GetSettingsXml()
+        {
+            string pattern =
+            @"<VendingMessages>
+		        <CellRequest>{0}</CellRequest>
+		        <Currency>{1}</Currency>
+		        <ChangingCellRequest>{2}</ChangingCellRequest>
+		        <Repeat>{3}</Repeat>
+		        <PriceRequest>{4}</PriceRequest>
+		        <Done>{5}</Done>
+		        <MoneyRequest>{6}</MoneyRequest>
+		        <EmptyCell>{7}</EmptyCell>
+		        <Alert>{8}</Alert>
+		        <ReceivedFormatString>{9}</ReceivedFormatString>
+	        </VendingMessages>";
+            return string.Format(pattern,
+                                    Messages.MCellRequest,
+                                    Messages.MCurrency,
+                                    Messages.MChangingCellRequest,
+                                    Messages.MRepeat,
+                                    Messages.MPriceRequest,
+                                    Messages.MDone,
+                                    Messages.MMoneyRequest,
+                                    Messages.MEmptyCell,
+                                    Messages.MAlert,
+                                    Messages.MReceivedFormatString
+                                );
+        }
     }
 
     public enum State
@@ -465,5 +541,33 @@ namespace VendingMachineApplication
         SEmptyCell,
         SUnlock,
         SAlert
+    }
+
+    public class VendingMessages
+    {
+        public string MCellRequest;
+        public string MCurrency;
+        public string MChangingCellRequest;
+        public string MRepeat;
+        public string MPriceRequest;
+        public string MDone;
+        public string MMoneyRequest;
+        public string MEmptyCell;
+        public string MAlert;
+        public string MReceivedFormatString;
+
+        public VendingMessages()
+        {
+            MCellRequest = "Введите номер ячейки: ";
+            MCurrency = " р.";
+            MChangingCellRequest = "Ячейка: ";
+            MRepeat = "Повторите ввод:";
+            MPriceRequest = "Цена товара:";
+            MDone = "Приятного аппетита!";
+            MMoneyRequest = "Недостаточно средств.";
+            MEmptyCell = "Ячейка пуста.";
+            MAlert = "Тревога!";
+            MReceivedFormatString = "Получено от автомата {0} р.";
+        }
     }
 }

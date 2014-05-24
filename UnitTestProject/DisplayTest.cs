@@ -13,12 +13,12 @@ namespace UnitTestProject
     public class DisplayTest
     {
         [TestMethod]
-        public void TestCellStringChange()
+        public void TestDisplayInputInfoChange()
         {
             Display display = new Display();
 
             String InputText = "Hello!";
-            String ExpectedOutput = "He";
+            String ExpectedOutput = "o!";
 
             display.InputInfo = InputText;
             String ActualOutput = display.InputInfo;
