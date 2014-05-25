@@ -14,7 +14,7 @@ namespace UnitTestProject
     public class SensorTest
     {
         [TestMethod]
-        public void TestCellStringChange()
+        public void TestSensor_Warns()
         {
             Sensor sensor = new Sensor();
 

@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace DevicesUnit
 {
-    public class Checker
+    public interface IChecker
+    {
+        bool Check(Banknote banknote); // запускает проверку
+        void Start(); // инициализирует проверку
+        void Update(); // обновляет состояние проверки
+        void Finish(); // завершает проверку
+        int GetResult(); // возвращает результат проверки
+    }
+
+    public class Checker: IChecker
     {
        private int  _result;         // результат проверки
        private Banknote _banknote;   // переданная купюра

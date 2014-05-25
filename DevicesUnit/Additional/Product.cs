@@ -9,7 +9,7 @@ namespace DevicesUnit
 {
     public class Product : GraphicalObject
     {
-        public new String Name { get; set; }
+        public String Name { get; set; }
 
         public Product() { }
 

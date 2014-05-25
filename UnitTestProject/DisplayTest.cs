@@ -14,7 +14,7 @@ namespace UnitTestProject
     public class DisplayTest
     {
         [TestMethod]
-        public void TestDisplayInputInfoChange()
+        public void TestDisplay_InputInfoChange()
         {
             Display display = new Display();
 

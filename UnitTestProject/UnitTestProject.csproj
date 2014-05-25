@@ -60,6 +60,8 @@
     <Compile Include="CoinKeeperTest.cs" />
     <Compile Include="CellTest.cs" />
     <Compile Include="SensorTest.cs" />
+    <Compile Include="CheckerTest.cs" />
+    <Compile Include="AcceptorMockTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VendingMachineApplication\VendingMachineApplication.csproj">

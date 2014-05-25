@@ -81,7 +81,9 @@
     <Compile Include="Devices\InputPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Devices\PanelBackground.cs" />
+    <Compile Include="Devices\PanelBackground.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Devices\PanelBackground.Designer.cs">
       <DependentUpon>PanelBackground.cs</DependentUpon>
     </Compile>

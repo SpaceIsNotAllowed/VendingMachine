@@ -18,7 +18,7 @@ namespace DevicesUnit
           private bool _fail;
           private uint _account;
           private List<Banknote> _banknoteList;
-          private Checker _checker;
+          private IChecker _checker;
 
           public Acceptor() : base()
           {
@@ -27,6 +27,12 @@ namespace DevicesUnit
               _account = 0;
               _checker = new Checker();
               _banknoteList = new List<Banknote>();
+          }
+         
+          public Acceptor(IChecker checker)
+              : this()
+          {
+              _checker = checker;
           }
 
           public new void Update()
@@ -113,6 +119,7 @@ namespace DevicesUnit
           {
               return _fail;
           }
+
           public bool isBusy()
           {
               return _isUsed;

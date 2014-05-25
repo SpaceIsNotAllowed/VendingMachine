@@ -14,7 +14,7 @@ namespace UnitTestProject
     public class CellTest
     {
         [TestMethod]
-        public void TestCell()
+        public void TestCell_AddProduct()
         {
             int expectedOutput = -1;
             int actualOutput = -1;
@@ -38,6 +38,27 @@ namespace UnitTestProject
             expectedOutput = 0;
             actualOutput = cell2.ProductCount;
             Assert.AreEqual(expectedOutput, actualOutput, "Продукт не задан, но количество изменяется.");
+        }
+
+        [TestMethod]
+        public void TestCell_RemoveProduct()
+        {
+            int expectedOutput = -1;
+            int actualOutput = -1;
+
+            Product p = new Product();
+
+            Cell cell = new Cell();
+            cell.Product = p;
+
+            cell.AddProduct(100);
+            for (int i = 9; i > -5; i--)
+            {
+                cell.RemoveProduct();
+                expectedOutput = (i >= 0 ? i : 0);
+                actualOutput = cell.ProductCount;
+                Assert.AreEqual(expectedOutput, actualOutput, "Неверное количество товара после удаления из ячейки.");
+            }
         }
     }
 }

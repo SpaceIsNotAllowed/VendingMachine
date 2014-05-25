@@ -14,7 +14,7 @@ namespace UnitTestProject
     public class CoinKeeperTest
     {
         [TestMethod]
-        public void TestCoinKeeperGetMoney()
+        public void TestCoinKeeper_GetMoney()
         {
             CoinKeeper coinKeeper = new CoinKeeper();
 

@@ -10,8 +10,6 @@ using DevicesUnit;
 
 namespace UnitTestProject
 {
-    //mock... todo
-
     [TestClass]
     public class AcceptorTest
     {
@@ -66,7 +64,7 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void TestBanknoteCheck() // Тест метода GetMoney()
+        public void TestAcceptor_GetMoney() // Тест метода GetMoney()
         {
             bool out1 = SubTestBanknoteCheck(new Banknote(BanknoteRating.Ten));
             bool out2 = SubTestBanknoteCheck(new Banknote(BanknoteRating.Fifty));
@@ -83,7 +81,7 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void TestReturnMoney()
+        public void TestAcceptor_ReturnMoney()
         {
             bool result = true;
 
