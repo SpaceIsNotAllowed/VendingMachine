@@ -1,4 +1,5 @@
-﻿namespace VendingMachineApplication
+﻿using DevicesUnit;
+namespace VendingMachineApplication
 {
     partial class FormVendingTest
     {
@@ -34,25 +35,25 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.buttonRandomize = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.product7 = new VendingMachineApplication.Product();
-            this.product6 = new VendingMachineApplication.Product();
-            this.product5 = new VendingMachineApplication.Product();
-            this.product4 = new VendingMachineApplication.Product();
-            this.product3 = new VendingMachineApplication.Product();
-            this.product2 = new VendingMachineApplication.Product();
-            this.product1 = new VendingMachineApplication.Product();
-            this.cell1 = new VendingMachineApplication.Devices.Cell(this.components);
+            this.product7 = new Product();
+            this.product6 = new Product();
+            this.product5 = new Product();
+            this.product4 = new Product();
+            this.product3 = new Product();
+            this.product2 = new Product();
+            this.product1 = new Product();
+            this.cell1 = new Cell(this.components);
             this.buttonInsert10 = new System.Windows.Forms.Button();
             this.buttonInsert50 = new System.Windows.Forms.Button();
             this.buttonInsert100 = new System.Windows.Forms.Button();
             this.buttonInsert500 = new System.Windows.Forms.Button();
             this.groupBoxUserActions = new System.Windows.Forms.GroupBox();
-            this.acceptor1 = new VendingMachineApplication.Acceptor();
-            this.myPanel1 = new VendingMachineApplication.InputPanel();
-            this.display = new VendingMachineApplication.Display();
-            this.coinKeeper1 = new VendingMachineApplication.CoinKeeper();
+            this.acceptor1 = new Acceptor();
+            this.myPanel1 = new InputPanel();
+            this.display = new Display();
+            this.coinKeeper1 = new CoinKeeper();
             this.vendingMachine = new VendingMachineApplication.VendingMachine();
-            this.sensor = new VendingMachineApplication.Devices.Sensor(this.components);
+            this.sensor = new Sensor(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.languagesList = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -395,7 +396,7 @@
         private CoinKeeper coinKeeper1;
         private VendingMachine vendingMachine;
         private Display display;
-        private Devices.Cell cell1;
+        private Cell cell1;
         private InputPanel myPanel1;
         private Acceptor acceptor1;
         private System.Windows.Forms.Timer timer;
@@ -413,7 +414,7 @@
         private System.Windows.Forms.Button buttonInsert100;
         private System.Windows.Forms.Button buttonInsert500;
         private System.Windows.Forms.GroupBox groupBoxUserActions;
-        private Devices.Sensor sensor;
+        private Sensor sensor;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem languagesList;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;

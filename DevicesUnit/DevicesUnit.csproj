@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09C15CDF-EE98-448C-AE6B-E7C6EDDA83E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DevicesUnit</RootNamespace>
+    <AssemblyName>DevicesUnit</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\DLLs\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Devices\Acceptor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Additional\Banknote.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\Cell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\Cell.Designer.cs">
+      <DependentUpon>Cell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Checker.cs" />
+    <Compile Include="Devices\CoinKeeper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\CoinKeeper.Designer.cs">
+      <DependentUpon>CoinKeeper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\Display.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\GraphicalObject.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\InputButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\InputButton.Designer.cs">
+      <DependentUpon>InputButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\InputPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Devices\PanelBackground.cs" />
+    <Compile Include="Devices\PanelBackground.Designer.cs">
+      <DependentUpon>PanelBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Additional\Product.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Devices\Sensor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Devices\Sensor.Designer.cs">
+      <DependentUpon>Sensor.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Devices\InputButton.resx">
+      <DependentUpon>InputButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devices\InputPanel.resx">
+      <DependentUpon>InputPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\#.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\#1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\#2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10rub.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\31.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\41.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\52.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\61.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\62.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\71.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\81.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\82.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\91.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\92.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptor1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\acceptor2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can41.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can5.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can6.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\can7.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin_keeper.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coin_keeper1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\display1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\display2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DisplayBackground.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DisplayBackground1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panel.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Product1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Product11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sharp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\small_wall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ж1.dib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ж2.dib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\С1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\С2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Т1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Т2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panel1.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

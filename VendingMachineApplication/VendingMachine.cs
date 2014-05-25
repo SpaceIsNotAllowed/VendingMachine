@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevicesUnit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -9,7 +10,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using VendingMachineApplication.Devices;
 
 namespace VendingMachineApplication
 {

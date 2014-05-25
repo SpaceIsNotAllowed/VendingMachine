@@ -6,7 +6,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VendingMachineApplication;
-using VendingMachineApplication.Devices;
+using DevicesUnit;
 
 namespace UnitTestProject
 {
